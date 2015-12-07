@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <div id="ret"></div>
+    <script type="text/javascript">
+        $(window).ready(function () {
+
+            $.ajax({
+                url: "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=barack%20obama",
+                type: "POST",
+                dataType: "json",
+                data: {par:"123",par2:"fghfgh"}
+            }).done(function (data) {
+                alert(data.responseData.results.length);
+
+            })
+           .fail(function (err) { alert('fail' +err); })
+           .always(function () { });
+
+
+            $.ajax({
+                url: "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=barack%20obama",
+                type: "GET",
+                dataType: "json"
+            }).done(function (data) {
+                alert(data.responseData.results.length);
+
+            })
+           .fail(function (err) { alert('fail' + err); })
+           .always(function () { });
+
+
+            /*
+            $.ajax({
+                url: "http://rss.cnn.com/rss/edition.rss",
+                type: "GET",
+                dataType: "xml"
+            }).done(function (data) {
+                var a = $(data).find("link");
+                alert($(a).length);
+
+            })
+            .fail(function () { alert('fail'); })
+            .always(function () { });
+           */
+           
+            /*
+            $.ajax({
+                url: "http://www.cnn.com",
+                type: "GET",
+                dataType: "text"
+            }).done(function (data) { $("#ret").text(data); })
+            .fail(function () { alert('fail'); })
+            .always(function () { });
+            */
+         
+
+        }
+
+            );
+
+    </script>
+</body>
+</html>

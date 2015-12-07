@@ -1,0 +1,71 @@
+GET http://localhost/HtmlCourse/summary.html?id=1234&name=Dov&amount=5600 HTTP/1.1
+Host: localhost
+Connection: keep-alive
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36
+Referer: http://localhost/HtmlCourse/Register.html
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+
+
+
+
+
+
+HTTP/1.1 200 OK
+Content-Type: text/html
+Last-Modified: Fri, 04 Sep 2015 13:15:18 GMT
+Accept-Ranges: bytes
+ETag: "1fec4be13e7d01:0"
+Vary: Accept-Encoding
+Server: Microsoft-IIS/7.5
+X-Powered-By: ASP.NET
+Date: Sun, 25 Oct 2015 19:49:04 GMT
+Transfer-Encoding: chunked
+
+40d
+<body onload="onload()">
+	<div id="queryValue">
+	
+	</div>
+</body>
+
+<script>
+	function getQueryVariable(variable) {
+		var query = window.location.search.substring(1);
+		var vars = query.split('&');
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			if (decodeURIComponent(pair[0]) == variable) {
+				return decodeURIComponent(pair[1]);
+			}
+		}
+		console.log('Query variable %s not found', variable);
+	}
+	
+	function getQueryVariablesText() {
+		var query = window.location.search.substring(1); // Eliminate the '?'
+		var vars = query.split('&');
+		var text="";
+		/*
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			text+=vars[i]+ " ";
+		}
+		*/
+		vars.forEach (function(entry) {
+			text+=entry;
+		});
+		// console.log('Query variable %s not found', variable);
+		console.log('Text parsed: %s',query);
+		return text;
+	}
+	
+	function onload() {
+		var qv=document.getElementById("queryValue");
+		qv.innerText=getQueryVariablesText();
+	}
+</script>
+0
+

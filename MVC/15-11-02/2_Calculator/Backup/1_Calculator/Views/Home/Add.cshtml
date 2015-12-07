@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<form action="/Home/AddResult">
+    First:<br />
+    <input type="text" name="first" />
+    <br /><br />
+    Second:<br />
+    <input  name="second" />
+    <br /><br />
+    <input type="submit" value="Calculate" />
+    <br /><br />
+    <div>
+        @ViewBag.Result
+    </div>
+
+</form>

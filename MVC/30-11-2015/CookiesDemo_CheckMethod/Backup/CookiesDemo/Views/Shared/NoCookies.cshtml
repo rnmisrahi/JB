@@ -1,0 +1,23 @@
+﻿@*@model System.Web.Mvc.ExceptionContext*@
+@{
+    ViewBag.Title = "NoCookies";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Error !</h1>
+        <h2>Browser does not allow cookies</h2>
+        @*ExceptionContext class properties*@
+        <h3>@Model.Exception.Message</h3>
+        @*<h4>Controller name: @Model.Exception.ControllerName </h4>*@
+        @*<h4>Action name: @Model.Exception.ActionName </h4>*@
+    </hgroup>
+</body>
+</html>

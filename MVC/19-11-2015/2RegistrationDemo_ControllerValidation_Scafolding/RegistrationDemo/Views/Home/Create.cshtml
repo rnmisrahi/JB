@@ -1,0 +1,80 @@
+﻿@using RegistrationDemo.Models
+
+@model RegistrationDemo.Models.EditMemberViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Member</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberData.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MemberData.Name)
+            @Html.ValidationMessageFor(model => model.MemberData.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberData.Seniority)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MemberData.Seniority)
+            @Html.ValidationMessageFor(model => model.MemberData.Seniority)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberData.IsProgrammer)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MemberData.IsProgrammer)
+            @Html.ValidationMessageFor(model => model.MemberData.IsProgrammer)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberData.CityId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.MemberData.CityId, Model.Cities)
+            @Html.EditorFor(model => model.MemberData.CityId)
+            @Html.ValidationMessageFor(model => model.MemberData.CityId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberData.BirthDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MemberData.BirthDate)
+            @Html.ValidationMessageFor(model => model.MemberData.BirthDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberData.IsAcceptConditions)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MemberData.IsAcceptConditions)
+            @Html.ValidationMessageFor(model => model.MemberData.IsAcceptConditions)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

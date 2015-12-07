@@ -1,0 +1,23 @@
+﻿@model RegistrationDemo.Models.MemberViewModel
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+<p>
+    ID: @Model.MemberData.Id
+</p>
+<p>
+    Name: @Model.MemberData.Name 
+</p>
+<p>
+    City: @Model.CityName
+</p>
+<p>
+    <input type="checkbox" disabled="disabled" checked="@Model.MemberData.IsProgrammer" /> Programmer
+</p>
+<p>
+    Seniority: @Model.MemberData.Seniority
+</p>

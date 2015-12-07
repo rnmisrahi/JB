@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Inventory.Models.ItemViewModel>
+@using Inventory.Models;
+
+@{
+    ViewBag.Title = "ItemList";
+}
+<link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css">
+<h2>ItemList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemData.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemData.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemData.ProductionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemData.CurrentQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemData.MinimumQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemData.MaximumQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemData.Id) 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemData.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemData.ProductionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemData.CurrentQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemData.MinimumQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemData.MaximumQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=@item.ItemData.Id }) |
+            @*<a href="/Home/Details/@item.ItemData.Id">Details</a>*@
+            @*<form action="~/Home/Details/" method="post">
+                <input type="hidden" name="stam" value=@item.ItemData.Id />
+                <input type="submit" value="Details" />
+            </form>*@
+            @Html.ActionLink("Details", "Details", new { Id = item.ItemData.Id }, new AjaxOptions { HttpMethod = "GET" }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

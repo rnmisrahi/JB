@@ -1,0 +1,35 @@
+﻿@model CookiesDemo.Models.RegistrationInfo
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm())
+{
+    if (Model.IsRegistered)
+    {
+        <h3>You are registered</h3>
+    }
+    else
+    {
+        <h3>Please sign in</h3>
+    }
+    
+    <fieldset>
+        @*<legend>Registration Information</legend>*@
+        <div>
+            @Html.DisplayNameFor(m => m.Usr)
+            @Html.TextBoxFor(m => m.Usr, new { placeholder = "Enter User Name" })
+            <br /><br />
+            @Html.DisplayNameFor(m => m.Profession)
+            @Html.TextBoxFor(m => m.Profession, new { placeholder = "Enter a Valid Profession" })
+            <br /><br />
+            @Html.DisplayNameFor(m => m.UserID)
+            @Html.TextBoxFor(m => m.UserID)
+            <br /><br />
+            <input type="submit" value="Submit" />
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,67 @@
+﻿@using RegistrationDemo.Models
+@model RegisterMemberViewModel
+
+@{
+    ViewBag.Title = "RegistrationPage";
+}
+
+<h2>RegistrationPage</h2>
+
+@Html.ValidationSummary("Model Errors:")
+
+<form action="/Home/Register" method="post">
+    <div class="input-field">
+        ID:
+        @Html.TextBox("MemberData.Id",@Model.MemberData.Id)
+        @Html.ValidationMessage("MemebrData.Id")
+    </div>
+    
+    <div class="input-field">
+        Name:
+        @Html.TextBox("MemberData.Name", Model.MemberData.Name)
+        @Html.ValidationMessage("MemberData.Name")
+    </div>
+    
+    <div class="input-field">
+        Seniority:
+        @Html.TextBox("MemberData.Seniority", Model.MemberData.Seniority)
+        @Html.ValidationMessage("MemberData.Seniority")
+    </div>
+    
+    <div class="input-field">
+        @Html.CheckBox("MemberData.IsProgrammer")
+        Programmer
+    </div>
+    
+    <div class="input-field">
+        City:
+        @Html.DropDownList("MemberData.CityId", new SelectList(Model.Cities, "CityId", "CityName", Model.MemberData.CityId), "Select")
+        @Html.ValidationMessage("MemberData.CityId")
+    </div>
+
+    
+    <div class="input-field">
+        @Html.TextBox("MemberData.BirthDate", @Model.MemberData.BirthDate.ToShortDateString())
+        @Html.ValidationMessage("MemberData.BirthDate")
+    </div>
+    
+    <div class="input-field">
+        @Html.CheckBox("MemberData.IsAcceptConditions", @Model.MemberData.IsAcceptConditions)
+        I agree<br />
+        @Html.ValidationMessage("MemberData.IsAcceptConditions")
+    </div>
+
+    <div class="input-field">
+        @Html.TextBox("MemberData.Password")
+        @Html.ValidationMessage("MemberData.Password")
+    </div>
+
+    <div class="input-field">
+        @Html.TextBox("PasswordClone")
+        @Html.ValidationMessage("PasswordClone")
+    </div>
+    
+    <div class="input-field">
+        <input type="submit" value="Register" />
+    </div>
+</form>

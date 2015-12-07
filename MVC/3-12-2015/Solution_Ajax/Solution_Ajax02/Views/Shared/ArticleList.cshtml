@@ -1,0 +1,18 @@
+﻿@model Solution_Ajax02.Models.ArticleVM
+
+<table class="table" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Headline)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Headline)
+        </td>
+    </tr>
+}
+
+</table>

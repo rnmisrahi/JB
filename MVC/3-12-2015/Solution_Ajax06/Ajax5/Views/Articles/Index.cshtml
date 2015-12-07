@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Ajax5.Models.Article>
+
+@{
+    ViewBag.Title = "Headlines";
+}
+
+
+<h2>These are Today's Headlines:</h2>
+
+@using (Html.BeginForm())
+{
+
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Headline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th></th>
+        </tr>
+
+        @Html.Partial("_Headlines", Model);
+
+    </table>*@
+
+   <h2>Filter the articles on the list:</h2>
+        <h3>From:</h3>@Html.TextBox("MinChars")
+        <h3>To:</h3>@Html.TextBox("MaxChars")<h3> Words</h3>
+    <input type="button" value="Post" onclick="AddArticle()" />
+
+    @*<h2>Enter new article:</h2>
+    @Html.TextArea("id")
+    <input type="button" value="Post" onclick="AddArticle()" />*@
+
+    <h3>Here is where we have the articles</h3>
+    <div id="ArticlePH"></div>
+
+}
+
+
+
+
+<script src="\Scripts\jquery-1.8.2.js"></script>
+<script>
+    $(function () {
+        $(document).submit(function (evt) {
+            evt.preventDefault();
+        });
+    });
+</script>
+
+@*<script>
+        function AddArticle() {
+            console.log("HERE WE ARE!!!!!!!!!!!");
+            var minChars = $("#MinChars").val();
+            var maxChars = $("#MaxChars").val();
+            //var target = "/Articles/Filter?MinChars=" + minChars + "&MaxChars=" + maxChars
+            var articleId = $("#id").val();
+            var target = "/Articles/Index?Id=xxx"
+            $.ajax({
+                url: target,
+                type: "POST",
+                async: true,
+                success: function (result) {
+                    $("#ArticlePH").html(result);
+                },
+                error: function (x, s, e) {
+                    $("#ArticlePH").html("Can not filter based on Min/Max " + $("#MinChars").val() + " and " + $("#MaxChars") + " Characters";
+                }
+            })
+        }
+
+</script>*@
+
+<script>
+    function AddArticle() {
+        //var articleId = $("#id").val();
+        //var target = "/Articles/Index?Id=" + articleId
+        var minChars = $("#MinChars").val();
+        var maxChars = $("#MaxChars").val();
+        var target = "/Articles/Filter?MinChars=" + minChars + "&MaxChars=" + maxChars
+        $.ajax({
+            url: target,
+            type: "POST",
+            async: true,
+            success: function (result) {
+                $("#ArticlePH").html(result);
+            },
+            error: function (x, s, e) {
+                $("#ArticlePH").html("Can not add that article " + $("#id").val());
+            }
+        })
+    }
+</script>
+
+

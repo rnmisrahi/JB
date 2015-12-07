@@ -1,0 +1,99 @@
+﻿@model List<RegistrationDemo.Models.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<style>
+    .mylittleform{
+        padding:0px;
+        margin-top:0px;
+        height:100%;
+        margin-bottom:0px;
+    }
+    .mytd{
+        padding:0px;
+    }
+    .myinput{
+        height:100%;
+    }
+</style>
+
+<h2>Index</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Seniority</th>
+        <th>Programmer</th>
+    </tr>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.Id</td>
+                <td>@m.Name</td>
+                <td>@m.Seniority</td>
+                <td>
+                    <input type="checkbox" checked="@m.IsAProgrammer" />
+                </td>
+                @*<td><a href="/Home/Display/@m.Id">Details</a></td>*@
+                <td class="mytd">
+                    <form action="/Home/Display" method="get" class="mylittleform">
+                        <input type="hidden" name="id" value="@m.Id" />
+                        <input type="submit" value="Display" />
+                    </form>
+                </td>
+                @*<td><a href="/Home/Edit/@m.Id">Edit</a></td>*@
+                <td class="mytd">
+                    <form action="/Home/Edit" method="post" class="mylittleform">
+                        <input type="hidden" name="id" value="@m.Id" />
+                        <input type="submit" value="Edit"/>
+                    </form>
+                </td>
+                @*<td><a href="/Home/Delete/@m.Id">Delete</a></td>*@
+                <td class="mytd">
+                    <form action="/Home/Delete/@m.Id" method="post" class="mylittleform">
+                        <input type="hidden" name="id" value="@m.Id" />
+                        <input type="submit" value="Delete" class="myinput" />
+                    </form>
+                </td>
+            </tr>
+        }
+</table>
+<p></p>
+<form action="/Home/Register" method="get">
+    <input type="submit" value="Register New Member"/>
+</form>
+<script>
+    $(document).ready(function () {
+
+        //$('div.thatSetsABackgroundWithAnIcon').each(function () {
+        //    var $div = $(this);
+        //    // Set the div's height to its parent td's height
+        //    $div.height($div.closest('td').height());
+        //});
+
+        //$("input:not(:hidden)").each(function () {
+        //    alert("This is the button height: " + $(this).css("height"));
+        //    alert("This is the td height: " + $(this).parent('td').css("height"));
+        //    $(this).css("height", $(this).parent('td').css("height"));
+        //});
+
+        //var b = $("input:not(:hidden)");
+        //alert(b.length + " Items");
+        //for (i = 0; i < b.length; i++) {
+        //    //alert(b[i].innerHTML + " - " + b[i].value);
+        //    //$(b[i]).css('height', $b[i].parent('td').height());
+        //    alert("Here we go :" + i);
+        //    alert("This is the button height: " + $b[i].css("width"));
+        //    alert("This is the td height: " + $b[i].parent('td').css("height"));
+        //}
+        //$("#td input").each(function () {
+        //    alert("This is the button : " + $(this));
+        //});
+    });
+</script>
+
+

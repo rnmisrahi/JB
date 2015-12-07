@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .fixed {
+            position:absolute;
+            top:30px;
+            left:30px;
+            border: 1px solid black;
+            z-index:100;
+        }
+    </style>
+</head>
+<body>
+    <script src="Scripts/jquery-2.1.4.js"></script>
+
+    <div id="menu" style="display:inline-block;width:200px;">Cities</div>
+
+
+    <script>
+        $(window).ready(function () {
+            $('#menu').on('mouseenter', function () {
+                var mi = $("<div id=m1/>");
+                $(mi).html("<a href=www.holon.muni.il>Holon</a>")
+                $(mi).hide();
+                $(mi).addClass("fixed");
+                $('#menu').on('mouseleave', function (e) { $('#m1').hide();  });
+                $(mi).css('background-color', 'yellow');
+                $('#menu').append(mi);
+                //$(mi).show('slide', {direction:'up'});
+                $(mi).slideDown();
+            });
+        });
+
+    </script>
+</body>
+</html>

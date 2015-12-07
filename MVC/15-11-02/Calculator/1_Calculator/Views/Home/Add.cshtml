@@ -1,0 +1,26 @@
+﻿@model Calculator.Models.Exercise
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<form action="/Home/AddResult" method="post">
+    First:<br />
+    <input type="text" name="first" value="@Model.First"/>
+    <br /><br />
+    Second:<br />
+    <input  name="second" value="@Model.Second"/>
+    <br /><br />
+    <input type="radio" name="operand" value="+" checked>Add
+    <input type="radio" name="operand" value="-">Subtract 
+    <input type="radio" name="operand" value="*">Multiply 
+    <input type="radio" name="operand" value="/">Divide 
+    <br/><br/>
+    <input type="submit" value="Calculate" />
+    <br /><br />
+    <div>
+        @ViewBag.Result
+    </div>
+
+</form>

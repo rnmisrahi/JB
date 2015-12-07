@@ -1,0 +1,22 @@
+﻿@model RegistrationDemo.Models.Member
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+<p>
+    ID: @Model.Id
+</p>
+<p>
+    Name: @Model.Name
+</p>
+<p>
+    Seniority: @Model.Seniority
+</p>
+
+@*<p>@Html.ActionLink("Home", "Index", "Home")</p>*@
+@Html.ActionLink("Back to List", "DisplayMembers")
+
+

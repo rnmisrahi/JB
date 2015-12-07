@@ -1,0 +1,37 @@
+﻿@model List<RegistrationDemo.Models.MemberViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Seniority</th>
+        <th>Programmer</th>
+        <th>City</th>
+    </tr>
+    @foreach (var m in Model)
+    {
+        <tr>
+            <td>@m.MemberData.Id</td>
+            <td>@m.MemberData.Name</td>
+            <td>@m.MemberData.Seniority</td>
+            <td>
+                <input type="checkbox" checked="@m.MemberData.IsProgrammer" disabled="disabled"/>
+            </td>
+            <td>@m.CityName</td>
+            <td><a href="/Home/Display/@m.MemberData.Id">Details</a></td>
+            <td><a href="/Home/Edit/@m.MemberData.Id">Edit</a></td>
+            <td><a href="/Home/Delete/@m.MemberData.Id">Delete</a></td>
+            <td>
+                <form action="/Home/Delete/@m.MemberData.Id" method="post">
+                    <input type="submit" value="Delete" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>

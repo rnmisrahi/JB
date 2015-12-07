@@ -1,0 +1,1 @@
+https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=%D7%90%D7%95%D7%91%D7%9E%D7%94

@@ -1,0 +1,28 @@
+﻿
+<h2>ShowExercise -- @Model.Operation</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<form action="/Home/ExerciseResult">
+    First:<br />
+    <input class="watch" type="text" name="exercise.first" value="@Model.exercise.First"/>
+    <br /><br />
+    Second:<br />
+    <input class="watch" name="exercise.second" value="@Model.exercise.Second"/>
+    <br /><br />
+    <input type="submit" value="Calculate" />
+    <br /><br />
+    <div id="result">
+        <b>@Model.Result</b>
+    </div>
+
+    <a href="/">Index</a>
+
+    <input type="hidden" name="operation" value="@Model.Operation" />
+
+    <script>
+        $(".watch").keypress(function () {
+            $("#result").css("color", "red");
+        });
+    </script>
+
+</form>

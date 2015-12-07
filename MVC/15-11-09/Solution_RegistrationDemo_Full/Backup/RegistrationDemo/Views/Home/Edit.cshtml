@@ -1,0 +1,30 @@
+﻿@model RegistrationDemo.Models.Member
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form action="/Home/EditMember" method="post">
+    ID:
+    @Model.Id
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <input name="NewId" value="@Model.Id"/>
+    <br /><br />
+    Name:
+    <input name="Name" value="@Model.Name"/>
+    <br /><br />
+    Seniority:
+    <input name="Seniority" value="@Model.Seniority"/>
+    <br /><br />
+    Programmer:
+    @*<input type="checkbox" name="IsAProgrammer" checked="@Model.IsAProgrammer" value="true" />
+    <input type="hidden" name="IsAProgrammer" value="false" />*@
+    @*@Html.EditorFor(x=>x.IsAProgrammer)*@
+    @Html.CheckBox("IsAProgrammer")
+    @*<input name="IsAProgrammer" type="checkbox" value="true" @(Model.IsAProgrammer ? "checked=\"checked\"" : "") />*@
+    <br/><br/>
+
+    <input type="submit" value="Update" />
+</form>

@@ -1,0 +1,38 @@
+﻿<div style="font-family: Arial">
+
+    <h2>Members</h2>
+
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    @Ajax.ActionLink("All", "All", new AjaxOptions
+                                {
+                                    HttpMethod = "Get",
+                                    UpdateTargetId = "divMembers",
+                                    InsertionMode = InsertionMode.Replace,
+                                    
+                                })
+
+    <span style="color: blue">|</span>
+
+    @Ajax.ActionLink("Top 3", "Top3", new AjaxOptions
+                                {
+                                    HttpMethod = "Get",
+                                    UpdateTargetId = "divMembers",
+                                    InsertionMode = InsertionMode.Replace,
+                                })
+
+    <span style="color: blue">|</span>
+
+    @Ajax.ActionLink("Bottom 3", "Bottom3", new AjaxOptions
+                                {
+                                    HttpMethod = "Get",
+                                    UpdateTargetId = "divMembers",
+                                    InsertionMode = InsertionMode.Replace,
+                                })
+
+    <span style="color: blue">|</span>
+
+
+    <div id="divMembers"></div>
+</div>

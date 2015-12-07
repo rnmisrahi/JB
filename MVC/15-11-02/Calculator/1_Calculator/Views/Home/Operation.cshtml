@@ -1,0 +1,30 @@
+﻿@model Calculator.Models.Exercise
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+    </head>
+    <body>
+        <h1>Operations</h1>
+        <form action="/Home/Operation" method="post">
+            First:<br />
+            <input type="text" name="first" value="@Model.First" />
+            <br /><br />
+            Second:<br />
+            <input name="second" value="@Model.Second" />
+            <br /><br />
+            <input type="radio" name="operand" value="+" checked>Add
+            <input type="radio" name="operand" value="-">Subtract
+            <input type="radio" name="operand" value="*">Multiply
+            <input type="radio" name="operand" value="/">Divide
+            <br /><br />
+            <input type="submit" value="Calculate" />
+            <br /><br />
+            <div>
+                @Model.Result
+            </div>
+
+        </form>
+
+    </body>
+</html>

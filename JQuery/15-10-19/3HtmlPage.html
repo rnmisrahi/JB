@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <input id="textfield" type="text" style="width: 300px" />
+
+    <input id="srcbutton" type="button" style="width: 100px" value="search" />
+    <script src="Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+
+        var url = "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=";
+
+
+        $(window.document).ready(function (e) {
+
+            $('#srcbutton').click(function () {
+                var txt = $('#textfield').val();
+
+                // ajax
+                url += txt;
+                debugger;
+                $.ajax({
+                    
+                    url: "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=",
+                    context: document.body
+                    
+                }).done(function () {
+                    $(this).addClass("done");
+                });
+            });
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /////////////////
+        var a;
+
+        function func() {
+
+            var a = "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=";
+        }
+
+        var handler = null;
+        var count = 0;
+
+        var xhr = new XMLHttpRequest();
+
+        function change() {
+
+            xhr.open('GET', a, true);
+            xhr.onerror = alert("error");
+            xhr.onreadystatechange = onRequestFinished;
+            xhr.send();
+        }
+
+        function onRequestFinished(e) {
+            if (xhr.readyState == 4) {
+
+
+            }
+
+        }
+
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

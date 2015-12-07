@@ -1,0 +1,26 @@
+﻿@model PartialViewDemo.Models.Repository
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<fieldset>
+    <legend>Repository</legend>
+
+    @foreach (var student in Model.GetAll())
+    {
+        
+            <p>
+                Html.DisplayName(student.Name);
+        </p>
+        foreach (var grade in student.Grades)
+        {
+            @Html.Partial("Grade", grade);
+        }
+    
+
+    }
+</fieldset>
+

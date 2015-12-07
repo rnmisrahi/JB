@@ -1,0 +1,28 @@
+﻿@model bool
+@using Elections.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form method="post">
+    <fieldset>
+        <legend>Statistics</legend>
+
+        @foreach (var candidate in Statistics.Candidates)
+        {
+            <p>
+                @if (!Model)
+                {
+                    <input type="radio" value="@candidate.Name" name="candidateName"/>
+                }
+                @candidate.Name
+                @candidate.VoteCount
+            </p>
+        }
+
+    </fieldset>
+    <input type="submit" value="Send" />
+</form>

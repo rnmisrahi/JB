@@ -1,0 +1,19 @@
+﻿@model Stam01.Models.Candidate
+@using Stam01.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<form action="Home/Index" method="post">
+    Votes: <input type="text" name="votes" />
+    <br />
+
+    Select: <br/>
+    @foreach (Candidate c in Repository.Candidates) { 
+        <input type="radio" name="Name" value="@c.Name" /> @c.Name
+    }
+
+    <input type="submit" value="Send"/>
+</form>

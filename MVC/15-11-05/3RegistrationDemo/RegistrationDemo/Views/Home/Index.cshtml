@@ -1,0 +1,27 @@
+﻿@model RegistrationDemo.Models.Member
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index2</title>
+</head>
+<body>
+    <div>
+        <p>@Html.ActionLink("Display Members", "DisplayMembers", "Home")</p>
+        <p>@Html.ActionLink("Register New Member", "Register", "Home")</p>
+        <form action="/Home/DisplayMember" method="post">
+            Display Member <input type="text" name="Id" />
+            <input type="submit" value="Display Member" />
+        </form>
+        <form action="/Home/EditMember" method="post">
+            Edit Member <input type="text" name="Id" />
+            <input type="submit" value="Edit Member" />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿@model Inventory.Models.ItemViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemData.InventoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemData.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinimumQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinimumQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaximumQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaximumQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

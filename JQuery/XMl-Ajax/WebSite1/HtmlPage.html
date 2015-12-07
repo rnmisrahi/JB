@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(window).ready(function () {
+            var s = '<channel><title id="1" name="Sami">RSS Title 1</title><title id="2">RSS Title 2</title></channel>';
+
+            var xml = $(jQuery.parseXML(s));
+
+            var ret = $(xml).find("title[id='1']");
+
+            //alert($(ret).text());
+            //alert($(ret).attr("name"));
+
+            var arr = $(xml).find("title");
+            $.each(arr, function (k, v) {
+                alert($(v).text());
+            });
+            }
+
+            )
+
+
+
+        $.ajax({
+            type: "GET",
+            url: "http://www.ynet1111.co.il",
+            dataType: "text"
+        }).done(function (data) {
+            $("#ret").text(data);
+        }).fail(function (data) {
+            alert("fail");
+        }).always(function (data) {
+            alert("done");
+        })
+
+
+    </script>
+</body>
+</html>

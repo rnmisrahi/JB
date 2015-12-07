@@ -1,0 +1,77 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Content/jquery.mobile-1.4.5.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+        
+     <script type="text/javascript">
+         $(document).on("mobileinit", function () {
+             alert("Mobile ready");
+         });
+         $(document).on("pageinit", "#page1", function () {
+             alert("Page1 init");
+         });
+
+         $(document).on("pageshow", "#page1", function () {
+             alert("Page1 show");
+         });
+         $(document).on("pagehide", "#page1", function () {
+             alert("Page1 hide");
+         });
+         $(document).on("pageinit", "#page2", function () {
+             alert("Page2 init");
+         });
+
+         $(document).on("pageshow", "#page2", function () {
+             alert("Page2 show");
+         });
+
+         $(document).on("pagehide", "#page2", function () {
+             alert("Page2 hide");
+         });
+
+    </script>
+    
+    <script src="Scripts/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+ 
+    <div data-role="page" id="page1">
+        <div data-role="header">
+            <h1>Hi</h1>
+        </div>
+
+        <div data-role="content">
+            Site Content
+            <a href="#page2" class="ui-btn ui-shadow">Go to Page 2</a>
+            
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <h1>Hi</h1>
+        </div>
+    </div>
+
+
+      <div data-role="page" id="page2">
+        <div data-role="header">
+            <h1>Hi This  is Page 2</h1>
+        </div>
+
+        <div data-role="content">
+            Site Content
+            
+            <a 
+                
+                 data-rel="back" class="ui-btn ui-shadow">Go to Page 1</a>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <h1>Hi Page 2</h1>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model RegistrationDemo.Models.EditMemberViewModel
+@using RegistrationDemo.Models
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form action="/Home/Edit" method="post">
+    ID:
+    @Model.MemberData.Id
+    <input type="hidden" name="Id" value="@Model.MemberData.Id" />
+    <br /><br />
+    Name:
+    <input name="Name" value="@Model.MemberData.Name"/>
+    <br /><br />
+    Seniority:
+    <input name="Seniority" value="@Model.MemberData.Seniority"/>
+    <br /><br />
+    Programmer: 
+    @*@Html.CheckBox("@Model.MemberData.IsProgrammer");*@
+    @*@Html.CheckBoxFor(m => m.MemberData.IsProgrammer, true);*@
+    <input type="checkbox" name="isProgrammer" value="true" checked="@Model.MemberData.IsProgrammer" />
+    <input type="hidden" name="isProgrammer" value="false" />
+    <br /><br />
+    <select name="CityId">
+        @foreach (City c in Model.Cities)
+        {
+            if (c.CityId==Model.MemberData.CityId)
+            {
+                <option value="@c.CityId" selected="selected">@c.CityName</option>
+            }
+            else 
+            {
+                <option value="@c.CityId">@c.CityName</option>
+            }
+        } 
+    </select>
+    <br /><br />
+    <input type="submit" value="Update" />
+    <input type="button" value="Back to Index" onclick="window.location='/Home/Index'" />
+</form>

@@ -1,0 +1,67 @@
+﻿@model List<RegistrationDemo.Models.Member>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <form action="Home/Register" method="post">
+        <table border="1" id="table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Seniority</th>
+                <th>Select</th>
+            </tr>
+            @foreach (var m in Model)
+            {
+                <tr id="@m.Id">
+                    <td>@m.Id</td>
+                    <td>@m.Name</td>
+                    <td>@m.Seniority</td>
+                    <td><a href="~/Home/DisplayMember/@m.Id">Details</a></td>
+                    <td><a href="~/Home/EditMember/@m.Id">Edit</a></td>
+                    @*<td><input type="radio" name="edit" value="Go Ahead" /></td>*@
+                </tr>
+            }
+        </table>
+        <input type="submit" value="Register New Member"/>
+        <input id="dosomething" type="button" name="Do Something" value="Edit"/>
+    </form>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+               <script>
+        function isChecked(n) {
+            if (n == 2)
+                return true;
+            return false;
+        }
+
+        function clearRadios(id) {
+            var Radios = document.getElementsByTagName('edit');
+            for (var i = 0; i < Radios.length; i++) {
+                if (Radios[i].type == 'radio') {
+                    Radios[i].checked = false;
+                }
+            }
+        }
+
+        function ids() {
+            var n = 0;
+            var t = $("td");
+            t.each(function(k){
+                n++;
+                alert(k.toString())
+            });
+            alert(n + " Items");
+        }
+
+        var b = $("#dosomething");
+        b.click(function () {
+            ids();
+        });
+               </script>
+

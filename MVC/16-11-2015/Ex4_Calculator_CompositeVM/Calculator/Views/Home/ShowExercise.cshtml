@@ -1,0 +1,32 @@
+﻿@model Calculator.Models.ExerciseVM
+
+<h2>ShowExercise -- @Model.Operation</h2>
+
+<form action="/Home/ExerciseResult">
+    First:<br />
+    <input type="text" name="exercise.first" value="@Model.Exercise.First"/>
+    <br /><br />
+    Operation:
+    @{String s = "selected";
+      }
+    <select name="Operation">
+        <option value="Add" selected = '@(Model.Operation=="Add")'>Add</option>
+        <option value="Subtract" selected='@(Model.Operation == "Subtract")'>Subtract</option>
+        <option value="Mul" selected='@(Model.Operation == "Mul")'>Multiply</option>
+        <option value="Div" selected='@(Model.Operation == "Div")'>Divide</option>
+    </select>
+    <br /><br />
+    Second:<br />
+    <input  name="exercise.second" value="@Model.Exercise.Second"/>
+    <br /><br />
+    <input type="submit" value="Calculate" />
+    <br /><br />
+    <div>
+        @Model.Result
+    </div>
+
+    <a href="/">Index</a>
+
+    <input type="hidden" name="operation" value="@Model.Operation" />
+
+</form>

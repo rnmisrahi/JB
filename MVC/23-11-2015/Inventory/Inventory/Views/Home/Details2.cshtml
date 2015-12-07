@@ -1,0 +1,74 @@
+﻿@model Inventory.Models.ItemViewModel
+
+@{
+    ViewBag.Title = "Details2";
+}
+
+<h2>Details2</h2>
+
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemData.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemData.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemData.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemData.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemData.ProductionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemData.ProductionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemData.CurrentQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemData.CurrentQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemData.MinimumQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemData.MinimumQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemData.MaximumQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemData.MaximumQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitName)
+        </dt>
+
+        <dd>
+            @Model.UnitName @*We can use the @Model alias*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemData.Id }) |
+    @Html.ActionLink("Back to List", "ItemList")
+</p>

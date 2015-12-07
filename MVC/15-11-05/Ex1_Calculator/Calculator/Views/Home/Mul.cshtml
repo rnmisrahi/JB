@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Mul</h2>
+
+<form action="/Home/MulResult">
+    First:<br />
+    <input type="text" name="first" value="@Model.First"/>
+    <br /><br />
+    Second:<br />
+    <input  name="second" value="@Model.Second"/>
+    <br /><br />
+    <input type="submit" value="Calculate" />
+    <br /><br />
+    <div>
+        @ViewBag.Result
+    </div>
+
+</form>

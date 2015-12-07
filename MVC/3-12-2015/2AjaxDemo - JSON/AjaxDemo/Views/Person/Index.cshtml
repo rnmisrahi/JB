@@ -1,0 +1,57 @@
+﻿@model AjaxDemo.Models.Person
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <h2>Person Displayer</h2>
+    <p>
+        Enter person ID : 
+        @Html.TextBox("id")
+        <input type="button" value="Find" onclick="FetchPerson()" />
+    </p>
+    <div id="personRecord">
+        ID :  <span id="pId"></span><br />
+        Name: <span id="pName"></span><br />
+        Amount: <span id="pAmount"></span><br/>
+        Degree: <span id="pDegree"></span><br/>
+        Bananas: <span id="pBananas"></span>
+    </div>
+}
+
+<script src="\Scripts\jquery-1.8.2.js"></script>
+<script>
+    $(function () {
+        $("#personRecord").hide();
+        $(document).submit(function (evt) {
+            evt.preventDefault();
+        });
+    })
+</script>
+<script>
+    function FetchPerson() {
+        var personId = $("#id").val();
+        var target="/Person/Index?id=" + personId
+        $.ajax({
+            url: target,
+            type: "POST",
+            async: true,
+            success: function (result) {
+                // $("#personPH").val(result.Amount);
+                //var jsonStr = JSON.stringify(result);
+                //$("#personPH").text(jsonStr);
+                $("#personRecord").show();
+                $("#pId").text(result.ID);
+                $("#pName").text(result.Name);
+                $("#pAmount").text(result.Amount);
+                $("#pDegree").text(result.Degree);
+                $("#pBananas").text(result.LikeBananas);
+                // $("#personRecord").text(JSON.stringify(result));
+            },
+        })
+    }
+</script>

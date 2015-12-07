@@ -1,0 +1,67 @@
+﻿@using RegistrationDemo.Models
+@model EditMemberViewModel
+
+@{
+    ViewBag.Title = "RegistrationPage";
+}
+
+<h2>RegistrationPage</h2>
+
+<form action="/Home/Register" method="post">
+    ID:
+    <input name="Id" value="@Model.MemberData.Id"/>
+    <br /><br />
+    Name:
+    <input name="Name" value="@Model.MemberData.Name"/><br/>
+    @if (!ViewData.ModelState.IsValidField("Name"))
+    {
+        <span class="input-validation-error">@ViewData.ModelState["Name"].Errors[0].ErrorMessage</span>
+    }
+    <br /><br />
+    Seniority:
+    <input name="Seniority" value="@Model.MemberData.Seniority"/><br/>
+    @if (!ViewData.ModelState.IsValidField("Seniority"))
+    {
+        <span class="input-validation-error">@ViewData.ModelState["Seniority"].Errors[0].ErrorMessage</span>
+    }
+    <br /><br />
+
+    <input type="checkbox" name="isProgrammer" value="true" checked="@Model.MemberData.IsProgrammer" />
+    <input type="hidden" name="isProgrammer" value="false" />
+    Programmer
+    <br /><br />
+    <select name="CityId">
+        <option value="-1">Select city</option>
+        @foreach (City c in Model.Cities)
+        {
+            if (c.CityId==Model.MemberData.CityId)
+            {
+                <option value="@c.CityId" selected="selected">@c.CityName</option>
+            }
+            else 
+            {
+                <option value="@c.CityId">@c.CityName</option>
+            }
+        } 
+    </select><br/>
+    @if (!ViewData.ModelState.IsValidField("CityId"))
+    {
+        <span class="input-validation-error">@ViewData.ModelState["CityId"].Errors[0].ErrorMessage</span>
+    }
+    <br /><br />
+    <input name="BirthDate" value="@Model.MemberData.BirthDate.ToShortDateString()"/><br/>
+    @if (!ViewData.ModelState.IsValidField("BirthDate"))
+    {
+        <span class="input-validation-error">@ViewData.ModelState["BirthDate"].Errors[0].ErrorMessage</span>
+    }
+    <br /><br />
+    <input type="checkbox" name="IsAcceptConditions" value="true" checked="@Model.MemberData.IsAcceptConditions" />
+    <input type="hidden" name="IsAcceptConditions" value="false" />
+    I agree<br/>
+    @if (!ViewData.ModelState.IsValidField("IsAcceptConditions"))
+    {
+        <span class="input-validation-error">@ViewData.ModelState["IsAcceptConditions"].Errors[0].ErrorMessage</span>
+    }
+    <br /><br />
+    <input type="submit" value="Register" />
+</form>

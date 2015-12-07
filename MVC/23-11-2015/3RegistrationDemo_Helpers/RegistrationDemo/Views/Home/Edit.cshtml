@@ -1,0 +1,53 @@
+﻿@model RegistrationDemo.Models.EditMemberViewModel
+@using RegistrationDemo.Models
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@*@if (!ViewData.ModelState.IsValid)
+{
+    @Html.ValidationSummary("You have some errors")
+}*@
+
+@Html.ValidationSummary("You have some errors")
+
+<form action="/Home/Edit" method="post">
+    ID:
+    @Model.MemberData.Id
+    <input type="hidden" name="Id" value="@Model.MemberData.Id" />
+    <br /><br />
+    Name:
+    @Html.TextBox("Name", Model.MemberData.Name)
+    @Html.ValidationMessage("Name")
+
+    <br /><br />
+    Seniority:
+    <input name="Seniority" value="@Model.MemberData.Seniority"/>
+    @Html.ValidationMessage("Seniority")
+    <br /><br />
+
+    @Html.CheckBox("IsProgrammer")
+    Programmer
+    <br /><br />
+    
+    @Html.DropDownList("CityId", new SelectList(Model.Cities,"CityId","CityName",Model.MemberData.CityId),"Select")
+    <br/>
+    @Html.ValidationMessage("CityId")
+
+    <br /><br />
+    <input name="BirthDate" value="@Model.MemberData.BirthDate.ToShortDateString()"/>
+    @Html.ValidationMessage("BirthDate")
+
+    <br /><br />
+    @*<input type="checkbox" name="IsAcceptConditions" value="true" checked="@Model.MemberData.IsAcceptConditions" />
+    <input type="hidden" name="IsAcceptConditions" value="false" />*@
+    @Html.CheckBox("IsAcceptConditions")
+    I agree<br/>
+    @Html.ValidationMessage("IsAcceptConditions")
+
+    <br /><br />
+    <input type="submit" value="Update" />
+</form>

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Add";
+}
+
+<h2>ShowExercise -- @Model.Operation</h2>
+
+<form action="/Home/ExerciseResult">
+    First:<br />
+    <input type="text" name="first" value="@Model.First" onchange="onOperandChanged()"/>
+    <br /><br />
+    Second:<br />
+    <input  name="second" value="@Model.Second" onchange="onOperandChanged()"/>
+    <br /><br />
+    <input type="submit" value="Calculate" />
+    <br /><br />
+    <div id="result">
+        @Model.Result
+    </div>
+
+    <a href="/">Index</a>
+
+    <input type="hidden" name="operation" value="@Model.Operation" />
+
+</form>
+
+<script>
+    function onOperandChanged()
+    {
+        document.getElementById("result").style.color = "red";
+    }
+</script>

@@ -1,0 +1,22 @@
+﻿@model Calculator.Models.ExerciseVM
+
+<h2>ShowExercise -- @Model.Operation</h2>
+
+<form action="/Home/ExerciseResult">
+    First:<br />
+    <input type="text" name="exercise.first" value="@Model.Exercise.First"/>
+    <br /><br />
+    Second:<br />
+    <input  name="exercise.second" value="@Model.Exercise.Second"/>
+    <br /><br />
+    <input type="submit" value="Calculate" />
+    <br /><br />
+    <div>
+        @Model.Result
+    </div>
+
+    <a href="/">Index</a>
+
+    <input type="hidden" name="operation" value="@Model.Operation" />
+
+</form>

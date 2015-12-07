@@ -1,0 +1,25 @@
+﻿@model RegistrationDemo.Models.Member
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Model.Name</title>
+    </head>
+    <body>
+        <h1>
+            This is the Show Member Page
+        </h1>
+        <form action="/Home/ShowMember" method="post">
+            ID:
+            <input name="Id" value="@Model.Id"/>
+            <br /><br />
+            Name:
+            <input name="Name" value="@Model.Name" />
+            <br /><br />
+            Seniority:
+            <input name="Seniority" value="@Model.Seniority"/>
+            <br /><br />
+            <input type="submit" value="ShowMember" />
+        </form>
+
+    </body>
+</html>

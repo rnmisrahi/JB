@@ -1,0 +1,32 @@
+﻿@model RegistrationDemo.Models.CitiesViewModel
+@using RegistrationDemo.Models
+@{
+    ViewBag.Title = "RegistrationPage";
+}
+
+<h2>RegistrationPage</h2>
+
+<form action="/Home/Register" method="post">
+    ID:
+    <input name="Id" />
+    <br /><br />
+    Name:
+    <input name="Name" />
+    <br /><br />
+    <select name="CityId">
+        @foreach (City c in @Model.cities)
+        {
+            <option value="@c.CityId">@c.CityName</option>
+        }
+    </select>
+    <br/><br/>
+    Seniority:
+    <input name="Seniority" />
+    <br /><br />
+    Programmer: 
+    <input type="checkbox" name="isProgrammer" value="true" />
+    <input type="hidden" name="isProgrammer" value="false" />
+    <br/><br/>
+    <input type="submit" value="Register" />
+    <input type="button" value="Cancel" onclick="window.location='/Home/Index'" />
+</form>
