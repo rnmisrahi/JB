@@ -8,6 +8,7 @@
 *.log
 *.bak
 *.exe.config
+*.rar
 bin
 obj
 packages
