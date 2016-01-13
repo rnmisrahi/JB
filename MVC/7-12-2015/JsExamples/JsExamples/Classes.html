@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h2>Classes</h2>
+    <button onclick="personTest()">Person test</button>
+
+
+    <script>
+        function Person(p_id, p_name, p_amount) {
+            this.id = p_id;
+            this.name = p_name;
+            this.amount = p_amount;
+
+            this.getString = function() {
+                return this.id + " -- " + this.name + " -- " + this.amount;
+            }
+
+            this.getDiscount = function () {
+                return this.amount * this.name.length / 100;
+            }
+        }
+
+        Person.stdDiscount = 0.08;
+        Person.prototype.getStdDiscount = function () {
+            return this.amount * Person.stdDiscount;
+        }
+
+        function personTest() {
+            var p = new Person(111, "Moshe", 4430);
+            console.log(p.getString());
+            console.log(p.getDiscount());
+            console.log(Person.stdDiscount);
+            console.log(p.stdDiscount); // undefined
+            console.log(p.getStdDiscount());
+        }
+    </script>
+</body>
+</html>

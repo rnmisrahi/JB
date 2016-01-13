@@ -1,0 +1,16 @@
+﻿<Window x:Class="WPFFIrst.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFFIrst"
+        Title="Windows 1" Width="386.535">
+    <StackPanel Orientation="Vertical">
+        <!--Margin Is set as LTRB-->
+        <TextBox Name="TB1" Margin="20,10,40,10"></TextBox>
+        <CheckBox Name="CB1" Margin="20,10,40,10">Include the message
+        </CheckBox>
+        <Button Click="Button_Click" Margin="64,10,0,10" Height="51" Content="Click Me!" HorizontalAlignment="Left" Width="213"/>
+    </StackPanel>
+
+</Window> 

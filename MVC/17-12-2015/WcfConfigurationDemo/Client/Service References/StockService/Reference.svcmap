@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="afae26a8-d5cb-49a6-b1b6-b7be2345d375" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:925/StockService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="StockService.wsdl" MetadataType="Wsdl" ID="a1a6abbf-eda0-419a-8e9a-af3a567b41e6" SourceId="1" SourceUrl="http://localhost:925/StockService/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="1f62f25b-228d-4c9c-bd64-68cc825cde22" SourceId="1" SourceUrl="http://localhost:925/StockService/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="aee67279-ad99-44e8-bab8-7262984c84fc" SourceId="1" SourceUrl="http://localhost:925/StockService/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="60b26a52-29f5-4fef-92d2-8bf4397aece4" SourceId="1" SourceUrl="http://localhost:925/StockService/?xsd=xsd0" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="dd7445df-5b5d-4e31-92d8-9fec39cf1333" SourceId="1" SourceUrl="http://localhost:925/StockService/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

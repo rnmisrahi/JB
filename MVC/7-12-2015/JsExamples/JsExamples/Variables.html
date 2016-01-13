@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <p>
+        <button onclick="declare()">Declare</button>
+        <br /><br />
+        <button onclick="test2()">Test</button>
+    </p>
+
+    <script>
+        function declare() {
+            a = 15;
+            b = 214;
+        }
+
+        function test1() {
+            test();
+            console.log("end test1");
+        }
+
+        function test2() {
+            try {
+                test();
+                console.log("end test1");
+            }
+            catch (err) {
+                console.log("Error >>> " + err.message);
+            }
+            finally {
+                console.log("Errors can happen");
+            }
+        }
+
+        function test() {
+            console.log("Values:");
+            console.log(a);
+            console.log(b);
+            console.log(document.a); // undefined
+            console.log(c); // error
+            console.log("----------");
+        }
+    </script>
+</body>
+</html>

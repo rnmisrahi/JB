@@ -1,0 +1,25 @@
+﻿<Window x:Class="XamlRules.StyleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XamlRules"
+        mc:Ignorable="d"
+        Height="300" Width="300">
+    <Window.Title>
+        StyleWindow
+    </Window.Title>
+    <Window.Resources>
+        <Style x:Key="StyledButton">
+            <Setter Property="Control.FontSize" Value="25" />
+            <Setter Property="Button.Margin" Value="10" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Button Style="{StaticResource ResourceKey=StyledButton}">First</Button>
+        <Button Style="{StaticResource ResourceKey=StyledButton}">Second</Button>
+        <Button Content="Third" Style="{StaticResource ResourceKey=StyledButton}" />
+        <TextBox Style="{StaticResource ResourceKey=StyledButton}">Look at me</TextBox>
+
+    </StackPanel>
+</Window>

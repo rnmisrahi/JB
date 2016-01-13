@@ -1,0 +1,27 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" FontSize="25" Closing="Window_Closing">
+    <StackPanel VerticalAlignment="Center">
+        <Menu>
+            <MenuItem Header="_Operations">
+                <MenuItem Header="_Addition" Click="btnAddition_Click"/>
+                <MenuItem Header="_Subtraction" Click="btnSubtraction_Click"/>
+                <MenuItem Header="_Multiplication" />
+                <MenuItem Header="_Division" />
+                <Separator />
+                <MenuItem Header="Exit" Click="btnExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="Cus_tomize" />
+                <MenuItem Header="_Options" />
+            </MenuItem>
+        </Menu>
+        <Button Name="btnAddition" Margin="40,10" Click="btnAddition_Click">Addition</Button>
+        <Button Name="btnSubtraction" Margin="40,10" Click="btnSubtraction_Click">Subtraction</Button>
+        <Button Name="btnMultiplication" Margin="40,10">Multiplication</Button>
+        <Button Name="btnDivision" Margin="40,10">Division</Button>
+        <Button Name="btnExit" Margin="40,10" Click="btnExit_Click">Exit</Button>
+        
+    </StackPanel>
+</Window>

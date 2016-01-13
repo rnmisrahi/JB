@@ -1,0 +1,121 @@
+Notes 12/10/2015
+
+Nuget Console: Tools > Nugget Package Manager > Console
+Enable-Migrations
+Add-Migration First
+Update-Database
+Get-Migrations
+
+
+johnbryce.co.il/feedback
+5498/206803
+
+
+http://www.itorian.com/2013/10/area-in-mvc-5-with-example-step-by-step.html
+
+
+Check how to store info on Loal Storage
+
+Look into membership.
+
+
+Dov suggested to perhaps make a dll with all the Views. Maybe.
+
+
+DAL: WHat is this? Data Access Layer
+Business Layer. 
+MVC: Model, DAL and BL
+
+
+https://msdn.microsoft.com/en-us/library/aa581776.aspx
+
+
+
+Web.config:
+
+
+
+validation and unobtrusive should be enabled
+
+
+Exercise:
+people and cars
+People has a collection of cars
+Cars has a collection of people
+CodeFirst
+
+
+12/14/2015
+WCF
+
+This is a way to standardize the communication between computers.
+One can change the protocol without changing the machine's way of communicating, except telling it that we'll communicate through another protocol/
+This is done through something called Binding.
+It takes the End Point to where it communicates: It includes the port number
+
+When doing a web service, include the reference ServiceModel
+
+Interfaces need [ServiceContract]
+The methods need [OperationContract]
+
+
+ServiceHost is the class that will help to host the service
+on Main() we do:
+ServiceHost host = new ServiceHost(typeof(StockService)); //StockService is the class of the service
+host.AddServicEndPoint
+
+
+
+CLIENT
+
+Create Interface
+Copy the interface from the server
+It also uses Systm.ServiceModel
+
+Main()
+ICurrency service=ChannelFactory<ICurrency>.CreateChannel(
+  new BasicHttpBinding(),
+  "http://localhost:910/Stosvc");
+  host.Open();
+  
+
+)
+
+
+
+
+
+12/17/2015
+----------
+Create a 
+
+
+
+ServerVS template WCF Server
+
+
+12/21/2015
+
+
+
+12-24-2015
+----------
+This class is meant to fill the gaps that were ;eft because of lack of time
+
+-
+- Error Handling
+- Javascript
+
+* Check if wsHttpBinding falls when there is an exception'
+- FaultException solves that problem
+  Use FaultException<T>
+  
+- Validation on the Client
+Use attributes on the Model, such as [Stringlength...]
+<configuration>  <AppSettings> Validation="true"
+
+Web.config: <configuration><appsettings> UnobstrusiveJavaScriptEnabled="true">
+We have to include in the razor the jquery.validate.... files
+
+Publish the Application/package to https://jbauth2.scm.azurewebsites.net/msdeploy.axd?site=JBAuth2 ...
+1>Adding directo

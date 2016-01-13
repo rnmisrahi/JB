@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3697c853-0d10-4ce0-ae0d-9fa44276f17b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:955/PersonService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="68707726-a4b5-44da-9b0e-4f5af7741456" SourceId="1" SourceUrl="http://localhost:955/PersonService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f9e9e6f5-b93f-481a-9491-2bc6f9f2414d" SourceId="1" SourceUrl="http://localhost:955/PersonService/mex" />
+    <MetadataFile FileName="Wcf_EI_Polymorphism_Server.Model.xsd" MetadataType="Schema" ID="9939aea1-ac4a-46e0-aea0-58d7edbfc4d9" SourceId="1" SourceUrl="http://localhost:955/PersonService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="56bd201f-5b70-40ba-bd25-a26d08f196e9" SourceId="1" SourceUrl="http://localhost:955/PersonService/mex" />
+    <MetadataFile FileName="Wcf_EI_Polymorphism_Server.xsd" MetadataType="Schema" ID="71d7e6e2-d784-4ee8-8b8f-17cc10277003" SourceId="1" SourceUrl="http://localhost:955/PersonService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

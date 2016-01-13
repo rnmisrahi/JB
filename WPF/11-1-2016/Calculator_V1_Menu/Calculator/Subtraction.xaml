@@ -1,0 +1,15 @@
+﻿<Window x:Class="Calculator.Subtraction"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Subtraction" Height="350" Width="300"  FontSize="25"
+        FocusManager.FocusedElement="{Binding ElementName=txtFirst}"
+        >
+    <StackPanel HorizontalAlignment="Left" MinWidth="150" Margin="10">
+        <TextBlock Margin="0,0,0,20">Subtraction</TextBlock>
+        <TextBox Name="txtFirst" Margin="0,0,0,10" TextChanged="OnOperandTextChanged"/>
+        <TextBlock TextAlignment="Center">-</TextBlock>
+        <TextBox Name="txtSecond" Margin="0,0,0,10" TextChanged="OnOperandTextChanged"/>
+        <Button Name="btnCalculate" Margin="0,0,0,10" Click="btnCalculate_Click">=</Button>
+        <TextBlock Name="txtTotal" Margin="0,0,0,10"/>
+    </StackPanel>
+</Window>

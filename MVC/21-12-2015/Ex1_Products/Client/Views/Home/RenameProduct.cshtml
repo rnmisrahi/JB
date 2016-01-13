@@ -1,0 +1,28 @@
+﻿@model Client.StockService.Product
+
+@{
+    ViewBag.Title = "DeleteProduct";
+}
+
+<h2>DeleteProduct</h2>
+
+<form method="post">
+    <div>
+        @Html.DisplayFor(m=>m.ProductID)
+        @Html.HiddenFor(m => m.ProductID)
+    </div>
+    <div>
+        @Html.DisplayFor(m => m.ProductName)
+    </div>
+    <div>
+        Enter new name:
+        @Html.TextBox("newName")
+    </div>
+    <div>
+        Enter manager code:
+        @Html.TextBox("code")
+    </div>
+    <div>
+        <input type="submit" value="Rename" />
+    </div>
+</form>

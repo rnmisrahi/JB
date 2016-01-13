@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebClientXXX.Models.Item>
+
+@{
+    ViewBag.Title = "Inventory";
+}
+
+<h2>Inventory</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@*@foreach (var item in Model) {
+    <tr>
+        <td>
+            item.Name
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}*@
+
+</table>

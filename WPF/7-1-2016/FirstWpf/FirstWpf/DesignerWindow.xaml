@@ -1,0 +1,15 @@
+﻿<Window x:Class="FirstWpf.DesignerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstWpf"
+        mc:Ignorable="d"
+        Title="DesignerWindow" Height="300" Width="300">
+    <StackPanel>
+        <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+        <CheckBox x:Name="checkBox" Content="CheckBox"/>
+        <Button x:Name="button" Content="Button" Margin="62,0,53,0"/>
+
+    </StackPanel>
+</Window>

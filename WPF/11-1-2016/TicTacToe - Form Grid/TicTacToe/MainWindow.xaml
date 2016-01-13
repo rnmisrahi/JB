@@ -1,0 +1,45 @@
+﻿<Window x:Class="TicTacToe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicTacToe"
+        mc:Ignorable="d"
+        Title="Tic Tac Toe" Height="350" Width="400" MinHeight="350" MinWidth="270"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <TextBlock FontWeight="Bold" Text="Tic Tac Toe" FontSize="16" 
+                   HorizontalAlignment="Center" Margin="0,5,0,10"></TextBlock>
+        <TextBlock FontWeight="Bold" Text="Your symbol is X" FontSize="16" 
+                   HorizontalAlignment="Center" Margin="0,5,0,10"></TextBlock>
+        <Grid Name="Board" Width="200" Height="200">
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Width" Value="50"></Setter>
+                    <Setter Property="Height" Value="50"></Setter>
+                    <Setter Property="FontSize" Value="18"></Setter>
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Button Name="btnr0c0" Grid.Row="0" Grid.Column="0" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr0c1" Grid.Row="0" Grid.Column="1" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr0c2" Grid.Row="0" Grid.Column="2" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr1c0" Grid.Row="1" Grid.Column="0" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr1c1" Grid.Row="1" Grid.Column="1" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr1c2" Grid.Row="1" Grid.Column="2" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr2c0" Grid.Row="2" Grid.Column="0" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr2c1" Grid.Row="2" Grid.Column="1" Click="btnr0c0_Click"></Button>
+            <Button Name="btnr2c2" Grid.Row="2" Grid.Column="2" Click="btnr0c0_Click"></Button>
+        </Grid>
+    </StackPanel>
+</Window>

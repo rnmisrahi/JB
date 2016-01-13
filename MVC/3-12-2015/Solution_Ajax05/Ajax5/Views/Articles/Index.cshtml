@@ -10,27 +10,27 @@
 @using (Html.BeginForm())
 {
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Headline)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Headline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th></th>
+        </tr>
 
-@*@Html.Partial("_Headlines", Model);*@
+        @*@Html.Partial("_Headlines", Model);*@
 
-</table>
+    </table>
 
-<h3>Here is where we have the articles</h3>
+    <h3>Here is where we have the articles</h3>
     <div id="ArticlePH"></div>
 
-<h2>Enter new article:</h2>
-@Html.TextArea("id")
-    <input type="button" value="Post" onclick="AddArticle()"/>
+    <h2>Enter new article:</h2>
+    @Html.TextArea("id")
+    <input type="button" value="Post" onclick="AddArticle()" />
 }
 
 <script src="\Scripts\jquery-1.8.2.js"></script>
@@ -43,8 +43,8 @@
 </script>
 <script>
     function AddArticle() {
-        var articleId = $("#id").val();
-        var target="/Articles/Index?Id=" + articleId
+        var Id = $("#id").val();
+        var target = "/Articles/Index?Id=" + Id
         $.ajax({
             url: target,
             type: "POST",

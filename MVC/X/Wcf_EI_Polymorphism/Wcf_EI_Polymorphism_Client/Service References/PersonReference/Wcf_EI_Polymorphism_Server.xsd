@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Wcf_EI_Polymorphism_Server" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Wcf_EI_Polymorphism_Server" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="Global.PersonType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Person" />
+      <xs:enumeration value="Teacher" />
+      <xs:enumeration value="Secretary" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Global.PersonType" nillable="true" type="tns:Global.PersonType" />
+</xs:schema>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "DeleteItems";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this member?</h3>
+
+<p>
+    Delete All Items?
+</p>
+
+<form action="/Home/Delete" method="post">
+    <input type="submit" value="Delete" />
+    <input type="button" value="cancel" onclick="window.location='/Home/Index'" />
+</form>

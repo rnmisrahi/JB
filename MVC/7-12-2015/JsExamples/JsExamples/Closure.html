@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <p id="demo">0</p>
+    <button onclick="count()">Count</button>
+
+<script>
+    function count() {
+        document.getElementById("demo").innerHTML = add();
+    }
+    
+    function add() {
+        var.counter = 0;
+        function plus() { counter += 1; }
+        plus();
+        return counter;
+    }
+
+    //var add = (function () {
+    //    var counter = 0;
+    //    return function () { return counter += 1; }
+    //})();
+
+    //var add = function () {
+    //    var counter = 0;
+    //    return function () { return counter += 1; }
+    //}()
+</script>
+
+</body>
+</html>

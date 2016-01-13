@@ -1,0 +1,47 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+public partial class Default_aspx : System.Web.UI.Page 
+{
+    // Page events are wired up automatically to methods 
+    // with the following names:
+    // Page_Load, Page_AbortTransaction, Page_CommitTransaction,
+    // Page_DataBinding, Page_Disposed, Page_Error, Page_Init, 
+    // Page_Init Complete, Page_Load, Page_LoadComplete, Page_PreInit
+    // Page_PreLoad, Page_PreRender, Page_PreRenderComplete, 
+    // Page_SaveStateComplete, Page_Unload
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+	protected void btnSubmit_Click(object sender, EventArgs e)
+	{
+		if (Page.IsValid)
+		{
+			lblMsg.Text = "Page is Valid!";
+		}
+		else
+		{
+			lblMsg.Text = "Some of the required fields are empty";
+		}
+	}
+	protected void lstFormat_SelectedIndexChanged(object sender, EventArgs e)
+	{
+		ValSum.DisplayMode =
+		   (ValidationSummaryDisplayMode)
+		   lstFormat.SelectedIndex;
+	}
+	protected void lstDisplay_SelectedIndexChanged(object sender, EventArgs e)
+	{
+		ValSum.ShowSummary = lstDisplay.SelectedIndex == 0;
+		ValSum.ShowMessageBox = lstDisplay.SelectedIndex == 1;
+	}
+}

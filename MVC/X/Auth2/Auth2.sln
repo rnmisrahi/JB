@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth2", "Auth2\Auth2.csproj", "{132066F3-DBF6-42C7-9D94-1949E18C7198}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{359F4563-E890-4A7A-974A-B3027543147C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{2FB58B0B-FA2D-4566-ADB7-66C577AACB9D}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{04C0B9B6-AEA9-4DD9-B9A1-B7B7E5259579}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\Auth2.json = PublishScripts\Templates\Auth2.json
+		PublishScripts\Templates\Auth2.param.dev.json = PublishScripts\Templates\Auth2.param.dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{132066F3-DBF6-42C7-9D94-1949E18C7198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132066F3-DBF6-42C7-9D94-1949E18C7198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132066F3-DBF6-42C7-9D94-1949E18C7198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132066F3-DBF6-42C7-9D94-1949E18C7198}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2FB58B0B-FA2D-4566-ADB7-66C577AACB9D} = {359F4563-E890-4A7A-974A-B3027543147C}
+		{04C0B9B6-AEA9-4DD9-B9A1-B7B7E5259579} = {359F4563-E890-4A7A-974A-B3027543147C}
+	EndGlobalSection
+EndGlobal

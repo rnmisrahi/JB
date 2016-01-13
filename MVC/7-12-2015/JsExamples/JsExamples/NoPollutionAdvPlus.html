@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NoPollutionAdv</title>
+    <script>
+        var JSX = {
+            t1 : 447,
+        };
+
+        (function(JSX) {
+            JSX.Person = function (p_id, p_name, p_amount) {
+                this.id = p_id;
+                this.name = p_name;
+                this.amount = p_amount;
+
+                this.getString = function () {
+                    return this.id + " -- " + this.name + " -- " + this.amount;
+                }
+
+                this.getDiscount = function () {
+                    return this.amount * this.name.length / 100;
+                }
+            }
+
+
+
+            JSX.personTest= function () {
+                var p = new this.Person(111, "Moshe", 4430);
+                console.log(p.getString());
+                console.log(p.getDiscount());
+                console.log(this.Person.stdDiscount);
+                console.log(p.stdDiscount); // undefined
+                console.log(p.getStdDiscount());
+            }
+
+            JSX.Person.stdDiscount = 0.08,
+            JSX.Person.prototype.getStdDiscount = function () {
+                return this.amount * JSX.Person.stdDiscount;
+            }
+        } (window.JSX || {}))
+
+        
+    </script>
+</head>
+<body>
+    <h2>NoPollutionAdv</h2>
+    <button onclick="JSX.personTest()">Person test</button>
+    <br /><br />
+    <button onclick="alert(JSX.t1)">T1 test</button>
+</body>
+</html>

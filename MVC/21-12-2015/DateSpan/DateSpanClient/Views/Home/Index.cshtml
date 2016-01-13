@@ -1,0 +1,35 @@
+﻿@model DateSpanClient.Models.ImpreciseDateCalc
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<form action="/Home/Calculate" method="post">
+
+    <fieldset style="background-color:lightblue; border:solid ">
+        <legend>Imprecise Calculations</legend>
+        <p>Date Of Birth: <input type="date" id="datepicker" name="DOB" value="@Model.DOB"></p>
+        @*<input type="text" name="DateFrom" value="" />
+            <input type="text" name="DateTo" value="" />*@
+        <p>Age: @Model.Age</p>
+        <p>Precise Age: @Model.PreciseAge</p>
+
+
+        <p>From Date: <input type="date" name="DateFrom" value="@Model.DateFrom" /></p>
+        <p>To Date: <input type="date" name="DateTo" value="@Model.DateTo" /></p>
+        <p>Years Apart: @Model.Years</p>
+        <p>Precise Years Apart: @Model.PreciseYears</p>
+
+    </fieldset>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Calculate" class="btn btn-default" />
+        </div>
+    </div>
+
+</form>
+

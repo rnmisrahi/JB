@@ -1,0 +1,36 @@
+﻿<Window x:Class="Calculator.Addition"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        MinHeight="300" MinWidth="200"
+        Title="Exercise" Height="400" Width="300" FontSize="25"
+        WindowStartupLocation="CenterScreen"
+        FocusManager.FocusedElement="{Binding ElementName=txtFirst}"
+        >
+    <StackPanel HorizontalAlignment="Left" MinWidth="150" Margin="10" >
+        <Menu FontSize="5">
+            <MenuItem Header="_Operations">
+                <MenuItem Header="_Addition" Click="btnAddition_Click"/>
+                <MenuItem Header="Subtraction" Click="btnSubtraction_Click"/>
+                <MenuItem Header="_Multiplication" />
+                <MenuItem Header="_Division" />
+                <Separator />
+                <MenuItem Header="Exit" Click="btnExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="Cus_tomize" />
+                <MenuItem Header="_Options" />
+            </MenuItem>
+        </Menu>
+        <TextBlock Margin="0,0,0,20">Exercise</TextBlock>
+        <TextBox Name="txtFirst" Margin="0,0,0,10" TextChanged="OnOperandTextChanged"/>
+        <ComboBox Name="cmbOperator" Margin="0,0,0,10">
+            <ComboBoxItem>+</ComboBoxItem>
+            <ComboBoxItem>-</ComboBoxItem>
+            <ComboBoxItem>*</ComboBoxItem>
+            <ComboBoxItem>/</ComboBoxItem>
+        </ComboBox>
+        <TextBox Name="txtSecond" Margin="0,0,0,10" TextChanged="OnOperandTextChanged"/>
+        <Button Name="btnCalculate" Margin="0,0,0,10" Click="btnCalculate_Click">=</Button>
+        <TextBlock Name="txtTotal" Margin="0,0,0,10"/>
+    </StackPanel>
+</Window>

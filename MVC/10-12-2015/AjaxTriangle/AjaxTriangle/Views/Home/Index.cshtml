@@ -1,0 +1,89 @@
+﻿@model AjaxTriangle.Models.Triangle
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Home"))
+{
+    <text>Enter the length of the three sides of a triangle: </text><br />
+    @Html.TextBox("SideA", null, new { placeholder = "Side A" })<br />
+    @Html.TextBox("SideB", null, new { placeholder = "Side B" })<br />
+    @Html.TextBox("SideC", null, new { placeholder = "Side C" })<br />
+    <br />
+    <p>
+        @*<input type="button" formmethod="post" value="Calculate" onclick="window.location='/Home/Index?A=3&B=4&c=5'" />*@
+        <input type="submit" name="Call" value="please" />
+    </p>
+
+    <p>
+        <div id="Perimeter">
+        </div>
+        <br/>
+        <div id="Area">
+        </div>
+        <div id="Error"></div>
+    </p>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+    $(function () {
+        $(document).submit(function (evt) {
+            evt.preventDefault();
+        });
+    });
+</script>
+
+<script>
+
+    function CalculateAjax() {
+        var a = parseInt($("#SideA").val());
+        var b = parseInt($("#SideB").val());
+        var c = parseInt($("#SideC").val());
+        @*var triangle = @Html.Raw(Json.Encode(Model));*@
+        triangle.A = a;
+        triangle.B = b;
+        triangle.C = c;
+        var target = "/Home/Index?A=" + a + "&B=" + b + "&C=" + c;
+
+
+        //$.ajax({
+        //    url: target,
+        //    type: "POST",
+        //    async: true,
+        //    success: function (result) {
+        //        $("#Perimeter").html(result);
+        //    },
+        //    error: function (x, s, e) {
+        //        $("#Error").html("Error: " + e);
+        //    }              
+        //})
+    }
+
+    function Calculate(x) {
+        var a = x;//parseInt($("#SideA").val());
+        var b = parseInt($("#SideB").val());
+        var c = parseInt($("#SideC").val());
+
+        if ((a + b < c) || (a + c < b) || (b + c < a)) {
+            $("#Perimeter").html("");
+            $("#Area").html("");
+            $("#Error").html("Error: Invalid Triangle");
+        }
+        else {
+            $("#Error").html("");
+            var p = "Perimeter: " + (a + b + c);
+            $("#Perimeter").html(p);
+
+            var h = (a + b + c) / 2;
+            var t = (h - a) * (h - b) * (h - c) * h;
+            r = "Area: " + Math.sqrt(t);
+            $("#Area").html(r);
+        }
+    }
+
+</script>

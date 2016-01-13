@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="AllNewsPH"></div>
+<hr />
+<div>
+    <textarea id="news"></textarea>
+    <br /> <br />
+    <input type="button" value="Send" onclick="sendNews()"/>
+</div>
+<div id="errorPH"></div>
+
+<script>
+    $(function () {
+        fetchNews();
+    });
+
+    function sendNews() {
+        var message = $("#news").val();
+        var news = { news: message };
+        var target = "/Home/Index"
+        $.ajax({
+            url: target,
+            type: "POST",
+            async: true,
+            data: news,
+            success: function (result) {
+                if (result!=null && result.success) {
+                    fetchNews();
+                    $("#errorPH").html("");
+                }
+                else {
+                    $("#errorPH").html(result.responseText);
+                }
+            }
+        });
+    }
+
+    function fetchNews() {
+        $.ajax({
+            url: "/Home/GetAllNews",
+            type: "GET",
+            async: true,
+            success: function (result) {
+                $("#AllNewsPH").html(result);
+            },
+        });
+    }
+</script>
+
+

@@ -1,0 +1,4 @@
+﻿@using AjaxNews.Models
+@model List<NewsReport>
+
+@Html.ListBox("AllNews",new SelectList(Model,"News", "News"),"All News:")

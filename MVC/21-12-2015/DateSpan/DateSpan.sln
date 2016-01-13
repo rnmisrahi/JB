@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateSpanServer", "DateSpanServer\DateSpanServer.csproj", "{0D32F543-C340-451F-9617-420AB6D7CABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDateSpan", "TestDateSpan\TestDateSpan.csproj", "{774E16D1-A311-4CCE-9651-BE936B57895D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.csproj", "{E6C0B18B-3ADC-425B-A0E7-8607F8187D86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateSpanClient", "DateSpanClient\DateSpanClient.csproj", "{55E1052F-F5F9-4DD9-B824-CA874969734D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D32F543-C340-451F-9617-420AB6D7CABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D32F543-C340-451F-9617-420AB6D7CABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D32F543-C340-451F-9617-420AB6D7CABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D32F543-C340-451F-9617-420AB6D7CABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{774E16D1-A311-4CCE-9651-BE936B57895D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774E16D1-A311-4CCE-9651-BE936B57895D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774E16D1-A311-4CCE-9651-BE936B57895D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774E16D1-A311-4CCE-9651-BE936B57895D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6C0B18B-3ADC-425B-A0E7-8607F8187D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C0B18B-3ADC-425B-A0E7-8607F8187D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C0B18B-3ADC-425B-A0E7-8607F8187D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C0B18B-3ADC-425B-A0E7-8607F8187D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E1052F-F5F9-4DD9-B824-CA874969734D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E1052F-F5F9-4DD9-B824-CA874969734D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E1052F-F5F9-4DD9-B824-CA874969734D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E1052F-F5F9-4DD9-B824-CA874969734D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

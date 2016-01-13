@@ -1,0 +1,77 @@
+﻿@model AjaxTriangle.Models.Triangle
+
+@{
+    ViewBag.Title = "Triangle";
+}
+
+<h2>Triangle</h2>
+
+@*<form action="/Home/Triangle" method="post">*@
+@using (Html.BeginForm())
+{
+    <text>Enter the length of the three sides of a triangle: </text><br />
+    @Html.TextBox("SideA", Model.SideA, new { placeholder = "Side A" })
+    @Html.TextBox("SideB", Model.SideB, new { placeholder = "Side B" })
+    @Html.TextBox("SideC", Model.SideC, new { placeholder = "Side C" })<br />
+
+    @*<input name="SideA" />
+        <input name="SideB" />
+        <input name="SideC" />*@
+
+
+    <br />
+
+    @*@Model.SideA = 3
+        @Model.SideB = 4
+        @Model.SideC = 5*@
+
+    <input type="button" value="Calculate" onclick="CalculateAjax()" />
+
+    <div id="Results"></div>
+
+    @*<input type="submit" value="Calc" />
+        </form>*@
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+        $(function () {
+            $(document).submit(function (evt) {
+                evt.preventDefault();
+            });
+        });
+    </script>
+
+<script>
+
+    function CalculateAjax() {
+        console.log("CONSOLE");
+        console.log("console");
+        var SideA = parseInt($("#SideA").val());
+        var SideB = parseInt($("#SideB").val());
+        var SideC = parseInt($("#SideC").val());
+        var triangle = @Html.Raw(Json.Encode(Model));
+        triangle.SideA = SideA;
+        triangle.SideB = SideB;
+        triangle.SideC = SideC;
+        var target = "/Home/Triangle?SideA=" + SideA+"&SideB="+SideB+"&SideC="+SideC;
+
+        $.ajax({
+            url: target,
+            type: "POST",
+            async: true,
+            success: function (result) {
+                console.log("Result: " + result);
+                $("#Results").html(result);
+            },
+            error: function (x, s, e) {
+                console.log("Error: ");
+                $("#Error").html("Error: " + e);
+            }
+        })
+    }
+
+
+</script>
