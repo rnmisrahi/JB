@@ -109,7 +109,7 @@ namespace TicTacToe
                 if (elem != null)
                 {
                     Button b = (elem as Button);
-                    if (b.Content == null)
+                    if ((b != null)  && (b.Content == null))
                     {
                         b.Content = "O";
                         return;

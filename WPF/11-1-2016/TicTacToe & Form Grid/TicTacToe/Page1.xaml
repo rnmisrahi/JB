@@ -1,0 +1,50 @@
+﻿<Page x:Class="TicTacToe.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TicTacToe"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Page1">
+
+    <Grid Background =" LightBlue"  ShowGridLines="True">
+        <!-- Define four rows: -->
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions >
+
+        <!-- Define two columns: -->
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="Auto" SharedSizeGroup="MG" />
+            <ColumnDefinition Width="Auto" SharedSizeGroup="MG"/>
+        </Grid.ColumnDefinitions >
+        <!-- Arrange the children: -->
+        <GridSplitter Grid.Column="0" Width="25"/>
+        <Label Grid.Row =" 0" Grid.Column =" 0" Background =" Black" Foreground =" White" 
+               HorizontalContentAlignment =" Center" >
+            Start Page</Label >
+        <GroupBox Grid.Row =" 1" Grid.Column =" 0" Background =" White" Header =" Start" >
+            ...</GroupBox >
+        <GroupBox Grid.Row =" 2" Grid.Column =" 0" Background =" White" Header =" Recent" >
+            ...</GroupBox >
+        <GroupBox Grid.Row =" 3" Grid.Column =" 0" Background =" White" Header =" Options" >
+            ...</GroupBox >
+        <GroupBox Grid.Row =" 1" Grid.Column =" 1" Background =" White" Header =" Get Started"
+                  Grid.RowSpan="3">
+            <ListBox >
+                <ListBoxItem >
+                    Article #1</ListBoxItem >
+                <ListBoxItem >
+                    Article #2</ListBoxItem >
+                <ListBoxItem >
+                    Article #3</ListBoxItem >
+                <ListBoxItem >
+                    Article #4</ListBoxItem >
+            </ListBox >
+        </GroupBox >
+    </Grid >
+</Page>

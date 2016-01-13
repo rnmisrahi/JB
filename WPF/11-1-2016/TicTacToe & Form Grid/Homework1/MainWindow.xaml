@@ -1,0 +1,122 @@
+﻿<Window x:Class="Homework1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Homework1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="400" FontSize="15" 
+        MinWidth="300" MinHeight="300" WindowStartupLocation="CenterScreen">
+    <Window.Resources >
+        <System:String x:Key="EmpInfo">Employee Info</System:String>
+    </Window.Resources>
+    <Grid >
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="0,0,10,0"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Width" Value="100"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="10,5,10,5"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="{x:Type CheckBox}">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Employee Info -->
+            <RowDefinition Height="Auto"/> <!-- Data -->
+            <RowDefinition Height="Auto"/> <!-- Buttons -->
+        </Grid.RowDefinitions>
+
+        <!--Row 0-->
+        <TextBlock Name="Info" Grid.Row="0" Grid.Column="0" Text="{StaticResource EmpInfo}" HorizontalAlignment="Center" 
+                   FontWeight="Bold" FontSize="15" Margin="0,5,0,10"/>
+
+        <!--Row 1-->
+        <Grid Grid.Row="1" Margin="10"> <!-- Data -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="ID:" Grid.Row="0" Grid.Column="0"/>
+            <TextBox Name="EmployeeId" Width="60" Grid.Row="0" Grid.Column="1"></TextBox>
+            <TextBlock Text="Name:" Grid.Row="1" Grid.Column="0"/>
+            <TextBox Name="Name" Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBlock Text="Last Name:" Grid.Row="2" Grid.Column="0" />
+            <TextBox Name="Lastname" Grid.Row="2" Grid.Column="1"></TextBox>
+        
+            <CheckBox Name="cbPermanent" Grid.Row="3" Grid.Column="1" Content="Permanent"></CheckBox>
+            <CheckBox Name="cbTrustworthy" Grid.Row="4" Grid.Column="1" Content="Trustworthy"></CheckBox>
+
+        </Grid>
+
+        <!--Row 3--> <!-- Buttons -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+        
+                <Button Name="btnSave" Grid.Row="0" Grid.Column="0">
+                Save
+            </Button>
+            <Button Name="btnNew" Grid.Row="0" Grid.Column="1">
+                New
+            </Button>
+            <Button Name="btnDelete" Grid.Row="0" Grid.Column="2">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="1">Are you sure?</MenuItem>
+                        <MenuItem Header="2">Nah, just kiddin'</MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+                Delete
+            </Button>
+            <Button Name="btnUndo" Grid.Row="0" Grid.Column="3">
+                Undo
+            </Button>
+            <Separator Grid.Row="1" Height="5" Grid.ColumnSpan="4" />
+            <Button Name="btnFirst" Grid.Row="2" Grid.Column="0">
+                First
+            </Button>
+            <Button Name="btnPrevious" Grid.Row="2" Grid.Column="1">
+                Prevoius
+            </Button>
+            <Button Name="btnNext" Grid.Row="2" Grid.Column="2">
+                Next
+            </Button>
+            <Button Name="btnLast" Grid.Row="2" Grid.Column="3">
+                Last
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
