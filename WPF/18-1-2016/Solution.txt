@@ -1,0 +1,13 @@
+1-21-2016
+- Binding is always done to functions (hence Get is needed)
+
+- DataContext: When there system doesn't find the source, it loos for it in DataCOntext
+
+- Binding also has a default. After of the constructorter the word Binding, we pass on the parameter. When we declare something in XAML we're newing something.
+
+- Converter is used when we pass info from source to target and back during Binding.
+
+
+
+* Do same stuff but with just a List<Member> with some 3 members.
+

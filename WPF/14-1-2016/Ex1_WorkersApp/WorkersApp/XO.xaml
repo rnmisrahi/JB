@@ -1,0 +1,26 @@
+﻿<Window x:Class="WorkersApp.XO"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="XO" Height="370" Width="300">
+    <StackPanel>
+        <TextBlock Margin="0,0,0,20" TextAlignment="Center" FontSize="40">XO</TextBlock>
+        <TextBlock Margin="0,0,0,20" TextAlignment="Center" FontSize="20">Your sign is {0}</TextBlock>
+        <StackPanel HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Button MinWidth="60" MinHeight="60"/>
+                <Button MinWidth="60" MinHeight="60"/>
+                <Button MinWidth="60" MinHeight="60"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button MinWidth="60" MinHeight="60"/>
+                <Button MinWidth="60" MinHeight="60"/>
+                <Button MinWidth="60" MinHeight="60"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button MinWidth="60" MinHeight="60"/>
+                <Button MinWidth="60" MinHeight="60"/>
+                <Button MinWidth="60" MinHeight="60"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

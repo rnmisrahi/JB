@@ -7,7 +7,7 @@
         FocusManager.FocusedElement="{Binding ElementName=txtFirst}"
         >
     <StackPanel HorizontalAlignment="Left" MinWidth="150" Margin="10" >
-        <Menu FontSize="5">
+        <Menu>
             <MenuItem Header="_Operations">
                 <MenuItem Header="_Addition" Click="btnAddition_Click"/>
                 <MenuItem Header="Subtraction" Click="btnSubtraction_Click"/>

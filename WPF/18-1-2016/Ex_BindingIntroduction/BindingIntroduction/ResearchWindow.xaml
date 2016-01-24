@@ -1,0 +1,16 @@
+﻿<Window x:Class="BindingIntroduction.ResearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BindingIntroduction"
+        mc:Ignorable="d"
+        Title="ResearchWindow" Height="300" Width="300">
+    <StackPanel>
+        <TextBox Name="txtText" Margin="20"></TextBox>
+        <CheckBox Name="chkCheck" Margin="20" Content="{Binding Text,ElementName=txtText, Mode=TwoWay}"></CheckBox>
+        <Button Name="btnChange" Margin="20" Click="btnChange_Click">Change</Button>
+        <RadioButton>First</RadioButton>
+        <RadioButton IsChecked="{Binding IsChecked, ElementName=chkCheck}">Second</RadioButton>
+    </StackPanel>
+</Window>
