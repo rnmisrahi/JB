@@ -9,11 +9,11 @@ namespace MembersApp.Model
 {
     public static class MembersRepository
     {
-        private static ObservableCollection<Member> Members;
+        private static MyObservableCollection Members;
 
         static MembersRepository()
         {
-            Members = new ObservableCollection<Member>()
+            Members = new MyObservableCollection()
             {
                 new Member {ID=111, Name="Moshe", CityID=3000, Amount=1500, IsActive=true,},
                 new Member {ID=222, Name="Shlomo", CityID=4000, Amount=2200, IsActive=false,},
@@ -22,7 +22,7 @@ namespace MembersApp.Model
             };
         }
 
-        public static ObservableCollection<Member> GetAll()
+        public static MyObservableCollection GetAll()
         {
             return Members;
         }

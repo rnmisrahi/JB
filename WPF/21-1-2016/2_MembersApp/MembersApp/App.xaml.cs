@@ -24,9 +24,11 @@ namespace MembersApp
 
             MemberWindow mw = new MemberWindow();
             MembersViewModel mvm = new MembersViewModel();
+            MyObservableCollection moc = new MyObservableCollection();
             mw.DataContext = mvm;
             mw.grdData.DataContext= mvm.Members;
             mw.pnlCount.DataContext = mvm;
+            mw.pnlData.DataContext = mvm;
             mw.Show();
         }
     }

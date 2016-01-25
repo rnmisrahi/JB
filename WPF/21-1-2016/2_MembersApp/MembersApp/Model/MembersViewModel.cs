@@ -14,26 +14,45 @@ namespace MembersApp.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public MembersViewModel()
+        {
+            HasRecords = (Members.Count > 0);
+        }
+
+        private void Notify(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+        }
+
+        private bool _HasRecords;
+        public bool HasRecords
+        {
+            get {
+                return _HasRecords;
+            }  
+            set {
+                int n = Members.Count;
+                _HasRecords = (n == 0);
+                Notify("pnlData");
+            }
+        }
+
+        //Dov: This doesn't work. It is never called. Is it because there is no 
         private string _MyCount;
         public string MyCount
         {
             get
             {
-                ICollectionView membersView = CollectionViewSource.GetDefaultView(MembersRepository.GetAll());
-                ObservableCollection<Member> members = MembersRepository.GetAll();
-                _MyCount = members.Count.ToString();
-                return _MyCount;
-            }
-            set
-            {
-                _MyCount = value;
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("MyCount"));
+                return Members.Count.ToString() + " Items";
             }
         }
 
-        private ObservableCollection<Member> _Members;
-        public ObservableCollection<Member> Members
+        private MyObservableCollection _Members;
+        public MyObservableCollection Members
         {
             get
             {
@@ -48,17 +67,6 @@ namespace MembersApp.Model
             }
         }
 
-        public ICollectionView CollectionVS
-        {
-            get
-            {
-                ICollectionView membersView = CollectionViewSource.GetDefaultView(MembersRepository.GetAll());
-                return (membersView);
-            }
-        }
-
-
-
         private ICommand _moveNext;
         public ICommand MoveNext
         {
@@ -72,8 +80,7 @@ namespace MembersApp.Model
 
         public void PositionAfterDelete()
         {
-            Members = MembersRepository.GetAll();
-            ICollectionView membersView = CollectionViewSource.GetDefaultView(MembersRepository.GetAll());
+            ICollectionView membersView = CollectionViewSource.GetDefaultView(Members);
             if (!membersView.IsEmpty)
             {
                 Console.WriteLine(membersView.IsCurrentAfterLast);
@@ -83,16 +90,6 @@ namespace MembersApp.Model
                     membersView.MoveCurrentToPosition(membersView.CurrentPosition);
             }
         }
-
-        public bool IsNotFirstRecord
-        {
-            get
-            {
-                ICollectionView membersView = CollectionViewSource.GetDefaultView(MembersRepository.GetAll());
-                return (membersView.CurrentPosition != 0);
-            }
-        }
-
 
         private ICommand _movePrev;
         public ICommand MovePrev
@@ -142,7 +139,7 @@ namespace MembersApp.Model
 
         public virtual void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
@@ -150,6 +147,7 @@ namespace MembersApp.Model
     {
         public override void Execute(object parameter)
         {
+            base.Execute(parameter);
             membersView.MoveCurrentToNext();
             if (membersView.IsCurrentAfterLast)
                 membersView.MoveCurrentToLast();

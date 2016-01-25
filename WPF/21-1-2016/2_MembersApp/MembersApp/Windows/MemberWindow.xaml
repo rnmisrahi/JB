@@ -10,7 +10,10 @@
         <cvt:CityConverter x:Key="cityCvt" />
         <cvt:BoolGt0Converter x:Key="boolGt0"/>
         <cvt:BoolNotLastConverter x:Key="boolNotLast"/>
-        
+        <cvt:IntP1Converter x:Key="intp1"/>
+        <cvt:IntVisibilityConverter x:Key="intVis"/>
+        <cvt:BoolVisibilityConverter x:Key="boolVis"/>
+
         <Style TargetType="Button">
             <Setter Property="Margin" Value="0,0,10,0"/>
             <Setter Property="MinWidth" Value="70" />
@@ -29,43 +32,49 @@
             <RowDefinition Height="45*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="20*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Member Details" FontSize="30" TextAlignment="Center"/>
-        <Grid Name="grdNodata" Grid.Row="1" Visibility="Hidden">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">No Data</TextBlock>
-        </Grid>
-        <Grid Name="grdData" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="ID" FontSize="15" Grid.Row="0" Grid.Column="1"/>
-            <TextBox Text="{Binding ID}" Grid.Row="0" Grid.Column="2"/>
+        <!-- Dov: This doesn't work. Is it because HasRecords is not "notified" when the Members list is modified? -->
+        <StackPanel Name="pnlData" Grid.Row="1" Visibility="{Binding HasRecords, Converter={StaticResource boolVis}}" >
+            <TextBlock Text="{Binding MyCount}"/>
+            <!-- Dov: This works ok. I think because I use IsEmpty, which is a property of Members -->
+            <Grid Name="grdData" Visibility="{Binding IsEmpty, Converter={StaticResource boolVis}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="ID" FontSize="15" Grid.Row="0" Grid.Column="1"/>
+                <TextBox Text="{Binding ID}" Grid.Row="0" Grid.Column="2"/>
 
-            <TextBlock Text="Name" FontSize="15" Grid.Row="1" Grid.Column="1"/>
-            <TextBox Text="{Binding Path=Name}" Grid.Row="1" Grid.Column="2"/>
+                <TextBlock Text="Name" FontSize="15" Grid.Row="1" Grid.Column="1"/>
+                <TextBox Text="{Binding Path=Name}" Grid.Row="1" Grid.Column="2"/>
 
-            <TextBlock Text="City" FontSize="15" Grid.Row="2" Grid.Column="1"/>
-            <TextBox Text="{Binding CityID, Converter={StaticResource cityCvt}}" Grid.Row="2" Grid.Column="2"/>
-            <TextBlock Text="Amount" FontSize="15" Grid.Row="3" Grid.Column="1"/>
-            <TextBox Text="{Binding Amount, Converter={StaticResource s2dcvt}}" Grid.Row="3" Grid.Column="2"/>
+                <TextBlock Text="City" FontSize="15" Grid.Row="2" Grid.Column="1"/>
+                <TextBox Text="{Binding CityID, Converter={StaticResource cityCvt}}" Grid.Row="2" Grid.Column="2"/>
+                <TextBlock Text="Amount" FontSize="15" Grid.Row="3" Grid.Column="1"/>
+                <TextBox Text="{Binding Amount, Converter={StaticResource s2dcvt}}" Grid.Row="3" Grid.Column="2"/>
 
-            <CheckBox IsChecked="{Binding IsActive}" FontSize="15" Grid.Row="4" Grid.Column="2">Active</CheckBox>
-            <TextBlock Text="{Binding Path=Count}" Grid.Row="1" Grid.Column="3"/>
+                <CheckBox IsChecked="{Binding IsActive}" FontSize="15" Grid.Row="4" Grid.Column="2">Active</CheckBox>
 
-        </Grid> <!--grdData-->
+                <StackPanel Name="pnlCount" Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                    <TextBlock Text="{Binding Members.CurrentPosition, Converter={StaticResource intp1}}"/>
+                    <TextBlock Name="txtRecords" Text="{Binding Members.Count}"/>
+                </StackPanel>
 
+            </Grid>
+            <!--grdData-->
+        </StackPanel>
         <Grid Grid.Row="2" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -78,6 +87,9 @@
                 <Button Name="btnPrev" Command="{Binding MovePrev}" 
                         IsEnabled="{Binding Members.CurrentPosition, Converter={StaticResource boolGt0}}"
                         >Previous</Button>
+                <!--Dov: I tried to do disable the Next button when we're at the end of the List.
+                I artificially set the parameter to 4 (number of Members), just to show that it works.
+                Is there a way to do this correctly?-->
                 <Button Name="btnNext" Command="{Binding MoveNext}" Content="Next">
                     <Button.IsEnabled>
                         <Binding Path="Members.CurrentPosition" Converter="{StaticResource boolNotLast}">
@@ -85,7 +97,7 @@
                                 <sys:Int32>4</sys:Int32>
                             </Binding.ConverterParameter>
                         </Binding>
-                </Button.IsEnabled>
+                    </Button.IsEnabled>
                 </Button>
 
                 <Button Name="btnLast" Command="{Binding MoveLast}">Last</Button>
@@ -97,23 +109,9 @@
                 <Button>Cancel</Button>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <Button HorizontalAlignment="Right" Margin="0,20,10,10" MinWidth="80" 
-                    Grid.Column="0" Click="Button_Click"
-                    
-IsEnabled="{Binding Members.CurrentPosition, Converter={StaticResource cityCvt}}"                    
-                    
-                    
-                    
-                    >Change Data</Button>
-            <Button HorizontalAlignment="Right" Margin="0,20,10,10" MinWidth="80" Grid.Column="3" Click="Button_Click_1">Close</Button>
-        </StackPanel>
-        <StackPanel Name="pnlCount" Grid.Row="4" Orientation="Horizontal">
-            <TextBlock Name="txtRecords" Text="{Binding Members.Count}">
-            </TextBlock>
-            <TextBlock Text="{Binding Members.CurrentPosition}"/>
-            <Button IsEnabled="{Binding Members.CurrentPosition, Converter={StaticResource boolGt0}}">First Record</Button>
-        </StackPanel>
-
+        <DockPanel Grid.Row="4" Margin="0,0,0,10">
+            <Button Name="btnChange" Click="btnChange_Click">Change</Button>
+            <Button Name="btnClose" HorizontalAlignment="Right" Click="btnClose_Click" >Close</Button>
+        </DockPanel>
     </Grid>
 </Window>

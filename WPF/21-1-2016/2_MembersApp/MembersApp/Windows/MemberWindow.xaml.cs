@@ -24,22 +24,25 @@ namespace MembersApp.Windows
     {
         // int current = 0;
         ICollectionView membersView = null;
+        private MembersViewModel mvm;
+
         public MemberWindow()
         {
             InitializeComponent();
             membersView = CollectionViewSource.GetDefaultView(MembersRepository.GetAll());
+            mvm = new MembersViewModel();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             MembersRepository.Delete(membersView.CurrentPosition);
-            MembersViewModel mvm = new MembersViewModel();
+            mvm = new MembersViewModel();
             mvm.PositionAfterDelete();
-            if (membersView.IsEmpty)
-            {
-                grdData.Visibility = Visibility.Hidden;
-                grdNodata.Visibility = Visibility.Visible;
-            }
+            //if (membersView.IsEmpty)
+            //{
+            //    grdData.Visibility = Visibility.Hidden;
+            //    grdNodata.Visibility = Visibility.Visible;
+            //}
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
@@ -55,9 +58,15 @@ namespace MembersApp.Windows
             members[0].Name = "Something else";
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btnChange_Click(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<Member> members = MembersRepository.GetAll();
+            members[0].Name = "Something else";
         }
     }
 }

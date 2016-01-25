@@ -9,20 +9,6 @@ namespace MembersApp.Model
 {
     public class Member : INotifyPropertyChanged
     {
-        //public int ID { get; set; }
-        //public string Name { get; set; }
-        //public int CityID { get; set; }
-        //public bool IsActive { get; set; }
-        //public double Amount { get; set; }
-
-        //private string _Stam;
-
-        //public string Stam
-        //{
-        //    get { return "Always The Same"; }
-        //    set { _Stam = value; }
-        //}
-
         private int _id;
         public int ID
         {
