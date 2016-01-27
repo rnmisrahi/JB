@@ -58,6 +58,11 @@ namespace CarRental.Models
                 new Car {CarTypeId=4,BranchId=0,CarColor="Black",Kilometrage=120000,Plates="999-2673", CarStatus=CarStatus.Available  },
             };
 
+            var Reservations = new List<Reservation>
+            {
+                new Reservation {BranchId=0,CarId=0,MemberId=0 },
+                new Reservation {BranchId=0,CarId=1,MemberId=1 },
+            };
 
         }
     }

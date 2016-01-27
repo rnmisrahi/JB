@@ -40,7 +40,6 @@ namespace CodeFirst
         [MaxLength(10)]
         public string Name { get; set; }
         public string Url { get; set; }
-        [Required]
         public string Owner { get; set; }
 
         public virtual List<Post> Posts { get; set; }
