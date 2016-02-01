@@ -9,6 +9,7 @@ namespace CarRental.Models
     public class Member
     {
         [Required]
+        [Key]
         public String SSN { get; set; }
         [Required]
         [Display(Name = "User Name")]

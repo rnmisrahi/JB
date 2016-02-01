@@ -25,6 +25,13 @@ namespace CarRental.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
+            //  p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
+              p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);    
         }
     }
 }

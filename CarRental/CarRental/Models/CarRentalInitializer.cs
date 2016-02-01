@@ -60,8 +60,8 @@ namespace CarRental.Models
 
             var Reservations = new List<Reservation>
             {
-                new Reservation {BranchId=0,CarId=0,MemberId=0 },
-                new Reservation {BranchId=0,CarId=1,MemberId=1 },
+                new Reservation {BranchId=0,CarId=0,MemberId="123456789" },
+                new Reservation {BranchId=0,CarId=1,MemberId="111222333" },
             };
 
         }
