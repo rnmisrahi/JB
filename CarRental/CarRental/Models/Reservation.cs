@@ -10,8 +10,7 @@ namespace CarRental.Models
     {
         public int ReservationId { get; set; }
         public int BranchId { get; set; }
-        public string MemberId { get; set; }
-        []
+        public string MemberId { get; set; }        
         public int CarId { get; set; }
         [Display(Name ="From Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
