@@ -1,0 +1,28 @@
+﻿@model AuthenticationDemo.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@Html.ValidationSummary(true)
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Username)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Username)
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password)
+    </div>
+    <div>
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <input type="submit" value="Login" />
+}
