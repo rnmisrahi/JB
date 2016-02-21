@@ -1,0 +1,50 @@
+﻿@model CarRental02.Models.CarType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CarType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CarModel.ModelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarModel.ModelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DailyPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DailyPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DailyLatePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DailyLatePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gear)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

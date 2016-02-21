@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CarRental02.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch.BranchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarType.CarTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kilometrage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plates)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarType.CarTypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kilometrage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Picture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plates)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CarId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CarId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CarId })
+        </td>
+    </tr>
+}
+
+</table>
