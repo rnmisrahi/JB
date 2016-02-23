@@ -7,13 +7,13 @@ namespace CarRental02.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class Cars01 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Cars01));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602211903362_InitialCreate"; }
+            get { return "201602221011471_Cars01"; }
         }
         
         string IMigrationMetadata.Source

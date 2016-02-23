@@ -7,18 +7,18 @@ namespace CarRental02.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CarRental02 : IMigrationMetadata
+    public sealed partial class car2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CarRental02));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(car2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602221001327_CarRental02"; }
+            get { return "201602230032154_car2"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

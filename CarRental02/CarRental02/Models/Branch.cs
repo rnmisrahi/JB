@@ -9,7 +9,7 @@ namespace CarRental02.Models
     public class Branch
     {
         public int BranchId { get; set; }
-        [Display(Name = "Name")]
+        [Display(Name = "Branch")]
         public string BranchName { get; set; }
         public string Location { get; set; }
         public string Phone { get; set; }

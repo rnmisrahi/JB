@@ -15,6 +15,7 @@ namespace CarRental02.Models
         [Display(Name = "User Name")]
         public string UserName { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         public string HashedPassword { get; set; }
         [Required]
         public string Name { get; set; }
@@ -22,7 +23,7 @@ namespace CarRental02.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
-        public int Gender { get; set; }
+        public Gender Gender { get; set; }
         [Required]
         public string Email { get; set; }
         [DataType(DataType.Date)]
@@ -37,5 +38,12 @@ namespace CarRental02.Models
         public double Discount { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female,
+        Unknown
     }
 }

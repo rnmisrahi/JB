@@ -22,12 +22,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Branches", "Index")</li>
-                    <li>@Html.ActionLink("Car Types", "Index", "CarTypes")</li>
-                    <li>@Html.ActionLink("Car Brands", "Index", "CarBrands")</li>
-                    <li>@Html.ActionLink("Car Models", "Index", "CarModels")</li>
-                    <li>@Html.ActionLink("Cars", "Index", "Cars")</li>
-                    <li>@Html.ActionLink("Members", "Index")</li>
+                    <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
+                    <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cars<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Car Brands", "Index", "CarBrands")</li>
+                            <li>@Html.ActionLink("Car Models", "Index", "CarModels")</li>
+                            <li>@Html.ActionLink("Car Types", "Index", "CarTypes")</li>
+                            <li>@Html.ActionLink("Cars", "Index", "Cars")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Members", "Index", "Members")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>

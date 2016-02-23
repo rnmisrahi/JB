@@ -4,13 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Car Types</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model=>model.CarCode)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.CarModel.ModelName)
         </th>
@@ -28,6 +31,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarCode)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.CarModel.ModelName)
         </td>

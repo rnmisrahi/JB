@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=6.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.0.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -180,17 +184,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602211903362_InitialCreate.cs" />
-    <Compile Include="Migrations\201602211903362_InitialCreate.Designer.cs">
-      <DependentUpon>201602211903362_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201602221011471_Cars01.cs" />
+    <Compile Include="Migrations\201602221011471_Cars01.Designer.cs">
+      <DependentUpon>201602221011471_Cars01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602221001327_CarRental02.cs" />
-    <Compile Include="Migrations\201602221001327_CarRental02.Designer.cs">
-      <DependentUpon>201602221001327_CarRental02.cs</DependentUpon>
+    <Compile Include="Migrations\201602230032154_car2.cs" />
+    <Compile Include="Migrations\201602230032154_car2.Designer.cs">
+      <DependentUpon>201602230032154_car2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602230924267_CarsFixed.cs" />
+    <Compile Include="Migrations\201602230924267_CarsFixed.Designer.cs">
+      <DependentUpon>201602230924267_CarsFixed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\BrandValidator.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\CarModel.cs" />
@@ -314,11 +323,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602211903362_InitialCreate.resx">
-      <DependentUpon>201602211903362_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602221011471_Cars01.resx">
+      <DependentUpon>201602221011471_Cars01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602221001327_CarRental02.resx">
-      <DependentUpon>201602221001327_CarRental02.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602230032154_car2.resx">
+      <DependentUpon>201602230032154_car2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602230924267_CarsFixed.resx">
+      <DependentUpon>201602230924267_CarsFixed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

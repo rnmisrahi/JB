@@ -48,7 +48,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarTypeId,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
+        public ActionResult Create([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarTypeId,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
+        public ActionResult Edit([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
         {
             if (ModelState.IsValid)
             {
