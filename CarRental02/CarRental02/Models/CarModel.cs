@@ -19,8 +19,7 @@ namespace CarRental02.Models
             get
             {
                 var db = new CarRentalContext();
-                var brands = db.CarBrands.Where(m => m.CarBrandId == CarBrandId);
-                var brand = brands.FirstOrDefault();
+                var brand = db.CarBrands.Find(CarBrandId);
                 return string.Format("{0} - {1}", brand.BrandName, ModelName);
             }
         }

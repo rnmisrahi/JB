@@ -56,9 +56,6 @@ namespace CarRental02.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //var brands = db.CarBrands.Where(b => b.CarBrandId == Car);
-            //var brand = brands.FirstOrDefault();
-            //brand.
             ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", carType.CarModelId);
             return View(carType);
         }
