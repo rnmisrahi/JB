@@ -18,7 +18,8 @@ namespace CarRental02.Controllers
         public ActionResult Index()
         {
             var carTypes = db.CarTypes.Include(c => c.CarModel);
-            return View(carTypes.ToList());
+            var carTypesX = db.CarTypes.Include(c => c.CarModel).OrderBy(c=>c.CarModelId);
+            return View(carTypesX.ToList());
         }
 
         // GET: CarTypes/Details/5

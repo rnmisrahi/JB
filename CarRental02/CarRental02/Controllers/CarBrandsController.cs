@@ -17,7 +17,7 @@ namespace CarRental02.Controllers
         // GET: CarBrands
         public ActionResult Index()
         {
-            return View(db.CarBrands.ToList());
+            return View(db.CarBrands.OrderBy(b=>b.BrandName).ToList());
         }
 
         // GET: CarBrands/Details/5

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -28,6 +29,7 @@ namespace CarRental02.Models
         [Display(Name ="$/Day Late")]
         public double DailyLatePrice { get; set; }
         public Gear? Gear { get; set; }
+        [NotMapped]
         public string Description {
             get
             {
