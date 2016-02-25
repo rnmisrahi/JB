@@ -39,7 +39,7 @@ namespace CarRental02.Controllers
         // GET: CarTypes/Create
         public ActionResult Create()
         {
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "ModelName");
+            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description");
             return View();
         }
 
@@ -56,8 +56,10 @@ namespace CarRental02.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "ModelName", carType.CarModelId);
+            //var brands = db.CarBrands.Where(b => b.CarBrandId == Car);
+            //var brand = brands.FirstOrDefault();
+            //brand.
+            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", carType.CarModelId);
             return View(carType);
         }
 
@@ -73,7 +75,7 @@ namespace CarRental02.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "ModelName", carType.CarModelId);
+            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", carType.CarModelId);
             return View(carType);
         }
 
@@ -90,7 +92,7 @@ namespace CarRental02.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "ModelName", carType.CarModelId);
+            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", carType.CarModelId);
             return View(carType);
         }
 

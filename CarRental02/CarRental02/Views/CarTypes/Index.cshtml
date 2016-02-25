@@ -35,7 +35,8 @@
             @Html.DisplayFor(modelItem => item.CarCode)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CarModel.ModelName)
+            @*@Html.DisplayFor(modelItem => item.CarModel.ModelName)*@
+            @Html.DisplayFor(modelItem=>item.CarModel.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DailyPrice)

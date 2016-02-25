@@ -9,7 +9,9 @@ namespace CarRental02.Models
     public class Reservation
     {
         public int ReservationId { get; set; }
+        [Display(Name ="Branch")]
         public int BranchId { get; set; }
+        [Display(Name ="Member")]
         public string MemberId { get; set; }
         public int CarId { get; set; }
         [Display(Name = "From Date")]
@@ -21,6 +23,7 @@ namespace CarRental02.Models
         [Display(Name = "Date Returned")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateReturned { get; set; }
+        [Display(Name ="Status")]
         public ReservationStatus? ReservationStatus { get; set; }
 
         public virtual Branch Branch { get; set; }

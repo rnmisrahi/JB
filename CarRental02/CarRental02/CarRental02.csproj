@@ -207,11 +207,13 @@
     <Compile Include="Models\CarRentalContext.cs" />
     <Compile Include="Models\CarRentalInitializer.cs" />
     <Compile Include="Models\CarType.cs" />
+    <Compile Include="Models\EditCarTypeViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\ViewModelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
