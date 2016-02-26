@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation.Attributes;
 
 namespace CarRental02.Models
 {
+    [Validator(typeof(CustomValidators))]
     public class CarModel
     {
         public int CarModelId { get; set; }
         [Display(Name ="Brand")]
         public int CarBrandId { get; set; }
         [Display(Name = "Model")]
+        [CustomValidation(typeof(CustomValidators), "ValidateModel")]
         public string ModelName { get; set; }
 
         [Display(Name = "Brand-Model")]

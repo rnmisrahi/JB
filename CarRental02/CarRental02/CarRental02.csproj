@@ -199,7 +199,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Branch.cs" />
-    <Compile Include="Models\BrandValidator.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\CarModel.cs" />
@@ -207,6 +206,7 @@
     <Compile Include="Models\CarRentalContext.cs" />
     <Compile Include="Models\CarRentalInitializer.cs" />
     <Compile Include="Models\CarType.cs" />
+    <Compile Include="Models\CustomValidators.cs" />
     <Compile Include="Models\EditCarTypeViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />

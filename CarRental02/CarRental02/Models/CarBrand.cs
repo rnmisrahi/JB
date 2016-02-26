@@ -8,12 +8,12 @@ using FluentValidation.Attributes;
 
 namespace CarRental02.Models
 {
-    [Validator(typeof(BrandValidator))]
+    [Validator(typeof(CustomValidators))]
     public class CarBrand
     {
         public int CarBrandId { get; set; }
         [Display(Name = "Brand")]
-        [CustomValidation(typeof(BrandValidator), "ValidateBrandName")]
+        [CustomValidation(typeof(CustomValidators), "ValidateBrandName")]
         public string BrandName { get; set; }
 
         public virtual ICollection<CarModel> CarModels { get; set; }
