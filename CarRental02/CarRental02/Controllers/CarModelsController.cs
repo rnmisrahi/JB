@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
+using CarRental02.ViewModels;
 
 namespace CarRental02.Controllers   
 {
@@ -77,21 +78,32 @@ namespace CarRental02.Controllers
             return View(carModel);
         }
 
+        public ActionResult EditVM(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            CarModel carModel = db.CarModels.Find(id);
+            if (carModel == null)
+                return HttpNotFound();
+            CarModelVM carModelVM = new CarModelVM(carModel, db.CarBrands);
+            return View(carModelVM);
+        }
+
         // POST: CarModels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarModelId,CarBrandId,ModelName")] CarModel carModel)
+        public ActionResult EditVM(CarModelVM carModelVM)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carModel).State = EntityState.Modified;
+                db.Entry(carModelVM.CarModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
-            return View(carModel);
+            //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
+            return View(carModelVM);
         }
 
         // GET: CarModels/Delete/5
