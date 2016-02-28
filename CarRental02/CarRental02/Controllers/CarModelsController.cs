@@ -40,8 +40,9 @@ namespace CarRental02.Controllers
         // GET: CarModels/Create
         public ActionResult Create()
         {
-            ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName");
-            return View();
+            //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName");
+            CarModelVM carModelVM = new CarModelVM(new CarModel(), db.CarBrands);
+            return View(carModelVM);
         }
 
         // POST: CarModels/Create
@@ -49,17 +50,17 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarModelId,CarBrandId,ModelName")] CarModel carModel)
+        public ActionResult Create(CarModelVM carModelVM)
         {
             if (ModelState.IsValid)
             {
-                db.CarModels.Add(carModel);
+                db.CarModels.Add(carModelVM.CarModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
-            return View(carModel);
+            //This is needed to restore the brands, which did not come back from the View
+            carModelVM = new CarModelVM(carModelVM.CarModel, db.CarBrands);
+            return View(carModelVM);
         }
 
         // GET: CarModels/Edit/5
@@ -74,7 +75,7 @@ namespace CarRental02.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
+            //This is needed to restore the brands, which did not come back from the View
             CarModelVM carModelVM = new CarModelVM(CarModel, db.CarBrands);
             return View(carModelVM);
         }
@@ -92,7 +93,7 @@ namespace CarRental02.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            carModelVM.brandList = new SelectList(db.Branches);
+            carModelVM.brandList = new SelectList(db.Branches, "CarBrandId", "BrandName", carModelVM.CarModel.CarBrandId);
             //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
             return View(carModelVM);
         }
