@@ -9,116 +9,109 @@ using System.Web.Mvc;
 using CarRental02.Models;
 using CarRental02.ViewModels;
 
-namespace CarRental02.Controllers   
+namespace CarRental02.Controllers
 {
-    public class CarModelsController : Controller
+    public class CarModelVM2Controller : Controller
     {
         private CarRentalContext db = new CarRentalContext();
 
-        // GET: CarModels
+        // GET: CarModelVM2
         public ActionResult Index()
         {
-            var carModels = db.CarModels.Include(c => c.CarBrand).OrderBy(c => c.CarBrandId);
-            return View(carModels.ToList());
+            return View(db.CarModelVM2.ToList());
         }
 
-        // GET: CarModels/Details/5
+        // GET: CarModelVM2/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarModel carModel = db.CarModels.Find(id);
-            if (carModel == null)
+            CarModelVM2 carModelVM2 = db.CarModelVM2.Find(id);
+            if (carModelVM2 == null)
             {
                 return HttpNotFound();
             }
-            return View(carModel);
+            return View(carModelVM2);
         }
 
-        // GET: CarModels/Create
+        // GET: CarModelVM2/Create
         public ActionResult Create()
         {
-            ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName");
             return View();
         }
 
-        // POST: CarModels/Create
+        // POST: CarModelVM2/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarModelId,CarBrandId,ModelName")] CarModel carModel)
+        public ActionResult Create([Bind(Include = "CarModelVM2Id,BrandList")] CarModelVM2 carModelVM2)
         {
             if (ModelState.IsValid)
             {
-                db.CarModels.Add(carModel);
+                db.CarModelVM2.Add(carModelVM2);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
-            return View(carModel);
+            return View(carModelVM2);
         }
 
-        // GET: CarModels/Edit/5
+        // GET: CarModelVM2/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarModel CarModel = db.CarModels.Find(id);
-            if (CarModel == null)
+            CarModelVM2 carModelVM2 = db.CarModelVM2.Find(id);
+            if (carModelVM2 == null)
             {
                 return HttpNotFound();
             }
-            //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
-            CarModelVM carModelVM = new CarModelVM(CarModel, db.CarBrands);
-            return View(carModelVM);
+            return View(carModelVM2);
         }
 
-        // POST: CarModels/Edit/5
+        // POST: CarModelVM2/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CarModelVM carModelVM)
+        public ActionResult Edit([Bind(Include = "CarModelVM2Id,BrandList")] CarModelVM2 carModelVM2)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carModelVM.CarModel).State = EntityState.Modified;
+                db.Entry(carModelVM2).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            carModelVM.brandList = new SelectList(db.Branches);
-            //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
-            return View(carModelVM);
+            return View(carModelVM2);
         }
 
-        // GET: CarModels/Delete/5
+        // GET: CarModelVM2/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarModel carModel = db.CarModels.Find(id);
-            if (carModel == null)
+            CarModelVM2 carModelVM2 = db.CarModelVM2.Find(id);
+            if (carModelVM2 == null)
             {
                 return HttpNotFound();
             }
-            return View(carModel);
+            return View(carModelVM2);
         }
 
-        // POST: CarModels/Delete/5
+        // POST: CarModelVM2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CarModel carModel = db.CarModels.Find(id);
-            db.CarModels.Remove(carModel);
+            CarModelVM2 carModelVM2 = db.CarModelVM2.Find(id);
+            db.CarModelVM2.Remove(carModelVM2);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

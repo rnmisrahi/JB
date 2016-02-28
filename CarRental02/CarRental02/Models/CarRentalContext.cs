@@ -33,9 +33,5 @@ namespace CarRental02.Models
               p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
             modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);
         }
-
-        public System.Data.Entity.DbSet<CarRental02.ViewModels.CarModelVM2> CarModelVM2 { get; set; }
-
-        //public System.Data.Entity.DbSet<CarRental02.ViewModels.CarModelVM> CarModelVMs { get; set; }
     }
 }
