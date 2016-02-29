@@ -40,8 +40,8 @@ namespace CarRental02.Controllers
         // GET: CarTypes/Create
         public ActionResult Create()
         {
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description");
-            return View();
+            EditCarTypeViewModel ecvm = ViewModelFactory.CreateEditCarTypeViewModel();
+            return View(ecvm);
         }
 
         // POST: CarTypes/Create
@@ -49,16 +49,17 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
+        //public ActionResult Create([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
+        public ActionResult Create(EditCarTypeViewModel ectvm)
         {
             if (ModelState.IsValid)
             {
-                db.CarTypes.Add(carType);
+                db.CarTypes.Add(ectvm.CarTypeData);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", carType.CarModelId);
-            return View(carType);
+            ectvm = ViewModelFactory.CreateEditCarTypeViewModel();
+            return View(ectvm);
         }
 
         // GET: CarTypes/Edit/5
@@ -68,13 +69,12 @@ namespace CarRental02.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarType carType = db.CarTypes.Find(id);
-            if (carType == null)
+            EditCarTypeViewModel ectvm = ViewModelFactory.CreateEditCarTypeViewModel(id);
+            if (ectvm == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", carType.CarModelId);
-            return View(carType);
+            return View(ectvm);
         }
 
         // POST: CarTypes/Edit/5
@@ -82,16 +82,16 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
+        //public ActionResult Edit([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
+        public ActionResult Edit(EditCarTypeViewModel ectvm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carType).State = EntityState.Modified;
+                db.Entry(ectvm.CarTypeData).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", carType.CarModelId);
-            return View(carType);
+            return View(ectvm);
         }
 
         // GET: CarTypes/Delete/5
