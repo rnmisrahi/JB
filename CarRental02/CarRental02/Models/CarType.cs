@@ -30,6 +30,7 @@ namespace CarRental02.Models
         public double DailyLatePrice { get; set; }
         public Gear? Gear { get; set; }
         [NotMapped]
+        [Display(Name = "Brand-Model")]
         public string Description {
             get
             {

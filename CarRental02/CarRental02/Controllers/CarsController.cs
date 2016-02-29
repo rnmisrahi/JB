@@ -70,14 +70,17 @@ namespace CarRental02.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
-            if (car == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
-            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "Description", car.CarTypeId);
-            return View(car);
+            //Car car = db.Cars.Find(id);
+            //if (car == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            //ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "Description", car.CarTypeId);
+            //return View(car);
+            
+            EditCarViewModel ecvm = ViewModelFactory.CreateCarViewModel(id);
+            return View(ecvm);
         }
 
         // POST: Cars/Edit/5
@@ -85,17 +88,20 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
+        //public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
+        public ActionResult Edit(EditCarViewModel ecvm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(car).State = EntityState.Modified;
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+                db.Entry(ecvm.CarData).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
-            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "Description", car.CarTypeId);
-            return View(car);
+            //ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            //ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "Description", car.CarTypeId);
+            ecvm = ViewModelFactory.CreateCarViewModel(ecvm.CarData);
+            return View(ecvm);
         }
 
         // GET: Cars/Delete/5

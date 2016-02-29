@@ -20,6 +20,7 @@
             <div class="col-md-10">
                 @Html.DropDownList("CarTypeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CarTypeId, "", new { @class = "text-danger" })
+                <input type="button" value="Create" onclick="location.href='@Url.Action("Create", "CarTypes")'" />
             </div>
         </div>
 

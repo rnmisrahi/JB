@@ -93,7 +93,7 @@ namespace CarRental02.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            carModelVM.brandList = new SelectList(db.Branches, "CarBrandId", "BrandName", carModelVM.CarModel.CarBrandId);
+            carModelVM.brandList = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModelVM.CarModel.CarBrandId);
             //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
             return View(carModelVM);
         }

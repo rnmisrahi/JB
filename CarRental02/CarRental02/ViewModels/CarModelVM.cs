@@ -20,10 +20,10 @@ namespace CarRental02.ViewModels
             //For some reason we have to have a zero-parameter constructor
         }
 
-        public CarModelVM(CarModel CarModel, IEnumerable brandList)
+        public CarModelVM(CarModel carModelData, IEnumerable brandList)
         {
-            this.CarModel = CarModel;
-            this.brandList = new SelectList(brandList, "CarBrandId", "BrandName", CarModel.CarBrandId);
+            this.CarModel = carModelData;
+            this.brandList = new SelectList(brandList, "CarBrandId", "BrandName", carModelData.CarBrandId);
         }
 
     }

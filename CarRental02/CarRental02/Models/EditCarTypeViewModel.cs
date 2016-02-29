@@ -8,6 +8,6 @@ namespace CarRental02.Models
     public class EditCarTypeViewModel
     {
         public CarType CarTypeData { get; set; }
-
+        public List<CarModel> CarModels { get; set; }
     }
 }

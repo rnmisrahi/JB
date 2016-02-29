@@ -11,10 +11,15 @@ namespace CarRental02.Models
     public class CarModel
     {
         public int CarModelId { get; set; }
+        private int mCarBrandId;
         [Display(Name ="Brand")]
-        public int CarBrandId { get; set; }
+        public int CarBrandId {
+            get { return mCarBrandId; }
+            set { mCarBrandId = value; }
+        }
         [Display(Name = "Model")]
         [CustomValidation(typeof(CustomValidators), "ValidateModel")]
+        [Required(ErrorMessage = "Model Name is Required")]
         public string ModelName { get; set; }
 
         [Display(Name = "Brand-Model")]

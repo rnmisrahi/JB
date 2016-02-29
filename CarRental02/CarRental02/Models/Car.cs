@@ -16,6 +16,7 @@ namespace CarRental02.Models
         public string CarColor { get; set; }
         public int Kilometrage { get; set; }
         public string Picture { get; set; }
+        [Required]
         public string Plates { get; set; }
         [Display(Name = "Status")]
         public CarStatus? CarStatus { get; set; }

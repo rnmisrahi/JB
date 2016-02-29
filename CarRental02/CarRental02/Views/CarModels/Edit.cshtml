@@ -18,9 +18,9 @@
         @Html.HiddenFor(model => model.CarModel.CarModelId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CarModel.CarBrandId, "CarBrandId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CarModel.CarBrandId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CarModel.CarBrandId", Model.brandList)
+                @Html.DropDownList("CarModel.CarBrandId", Model.brandList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CarModel.CarBrandId, "", new { @class = "text-danger" })
             </div>
         </div>
