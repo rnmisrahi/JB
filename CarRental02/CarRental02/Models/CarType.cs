@@ -18,6 +18,7 @@ namespace CarRental02.Models
         private CarRentalContext db = new CarRentalContext();
 
         [Display(Name ="Car Code")]
+        [Required]
         public string CarCode { get; set; }
 
         [Required]
@@ -25,8 +26,10 @@ namespace CarRental02.Models
         public int CarModelId { get; set; }
 
         [Display(Name ="$/Day")]
+        [DataType(DataType.Currency)]
         public double DailyPrice { get; set; }
         [Display(Name ="$/Day Late")]
+        [DataType(DataType.Currency)]
         public double DailyLatePrice { get; set; }
         public Gear? Gear { get; set; }
         [NotMapped]

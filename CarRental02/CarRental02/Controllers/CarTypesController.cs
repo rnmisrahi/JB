@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
+using CarRental02.ViewModels;
 
 namespace CarRental02.Controllers
 {
@@ -40,7 +41,7 @@ namespace CarRental02.Controllers
         // GET: CarTypes/Create
         public ActionResult Create()
         {
-            EditCarTypeViewModel ecvm = ViewModelFactory.CreateEditCarTypeViewModel();
+            CarTypeViewModel ecvm = ViewModelFactory.CreateCarTypeViewModel();
             return View(ecvm);
         }
 
@@ -50,16 +51,16 @@ namespace CarRental02.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
-        public ActionResult Create(EditCarTypeViewModel ectvm)
+        public ActionResult Create(CarTypeViewModel ctvm)
         {
             if (ModelState.IsValid)
             {
-                db.CarTypes.Add(ectvm.CarTypeData);
+                db.CarTypes.Add(ctvm.CarTypeData);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ectvm = ViewModelFactory.CreateEditCarTypeViewModel();
-            return View(ectvm);
+            ctvm = ViewModelFactory.CreateCarTypeViewModel();
+            return View(ctvm);
         }
 
         // GET: CarTypes/Edit/5
@@ -69,7 +70,7 @@ namespace CarRental02.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EditCarTypeViewModel ectvm = ViewModelFactory.CreateEditCarTypeViewModel(id);
+            CarTypeViewModel ectvm = ViewModelFactory.CreateCarTypeViewModel(id);
             if (ectvm == null)
             {
                 return HttpNotFound();
@@ -83,15 +84,16 @@ namespace CarRental02.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
-        public ActionResult Edit(EditCarTypeViewModel ectvm)
+        public ActionResult Edit(CarTypeViewModel ctvm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ectvm.CarTypeData).State = EntityState.Modified;
+                db.Entry(ctvm.CarTypeData).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(ectvm);
+            ctvm = ViewModelFactory.CreateCarTypeViewModel(ctvm.CarTypeData);
+            return View(ctvm);
         }
 
         // GET: CarTypes/Delete/5

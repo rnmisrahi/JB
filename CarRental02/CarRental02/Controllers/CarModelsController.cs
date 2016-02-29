@@ -40,9 +40,8 @@ namespace CarRental02.Controllers
         // GET: CarModels/Create
         public ActionResult Create()
         {
-            //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName");
-            CarModelVM carModelVM = new CarModelVM(new CarModel(), db.CarBrands);
-            return View(carModelVM);
+            CarModelViewModel cmvm = ViewModelFactory.CreateCarModelViewModel();
+            return View(cmvm);
         }
 
         // POST: CarModels/Create
@@ -50,17 +49,15 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CarModelVM carModelVM)
+        public ActionResult Create(CarModelViewModel cmvm)
         {
             if (ModelState.IsValid)
             {
-                db.CarModels.Add(carModelVM.CarModel);
+                db.CarModels.Add(cmvm.CarModelData);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //This is needed to restore the brands, which did not come back from the View
-            carModelVM = new CarModelVM(carModelVM.CarModel, db.CarBrands);
-            return View(carModelVM);
+            return View(cmvm);
         }
 
         // GET: CarModels/Edit/5
@@ -70,14 +67,13 @@ namespace CarRental02.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarModel CarModel = db.CarModels.Find(id);
-            if (CarModel == null)
+            CarModelViewModel cmvm = ViewModelFactory.CreateCarModelViewModel(id);
+            if (cmvm == null)
             {
                 return HttpNotFound();
             }
-            //This is needed to restore the brands, which did not come back from the View
-            CarModelVM carModelVM = new CarModelVM(CarModel, db.CarBrands);
-            return View(carModelVM);
+            ////This is needed to restore the brands, which did not come back from the View
+            return View(cmvm);
         }
 
         // POST: CarModels/Edit/5
@@ -85,17 +81,16 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CarModelVM carModelVM)
+        public ActionResult Edit(CarModelViewModel cmvm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carModelVM.CarModel).State = EntityState.Modified;
+                db.Entry(cmvm.CarModelData).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            carModelVM.brandList = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModelVM.CarModel.CarBrandId);
-            //ViewBag.CarBrandId = new SelectList(db.CarBrands, "CarBrandId", "BrandName", carModel.CarBrandId);
-            return View(carModelVM);
+            cmvm = ViewModelFactory.CreateCarModelViewModel(cmvm.CarModelData);
+            return View(cmvm);
         }
 
         // GET: CarModels/Delete/5

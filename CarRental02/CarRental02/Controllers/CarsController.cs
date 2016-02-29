@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
+using CarRental02.ViewModels;
 
 namespace CarRental02.Controllers
 {
@@ -39,7 +40,7 @@ namespace CarRental02.Controllers
         // GET: Cars/Create
         public ActionResult Create()
         {
-            EditCarViewModel ecvm = ViewModelFactory.CreateCarViewModel();
+            CarViewModel ecvm = ViewModelFactory.CreateCarViewModel();
             return View(ecvm);
         }
 
@@ -49,19 +50,19 @@ namespace CarRental02.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
-        public ActionResult Create(EditCarViewModel ecvm)
+        public ActionResult Create(CarViewModel cvm)
         {
-            TempData["Car"] = ecvm.CarData;
+            TempData["Car"] = cvm.CarData;
             if (ModelState.IsValid)
             {
-                db.Cars.Add(ecvm.CarData);
+                db.Cars.Add(cvm.CarData);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             //Validation failed:
 
-            ecvm = ViewModelFactory.CreateCarViewModel(ecvm.CarData);
-            return View(ecvm);
+            cvm = ViewModelFactory.CreateCarViewModel(cvm.CarData);
+            return View(cvm);
         }
 
         // GET: Cars/Edit/5
@@ -71,7 +72,7 @@ namespace CarRental02.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EditCarViewModel ecvm = ViewModelFactory.CreateCarViewModel(id);
+            CarViewModel ecvm = ViewModelFactory.CreateCarViewModel(id);
             return View(ecvm);
         }
 
@@ -81,17 +82,17 @@ namespace CarRental02.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
-        public ActionResult Edit(EditCarViewModel ecvm)
+        public ActionResult Edit(CarViewModel cvm)
         {
             if (ModelState.IsValid)
             {
                 db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
-                db.Entry(ecvm.CarData).State = EntityState.Modified;
+                db.Entry(cvm.CarData).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ecvm = ViewModelFactory.CreateCarViewModel(ecvm.CarData);
-            return View(ecvm);
+            cvm = ViewModelFactory.CreateCarViewModel(cvm.CarData);
+            return View(cvm);
         }
 
         // GET: Cars/Delete/5

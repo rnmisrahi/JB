@@ -1,12 +1,13 @@
-﻿using System;
+﻿using CarRental02.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CarRental02.Models
+namespace CarRental02.ViewModels
 {
-    public class EditCarViewModel
+    public class CarViewModel
     {
         public Car CarData { get; set; }
 
