@@ -100,6 +100,31 @@ namespace CarRental02.ViewModels
             return CreateCarViewModel(new Car());
         }
 
+        #region BrandViewModel Experimental
+        public static BrandViewModel CreateBrandViewModel(CarBrand brand, string displayMode)
+        {
+            BrandViewModel model = new BrandViewModel();
+            model.DisplayMode = displayMode;
+            using (CarRentalContext db = new CarRentalContext())
+            {
+                model.Brands = db.CarBrands.ToList();
+                model.SelectedBrand = brand;
+            }
+            return model;
+        }
+
+        public static BrandViewModel CreateBrandViewModel(int id, string displayMode)
+        {
+            using (CarRentalContext db = new CarRentalContext())
+            {
+                CarBrand brand = db.CarBrands.Find(id);
+                return CreateBrandViewModel(brand, displayMode);
+            }
+
+        }
+
+
+        #endregion
     }
 
 

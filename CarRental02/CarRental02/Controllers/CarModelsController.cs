@@ -57,6 +57,7 @@ namespace CarRental02.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            cmvm = ViewModelFactory.CreateCarModelViewModel(cmvm.CarModelData);
             return View(cmvm);
         }
 
@@ -72,7 +73,6 @@ namespace CarRental02.Controllers
             {
                 return HttpNotFound();
             }
-            ////This is needed to restore the brands, which did not come back from the View
             return View(cmvm);
         }
 
