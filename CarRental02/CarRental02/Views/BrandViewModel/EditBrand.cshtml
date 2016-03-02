@@ -1,0 +1,25 @@
+﻿@model CarRental02.Models.CarBrand
+
+@{
+    ViewBag.Title = "EditBrand";
+}
+
+<h2>EditBrand</h2>
+
+@using (Html.BeginForm("Update", "BrandViewModel", FormMethod.Post))
+{
+    <table border="1" cellpadding="10">
+        @Html.HiddenFor(m => m.CarBrandId)
+        <tr>
+            <td>Brand Name: </td>
+            <td>@Html.TextBoxFor(m=>m.BrandName)</td>
+            <td>@Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <input type="submit" value="Save" formaction="/BrandViewModel/Update"/>
+                <input type="submit" value="Cancel" formaction="/BrandViewModel/Cancel/@Model.CarBrandId"/>
+            </td>
+        </tr>
+    </table>
+}

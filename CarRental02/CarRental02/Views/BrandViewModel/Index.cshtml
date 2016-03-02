@@ -1,0 +1,79 @@
+﻿@model CarRental02.ViewModels.BrandViewModel
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .SelectedBrand{
+            background-color:gray;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Brands</h1>
+    <form method="post">
+        <input type="submit" value="Insert" formaction="/brandviewmodel/new" />
+        <br/><br/>
+        <table border="1" cellpadding="="10">
+            <tr>
+                <th>Brand ID</th>
+                <th>Brand Name</th>
+                <th colspan="2">Actions</th>
+            </tr>
+            @foreach(var item in Model.Brands)
+            {
+                if (Model.SelectedBrand != null)
+                {
+                    if (item.CarBrandId == Model.SelectedBrand.CarBrandId)
+                    {
+                        @:<tr class="SelectedBrand">
+                    }
+                    else
+                    {
+                        @:<tr>
+                    }
+                }
+                else
+                {
+                    @:<tr>
+                }
+                <td>@item.CarBrandId</td>
+                <td>@item.BrandName</td>
+                <td>
+                    <input type="submit" formaction="/BrandViewModel/Select/@item.CarBrandId" value="Select"/>
+                </td>
+                <td>
+                    <input type="submit" formaction="/BrandViewModel/Delete/@item.CarBrandId" value="Delete"/>
+                </td>
+                @:</tr>
+            }
+        </table>
+    </form>
+    <br/><br/>
+    @{ 
+        if (Model.SelectedBrand!= null)
+        {
+            if (Model.DisplayMode == "ReadOnly")
+            {
+                Html.RenderPartial("ShowBrand", Model.SelectedBrand);
+            }
+            if (Model.DisplayMode == "ReadWrite")
+            {
+                Html.RenderPartial("EditBrand", Model.SelectedBrand);
+            }
+        }
+        if (Model.DisplayMode == "WriteOnly")
+        {
+            Html.RenderPartial("InsertBrand", new CarRental02.Models.CarBrand());
+        }
+    }
+
+</body>
+
+</html>

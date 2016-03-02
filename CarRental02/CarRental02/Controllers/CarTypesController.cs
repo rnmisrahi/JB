@@ -41,8 +41,9 @@ namespace CarRental02.Controllers
         // GET: CarTypes/Create
         public ActionResult Create()
         {
-            CarTypeViewModel ecvm = ViewModelFactory.CreateCarTypeViewModel();
-            return View(ecvm);
+            CarTypeViewModel ctvm = ViewModelFactory.CreateCarTypeViewModel();
+            var v = TempData["Car"];
+            return View(ctvm);
         }
 
         // POST: CarTypes/Create
@@ -53,6 +54,7 @@ namespace CarRental02.Controllers
         //public ActionResult Create([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
         public ActionResult Create(CarTypeViewModel ctvm)
         {
+            var v = TempData["Car"];
             if (ModelState.IsValid)
             {
                 db.CarTypes.Add(ctvm.CarTypeData);

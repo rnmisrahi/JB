@@ -40,8 +40,8 @@ namespace CarRental02.Controllers
         // GET: Cars/Create
         public ActionResult Create()
         {
-            CarViewModel ecvm = ViewModelFactory.CreateCarViewModel();
-            return View(ecvm);
+            CarViewModel cvm = ViewModelFactory.CreateCarViewModel();
+            return View(cvm);
         }
 
         // POST: Cars/Create
