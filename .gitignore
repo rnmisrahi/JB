@@ -9,6 +9,8 @@
 *.bak
 *.exe.config
 *.rar
+*.mdf
+*.ldf
 bin
 obj
 packages
