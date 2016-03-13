@@ -42,7 +42,6 @@ namespace CarRental02.Controllers
         public ActionResult Create()
         {
             CarTypeViewModel ctvm = ViewModelFactory.CreateCarTypeViewModel();
-            var v = TempData["Car"];
             return View(ctvm);
         }
 
@@ -51,14 +50,13 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
         public ActionResult Create(CarTypeViewModel ctvm)
         {
-            var v = TempData["Car"];
             if (ModelState.IsValid)
             {
                 db.CarTypes.Add(ctvm.CarTypeData);
                 db.SaveChanges();
+                TempData["Added"] = ctvm.CarTypeData.Description + " Added";
                 return RedirectToAction("Index");
             }
             ctvm = ViewModelFactory.CreateCarTypeViewModel();
@@ -92,6 +90,7 @@ namespace CarRental02.Controllers
             {
                 db.Entry(ctvm.CarTypeData).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Added"] = ctvm.CarTypeData.Description + " Edited";
                 return RedirectToAction("Index");
             }
             ctvm = ViewModelFactory.CreateCarTypeViewModel(ctvm.CarTypeData);
@@ -121,6 +120,7 @@ namespace CarRental02.Controllers
             CarType carType = db.CarTypes.Find(id);
             db.CarTypes.Remove(carType);
             db.SaveChanges();
+            TempData["Added"] = ctvm.CarTypeData.Description + " Edited";
             return RedirectToAction("Index");
         }
 

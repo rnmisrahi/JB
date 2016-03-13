@@ -1,0 +1,81 @@
+﻿@model CarRental02.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch.BranchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarType.CarTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarType.CarTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kilometrage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kilometrage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plates)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plates)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

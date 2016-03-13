@@ -55,6 +55,7 @@ namespace CarRental02.Controllers
             {
                 db.CarModels.Add(cmvm.CarModelData);
                 db.SaveChanges();
+                TempData["Added"] = cmvm.CarModelData.Description + " Added";
                 return RedirectToAction("Index");
             }
             cmvm = ViewModelFactory.CreateCarModelViewModel(cmvm.CarModelData);
@@ -87,6 +88,7 @@ namespace CarRental02.Controllers
             {
                 db.Entry(cmvm.CarModelData).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Added"] = cmvm.CarModelData.Description + " Edited";
                 return RedirectToAction("Index");
             }
             cmvm = ViewModelFactory.CreateCarModelViewModel(cmvm.CarModelData);
@@ -116,6 +118,7 @@ namespace CarRental02.Controllers
             CarModel carModel = db.CarModels.Find(id);
             db.CarModels.Remove(carModel);
             db.SaveChanges();
+            TempData["Added"] = cmvm.CarModelData.Description + " Added";
             return RedirectToAction("Index");
         }
 

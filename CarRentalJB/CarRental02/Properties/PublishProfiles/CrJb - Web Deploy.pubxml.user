@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAaq3RmADCUE6bY7YBNDxbvQAAAAACAAAAAAAQZgAAAAEAACAAAAAMQMlST181aJfvOa3VlIMEIOsW3S3ZwNTb1HWLlCEuuAAAAAAOgAAAAAIAACAAAAAqVGq4BV6FEAt2wlVRKK71VcAW/zfGiXHkPrW+RTMs1IAAAADEUw4gD/HukHej4I9RL9Pidsg2pAmQsaIl0X2+Zf3rYu1gXQOgYRzx0X7+5U9Lh0piGIXp0ohcy3rCZWWql7kHBedZ4RUjTJOyASBDK4z5uGI8tn91LN8QLUTIvgEmt5EDMd2IQCD4mI4AX5z+uxqgUnrLjoKsv3xCNtXBvZWroEAAAABHAyF4eBEaK80XOHsbBjGObk7pDt7fbUJ9FKZ4YoeBObBmhQCK7a+OuABs/nPCYMEujUeNrhN7BXklEkktYREv</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <AzureDBConnectionStrings Include="Data Source=tcp:g2ojj5kj5y.database.windows.net,1433;Initial Catalog=AzureUnAoUyFE4R2;User ID=rnmisrahi@g2ojj5kj5y;Password=Smcecq9a" />
+    <AzureDBConnectionStrings Include="Data Source=tcp:g2ojj5kj5y.database.windows.net,1433;Initial Catalog=CrJbDb;User Id=rnmisrahi@g2ojj5kj5y;Password=Smcecq9a" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+﻿@model CarRental02.Models.CarBrand
+@{
+    ViewBag.Title = "Show Brand";
+}
+
+<h2>ShowBrand</h2>
+@using (Html.BeginForm("Edit", "BrandViewModel", FormMethod.Post))
+{
+    <table border="1" cellpadding="10">
+        <tr>
+            <td>Brand Name: </td>
+            <td>@Model.BrandName</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Edit" formaction="/BrandViewModel/Edit/@Model.CarBrandId"/>
+                <input type="submit" value="Cancel" formaction="/BrandViewModel/Index"/>
+            </td>
+        </tr>
+    </table>
+}
+
