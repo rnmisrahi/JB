@@ -46,7 +46,7 @@ namespace CarRental02.ViewModels
         }
         #endregion
 
-        
+        #region CarTypeViewModel
         public static CarTypeViewModel CreateCarTypeViewModel()
         {
             return CreateCarTypeViewModel(new CarType());
@@ -72,7 +72,9 @@ namespace CarRental02.ViewModels
             }
             return null;
         }
+        #endregion
 
+        #region CarViewModel
         public static CarViewModel CreateCarViewModel(Car car)
         {
             CarRentalContext db = new CarRentalContext();
@@ -99,6 +101,38 @@ namespace CarRental02.ViewModels
         {
             return CreateCarViewModel(new Car());
         }
+        #endregion
+
+        #region SearchCarViewModel
+        public static SearchCarViewModel CreateSearchCarViewModel(Car car)
+        {
+            CarRentalContext db = new CarRentalContext();
+            SearchCarViewModel scvm = new SearchCarViewModel();
+            CarType carType;
+            Branch branch;
+
+            scvm.CarData = car;
+
+            carType = db.CarTypes.Find(car.CarTypeId);
+            //if (carType != null)
+            //    scvm.CarCode = carType.CarCode;
+            //else
+            //    scvm.CarCode = "";
+
+            //branch = db.Branches.Find(car.BranchId);
+            //if (branch != null)
+            //{
+            //    scvm.Branch = branch.City + " - " + branch.BranchName;
+            //}
+
+            return scvm;
+        }
+
+        public static SearchCarViewModel CreateSearchCarViewModel()
+        {
+            return CreateSearchCarViewModel(new Car());
+        }
+        #endregion
 
         #region BrandViewModel Experimental
         public static BrandViewModel CreateBrandViewModel(CarBrand brand, string displayMode)

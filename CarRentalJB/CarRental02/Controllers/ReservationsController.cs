@@ -55,12 +55,13 @@ namespace CarRental02.Controllers
             {
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
-                TempData["Added"] = reservation.Car.CarType.Description + " at " + reservation.Car.CarType.Description + " Added";
+                //TempData["Added"] = reservation.Car.CarType.Description + " at " + reservation.Car.CarType.Description + " Added";
                 return RedirectToAction("Index");
             }
 
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
-            ViewBag.CarId = new SelectList(db.Cars, "CarId", "CarColor", reservation.CarId);
+            //Todo: We have to come up with a field different from CarColor
+            //ViewBag.CarId = new SelectList(db.Cars, "CarId", "CarColor", reservation.CarId);
             return View(reservation);
         }
 
@@ -92,7 +93,7 @@ namespace CarRental02.Controllers
             {
                 db.Entry(reservation).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["Added"] = reservation.Car.CarType.Description + " at " + reservation.Car.CarType.Description + " Edited";
+                //TempData["Added"] = reservation.Car.CarType.Description + " at " + reservation.Car.CarType.Description + " Edited";
                 return RedirectToAction("Index");
             }
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
@@ -123,7 +124,7 @@ namespace CarRental02.Controllers
             Reservation reservation = db.Reservations.Find(id);
             db.Reservations.Remove(reservation);
             db.SaveChanges();
-            TempData["Added"] = reservation.Car.CarType.Description + " at " + reservation.Car.CarType.Description + " Deleted";
+            //TempData["Added"] = reservation.Car.CarType.Description + " at " + reservation.Car.CarType.Description + " Deleted";
             return RedirectToAction("Index");
         }
 

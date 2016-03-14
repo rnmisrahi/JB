@@ -7,22 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
-using CarRental02.ViewModels;
 
 namespace CarRental02.Controllers
 {
-    public class CarsController : Controller
+    public class SearchController : Controller
     {
         private CarRentalContext db = new CarRentalContext();
 
-        // GET: Cars
+        // GET: Search
         public ActionResult Index()
         {
-            var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType);//.Include(r=>r.Reservations);
+            var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType);
             return View(cars.ToList());
         }
 
-        // GET: Cars/Details/5
+        // GET: Search/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,67 +36,69 @@ namespace CarRental02.Controllers
             return View(car);
         }
 
-        // GET: Cars/Create
+        // GET: Search/Create
         public ActionResult Create()
         {
-            CarViewModel cvm = ViewModelFactory.CreateCarViewModel();
-            return View(cvm);
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName");
+            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode");
+            return View();
         }
 
-        // POST: Cars/Create
+        // POST: Search/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
-        public ActionResult Create(CarViewModel cvm)
+        public ActionResult Create([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
         {
-            TempData["Car"] = cvm.CarData;
             if (ModelState.IsValid)
             {
-                db.Cars.Add(cvm.CarData);
+                db.Cars.Add(car);
                 db.SaveChanges();
-                TempData["Added"] = cvm.CarData.Plates + " Added";
                 return RedirectToAction("Index");
             }
-            //Validation failed:
 
-            cvm = ViewModelFactory.CreateCarViewModel(cvm.CarData);
-            return View(cvm);
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
+            return View(car);
         }
 
-        // GET: Cars/Edit/5
+        // GET: Search/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarViewModel ecvm = ViewModelFactory.CreateCarViewModel(id);
-            return View(ecvm);
+            Car car = db.Cars.Find(id);
+            if (car == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
+            return View(car);
         }
 
-        // POST: Cars/Edit/5
+        // POST: Search/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
-        public ActionResult Edit(CarViewModel cvm)
+        public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
         {
             if (ModelState.IsValid)
             {
-                db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
-                db.Entry(cvm.CarData).State = EntityState.Modified;
+                db.Entry(car).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["Added"] = cvm.CarData.Plates + " Edited";
                 return RedirectToAction("Index");
             }
-            cvm = ViewModelFactory.CreateCarViewModel(cvm.CarData);
-            return View(cvm);
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
+            return View(car);
         }
 
-        // GET: Cars/Delete/5
+        // GET: Search/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,7 +113,7 @@ namespace CarRental02.Controllers
             return View(car);
         }
 
-        // POST: Cars/Delete/5
+        // POST: Search/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -120,7 +121,6 @@ namespace CarRental02.Controllers
             Car car = db.Cars.Find(id);
             db.Cars.Remove(car);
             db.SaveChanges();
-            TempData["Added"] = car.Plates + " Deleted";
             return RedirectToAction("Index");
         }
 
