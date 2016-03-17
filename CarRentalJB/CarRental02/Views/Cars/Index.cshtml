@@ -9,6 +9,23 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using(@Html.BeginForm("Index", "Cars", FormMethod.Get))
+{
+    <p>Car Code:
+        <select id="FilterCarCode">
+            <option value="All">All</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+        </select>
+        <b>Find By</b> Code: @Html.TextBox("FilterCarCode", ViewBag.CarCodeFilter as string) | 
+        City: @Html.TextBox("FilterCity", ViewBag.FilterCity as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {

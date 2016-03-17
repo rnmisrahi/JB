@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
+using CarRental02.ViewModels;
 
 namespace CarRental02.Controllers
 {
@@ -15,10 +16,31 @@ namespace CarRental02.Controllers
         private CarRentalContext db = new CarRentalContext();
 
         // GET: Reservations
-        public ActionResult Index()
+        public ActionResult Index(string FilterCarCode, string FilterCity, string CityId)
         {
-            var reservations = db.Reservations.Include(r => r.Branch).Include(r => r.Car);
-            return View(reservations.ToList());
+            ReservationViewModel rvm = new ReservationViewModel();
+            //rvm.CarData = db.Cars.ToList();
+            //var reservations = db.Reservations.Include(r => r.Branch).Include(r => r.Car);
+            var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType);
+            if (!String.IsNullOrWhiteSpace(FilterCarCode))
+            {
+                cars = cars.Where(s => s.CarType.CarCode == FilterCarCode);
+            }
+            //ViewBag.CarCodeFilter = FilterCarCode;
+            if (!String.IsNullOrWhiteSpace(CityId))
+            {
+                int cityId;
+                if (int.TryParse(CityId, out cityId))
+                {
+                    cars = cars.Where(s => s.Branch.City.CityId==cityId);
+                }
+            }
+            //if (!String.IsNullOrWhiteSpace(FilterCity))
+            //    cars = cars.Where(s => s.Branch.City.CityName.Contains(FilterCity));
+            ViewBag.FilterCity = FilterCity;
+            ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
+            rvm.CarData = cars.ToList();
+            return View(rvm);
         }
 
         // GET: Reservations/Details/5

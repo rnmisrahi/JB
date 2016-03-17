@@ -1,0 +1,32 @@
+﻿@model CarRental02.ViewModels.SearchCarViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Plates
+        </th>
+    </tr>
+
+@foreach (var item in Model.CarData) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plates)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.SearchCarViewModelId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SearchCarViewModelId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SearchCarViewModelId })*@
+        </td>
+    </tr>
+}
+
+</table>

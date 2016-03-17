@@ -103,36 +103,36 @@ namespace CarRental02.ViewModels
         }
         #endregion
 
-        #region SearchCarViewModel
-        public static SearchCarViewModel CreateSearchCarViewModel(Car car)
-        {
-            CarRentalContext db = new CarRentalContext();
-            SearchCarViewModel scvm = new SearchCarViewModel();
-            CarType carType;
-            Branch branch;
+        //#region SearchCarViewModel
+        //public static SearchCarViewModel CreateSearchCarViewModel(Car car)
+        //{
+        //    CarRentalContext db = new CarRentalContext();
+        //    SearchCarViewModel scvm = new SearchCarViewModel();
+        //    CarType carType;
+        //    Branch branch;
 
-            scvm.CarData = car;
+        //    scvm.CarData = car;
 
-            carType = db.CarTypes.Find(car.CarTypeId);
-            //if (carType != null)
-            //    scvm.CarCode = carType.CarCode;
-            //else
-            //    scvm.CarCode = "";
+        //    carType = db.CarTypes.Find(car.CarTypeId);
+        //    //if (carType != null)
+        //    //    scvm.CarCode = carType.CarCode;
+        //    //else
+        //    //    scvm.CarCode = "";
 
-            //branch = db.Branches.Find(car.BranchId);
-            //if (branch != null)
-            //{
-            //    scvm.Branch = branch.City + " - " + branch.BranchName;
-            //}
+        //    //branch = db.Branches.Find(car.BranchId);
+        //    //if (branch != null)
+        //    //{
+        //    //    scvm.Branch = branch.City + " - " + branch.BranchName;
+        //    //}
 
-            return scvm;
-        }
+        //    return scvm;
+        //}
 
-        public static SearchCarViewModel CreateSearchCarViewModel()
-        {
-            return CreateSearchCarViewModel(new Car());
-        }
-        #endregion
+        //public static SearchCarViewModel CreateSearchCarViewModel()
+        //{
+        //    return CreateSearchCarViewModel(new Car());
+        //}
+        //#endregion
 
         #region BrandViewModel Experimental
         public static BrandViewModel CreateBrandViewModel(CarBrand brand, string displayMode)

@@ -16,10 +16,22 @@ namespace CarRental02.Controllers
         private CarRentalContext db = new CarRentalContext();
 
         // GET: Cars
-        public ActionResult Index()
+        public ActionResult Index(string FilterCarCode, string FilterCity, string sortOrder)
         {
-            var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType);//.Include(r=>r.Reservations);
-            return View(cars.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "" : sortOrder;
+            var cars2 = from c in db.Cars.Include(c => c.Branch).Include(c => c.Branch.City).Include(c => c.CarType)
+                        select c;
+            if (!String.IsNullOrWhiteSpace(FilterCarCode))
+            {
+                cars2 = cars2.Where(s => s.CarType.CarCode == FilterCarCode);
+            }
+            ViewBag.CarCodeFilter = FilterCarCode;
+            if (!String.IsNullOrWhiteSpace(FilterCity))
+                cars2 = cars2.Where(s => s.Branch.City.CityName.Contains(FilterCity));
+            ViewBag.FilterCity = FilterCity;
+            return View(cars2.ToList());
+            //return View(cars.ToList());
         }
 
         // GET: Cars/Details/5

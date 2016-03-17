@@ -30,6 +30,8 @@ namespace CarRental02.Models
             modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);
         }
 
-        public System.Data.Entity.DbSet<CarRental02.Models.City> Cities { get; set; }
+        public DbSet<CarRental02.Models.City> Cities { get; set; }
+
+        //public System.Data.Entity.DbSet<CarRental02.ViewModels.SearchCarViewModel> SearchCarViewModels { get; set; }
     }
 }
