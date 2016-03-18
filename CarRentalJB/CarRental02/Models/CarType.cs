@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarRental02.Models.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,10 @@ namespace CarRental02.Models
 
         [Display(Name ="Car Code")]
         [Required]
+        [Index(IsUnique = true)]
+        [MaxLength(1)]
+        //[CustomValidation(typeof(CustomValidators), "ValidateCarCode")]//This worked when adding, but not when editing
+        [CarCodeValidator]
         public string CarCode { get; set; }
 
         [Required]

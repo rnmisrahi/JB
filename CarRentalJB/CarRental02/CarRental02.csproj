@@ -189,9 +189,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603171033407_Initial.cs" />
-    <Compile Include="Migrations\201603171033407_Initial.Designer.cs">
-      <DependentUpon>201603171033407_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603171221553_CarTypeUniqueCarCode.cs" />
+    <Compile Include="Migrations\201603171221553_CarTypeUniqueCarCode.Designer.cs">
+      <DependentUpon>201603171221553_CarTypeUniqueCarCode.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CarFilter.cs" />
     <Compile Include="Models\City.cs" />
@@ -206,6 +206,10 @@
     <Compile Include="Models\CarRentalInitializer.cs" />
     <Compile Include="Models\CarType.cs" />
     <Compile Include="Models\CustomValidators.cs" />
+    <Compile Include="Models\Validators\BrandNameValidator.cs" />
+    <Compile Include="Models\Validators\CarCodeValidator.cs" />
+    <Compile Include="Models\Validators\CarModelNameValidator.cs" />
+    <Compile Include="Models\Validators\CityValidator.cs" />
     <Compile Include="ViewModels\BrandViewModel.cs" />
     <Compile Include="ViewModels\CarModelViewModel.cs" />
     <Compile Include="ViewModels\CarTypeViewModel.cs" />
@@ -1155,8 +1159,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603171033407_Initial.resx">
-      <DependentUpon>201603171033407_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603171221553_CarTypeUniqueCarCode.resx">
+      <DependentUpon>201603171221553_CarTypeUniqueCarCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

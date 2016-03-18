@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using FluentValidation.Attributes;
+using CarRental02.Models.Validators;
 
 namespace CarRental02.Models
 {
@@ -18,7 +19,8 @@ namespace CarRental02.Models
             set { mCarBrandId = value; }
         }
         [Display(Name = "Model")]
-        [CustomValidation(typeof(CustomValidators), "ValidateModel")]
+        //[CustomValidation(typeof(CustomValidators), "ValidateModel")]
+        [CarModelNameValidator]
         [Required(ErrorMessage = "Model Name is Required")]
         public string ModelName { get; set; }
 
