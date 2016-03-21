@@ -4,28 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Cars</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using(@Html.BeginForm("Index", "Cars", FormMethod.Get))
-{
-    <p>Car Code:
-        <select id="FilterCarCode">
-            <option value="All">All</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-        </select>
-        <b>Find By</b> Code: @Html.TextBox("FilterCarCode", ViewBag.CarCodeFilter as string) | 
-        City: @Html.TextBox("FilterCity", ViewBag.FilterCity as string)
-        <input type="submit" value="Search" />
-    </p>
-}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -46,16 +30,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Plates)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Branch.City)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Branch.BranchName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CarType.Description)
+            @Html.DisplayNameFor(model => model.CarType.CarCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gear)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CarColor)
@@ -64,13 +48,10 @@
             @Html.DisplayNameFor(model => model.Kilometrage)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CarType.CarCode)
+            @Html.DisplayNameFor(model => model.Picture)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CarType.DailyPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CarType.DailyLatePrice)
+            @Html.DisplayNameFor(model => model.Plates)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CarStatus)
@@ -84,16 +65,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Plates)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Branch.City.CityName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Branch.BranchName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CarType.Description)
+            @Html.DisplayFor(modelItem => item.CarType.CarCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gear)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CarColor)
@@ -102,13 +83,10 @@
             @Html.DisplayFor(modelItem => item.Kilometrage)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CarType.CarCode)
+            @Html.DisplayFor(modelItem => item.Picture)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CarType.DailyPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarType.DailyLatePrice)
+            @Html.DisplayFor(modelItem => item.Plates)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CarStatus)
@@ -117,7 +95,6 @@
             @Html.DisplayFor(modelItem => item.Comments)
         </td>
         <td>
-            @*@Html.ActionLink("Select", "Select", new { id=item.CarId }) |*@
             @Html.ActionLink("Edit", "Edit", new { id=item.CarId }) |
             @Html.ActionLink("Details", "Details", new { id=item.CarId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.CarId })

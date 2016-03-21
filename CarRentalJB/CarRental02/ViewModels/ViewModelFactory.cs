@@ -58,7 +58,7 @@ namespace CarRental02.ViewModels
             CarTypeViewModel ectvm = new CarTypeViewModel();
             ectvm.CarTypeData = carType;
             ectvm.CarEdited = new Car();//Just to prevent it being null
-            ectvm.CarModels = new SelectList(db.CarModels, "CarModelId", "Description", ectvm.CarTypeData.CarModelId);
+            //ectvm.CarModels = new SelectList(db.CarModels, "CarModelId", "Description", ectvm.CarTypeData.CarModelId);
             return ectvm;
         }
 

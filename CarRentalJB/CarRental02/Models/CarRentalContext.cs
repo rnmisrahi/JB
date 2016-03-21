@@ -17,6 +17,8 @@ namespace CarRental02.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<FilePath> FilePaths { get; set; }
+        public DbSet<File> Files { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,9 +27,9 @@ namespace CarRental02.Models
             base.OnModelCreating(modelBuilder);
             //modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
             //  p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
-              p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);
+            //modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
+            //  p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);
         }
 
         public DbSet<CarRental02.Models.City> Cities { get; set; }

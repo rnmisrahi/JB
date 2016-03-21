@@ -19,21 +19,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model=>model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayNameFor(model=>model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CarModel.ModelName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CarModel.Description)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.DailyPrice)
         </dt>
 
@@ -48,17 +33,20 @@
         <dd>
             @Html.DisplayFor(model => model.DailyLatePrice)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gear)
-        </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Gear)
+            @Html.DisplayFor(model => model.Picture)
+            @Model.Picture
         </dd>
 
+        @if (Model.Files.Any(f => f.FileType == CarRental02.Models.FileType.Avatar))
+        {
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == CarRental02.Models.FileType.Avatar).FileId" alt="avatar" />
+            </dd>
+        }            
     </dl>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CarTypeId }) |
     @Html.ActionLink("Back to List", "Index")

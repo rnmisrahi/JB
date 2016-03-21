@@ -40,11 +40,11 @@ namespace CarRental02.Models
 
             var CarTypes = new List<CarType>
             {
-                new CarType {CarModelId=0, DailyLatePrice=200, DailyPrice=150,Gear=Gear.Automatic },
-                new CarType {CarModelId=0, DailyPrice=170, DailyLatePrice=220, Gear=Gear.Automatic },
-                new CarType {CarModelId=3,DailyPrice=50,DailyLatePrice=70,Gear=Gear.Shift },
-                new CarType {CarModelId=2,DailyPrice=120,DailyLatePrice=145,Gear=Gear.Automatic },
-                new CarType {CarModelId=2,DailyPrice=110,DailyLatePrice=135,Gear=Gear.Shift },
+                new CarType { DailyLatePrice=200, DailyPrice=150 },
+                new CarType { DailyPrice=170, DailyLatePrice=220 },
+                new CarType {DailyPrice=50,DailyLatePrice=70 },
+                new CarType {DailyPrice=120,DailyLatePrice=145 },
+                new CarType {DailyPrice=110,DailyLatePrice=135 },
             };
 
             var Cars = new List<Car>

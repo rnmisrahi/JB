@@ -7,18 +7,31 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
+using CarRental02.ViewModels;
 
 namespace CarRental02.Controllers
 {
-    public class CarsController : Controller
+    public class CarsControllerOld : Controller
     {
         private CarRentalContext db = new CarRentalContext();
 
         // GET: Cars
-        public ActionResult Index()
+        public ActionResult Index(string FilterCarCode, string FilterCity, string sortOrder)
         {
-            var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType);
-            return View(cars.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "" : sortOrder;
+            var cars2 = from c in db.Cars.Include(c => c.Branch).Include(c => c.Branch.City).Include(c => c.CarType)
+                        select c;
+            if (!String.IsNullOrWhiteSpace(FilterCarCode))
+            {
+                cars2 = cars2.Where(s => s.CarType.CarCode == FilterCarCode);
+            }
+            ViewBag.CarCodeFilter = FilterCarCode;
+            if (!String.IsNullOrWhiteSpace(FilterCity))
+                cars2 = cars2.Where(s => s.Branch.City.CityName.Contains(FilterCity));
+            ViewBag.FilterCity = FilterCity;
+            return View(cars2.ToList());
+            //return View(cars.ToList());
         }
 
         // GET: Cars/Details/5
@@ -39,10 +52,8 @@ namespace CarRental02.Controllers
         // GET: Cars/Create
         public ActionResult Create()
         {
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName");
-            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode");
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description");
-            return View();
+            CarViewModel cvm = ViewModelFactory.CreateCarViewModel();
+            return View(cvm);
         }
 
         // POST: Cars/Create
@@ -50,20 +61,21 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Car car)
+        //public ActionResult Create([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
+        public ActionResult Create(CarViewModel cvm)
         {
+            TempData["Car"] = cvm.CarData;
             if (ModelState.IsValid)
             {
-                db.Cars.Add(car);
+                db.Cars.Add(cvm.CarData);
                 db.SaveChanges();
-                TempData["Added"] = car.Description + " Added";
+                TempData["Added"] = cvm.CarData.Plates + " Added";
                 return RedirectToAction("Index");
             }
+            //Validation failed:
 
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
-            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", car.CarModelId);
-            return View(car);
+            cvm = ViewModelFactory.CreateCarViewModel(cvm.CarData);
+            return View(cvm);
         }
 
         // GET: Cars/Edit/5
@@ -73,15 +85,8 @@ namespace CarRental02.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
-            if (car == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
-            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
-            ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", car.CarModelId);
-            return View(car);
+            CarViewModel ecvm = ViewModelFactory.CreateCarViewModel(id);
+            return View(ecvm);
         }
 
         // POST: Cars/Edit/5
@@ -89,18 +94,19 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarModelId,Gear,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
+        //public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
+        public ActionResult Edit(CarViewModel cvm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(car).State = EntityState.Modified;
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+                db.Entry(cvm.CarData).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["Added"] = car.Description + " Edited";
+                TempData["Added"] = cvm.CarData.Plates + " Edited";
                 return RedirectToAction("Index");
             }
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
-            ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
-            return View(car);
+            cvm = ViewModelFactory.CreateCarViewModel(cvm.CarData);
+            return View(cvm);
         }
 
         // GET: Cars/Delete/5
@@ -124,10 +130,9 @@ namespace CarRental02.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Car car = db.Cars.Find(id);
-            string description = car.Description;
             db.Cars.Remove(car);
             db.SaveChanges();
-            TempData["Added"] = description + " Deleted";
+            TempData["Added"] = car.Plates + " Deleted";
             return RedirectToAction("Index");
         }
 

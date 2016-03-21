@@ -1,4 +1,4 @@
-﻿@model CarRental02.ViewModels.CarTypeViewModel
+﻿@model CarRental02.Models.CarType
 
 @{
     ViewBag.Title = "Create";
@@ -7,53 +7,42 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "CarTypes", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>CarType</h4>
+        <h4>Car Type</h4>
         <hr />
-        <h2></h2>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-group">
-            @Html.LabelFor(model => model.CarTypeData.CarCode, "Car Code", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CarCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CarTypeData.CarCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CarTypeData.CarCode, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CarCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CarCode, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CarTypeData.CarModelId, "CarModelId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DailyPrice, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CarTypeData.CarModelId", Model.CarModels, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CarTypeData.CarModelId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DailyPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DailyPrice, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CarTypeData.DailyPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DailyLatePrice, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CarTypeData.DailyPrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CarTypeData.DailyPrice, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DailyLatePrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DailyLatePrice, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CarTypeData.DailyLatePrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Photo", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CarTypeData.DailyLatePrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CarTypeData.DailyLatePrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CarTypeData.Gear, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.CarTypeData.Gear, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CarTypeData.Gear, "", new { @class = "text-danger" })
+                <input type="file" id="Avatar" name="upload" />
             </div>
         </div>
 

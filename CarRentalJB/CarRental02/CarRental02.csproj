@@ -178,9 +178,11 @@
     <Compile Include="Controllers\BrandViewModelController.cs" />
     <Compile Include="Controllers\CarBrandsController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Controllers\CarsControllerOld.cs" />
     <Compile Include="Controllers\CarTypesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -189,9 +191,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603171221553_CarTypeUniqueCarCode.cs" />
-    <Compile Include="Migrations\201603171221553_CarTypeUniqueCarCode.Designer.cs">
-      <DependentUpon>201603171221553_CarTypeUniqueCarCode.cs</DependentUpon>
+    <Compile Include="Migrations\201603211120220_Initial.cs" />
+    <Compile Include="Migrations\201603211120220_Initial.Designer.cs">
+      <DependentUpon>201603211120220_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CarFilter.cs" />
     <Compile Include="Models\City.cs" />
@@ -206,6 +208,9 @@
     <Compile Include="Models\CarRentalInitializer.cs" />
     <Compile Include="Models\CarType.cs" />
     <Compile Include="Models\CustomValidators.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FilePath.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\Validators\BrandNameValidator.cs" />
     <Compile Include="Models\Validators\CarCodeValidator.cs" />
     <Compile Include="Models\Validators\CarModelNameValidator.cs" />
@@ -272,8 +277,14 @@
     <None Include="Properties\PublishProfiles\CarRentalJB - Web Deploy %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\CarRentalJB - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CRJB - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB - FTP %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB - FTP %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\CrJb - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\CRJB - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB - Web Deploy %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB - Web Deploy %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\CrJb - Web Deploy.pubxml" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -287,6 +298,13 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Properties\PublishProfiles\CRJB2 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB3 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\CRJB3 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJb4 - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJb4 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJb4 - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJb4 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.1-vsdoc.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
@@ -1091,11 +1109,11 @@
     <Content Include="Views\CarBrands\Details.cshtml" />
     <Content Include="Views\CarBrands\Edit.cshtml" />
     <Content Include="Views\CarBrands\Index.cshtml" />
-    <Content Include="Views\CarTypes\Create.cshtml" />
-    <Content Include="Views\CarTypes\Delete.cshtml" />
-    <Content Include="Views\CarTypes\Details.cshtml" />
-    <Content Include="Views\CarTypes\Edit.cshtml" />
-    <Content Include="Views\CarTypes\Index.cshtml" />
+    <Content Include="Views\CarTypesOld\Create.cshtml" />
+    <Content Include="Views\CarTypesOld\Delete.cshtml" />
+    <Content Include="Views\CarTypesOld\Details.cshtml" />
+    <Content Include="Views\CarTypesOld\Edit.cshtml" />
+    <Content Include="Views\CarTypesOld\Index.cshtml" />
     <Content Include="Views\Cars\Create.cshtml" />
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
@@ -1141,6 +1159,11 @@
     <Content Include="Views\SearchCarViewModels\Details.cshtml" />
     <Content Include="Views\SearchCarViewModels\Edit.cshtml" />
     <Content Include="Views\SearchCarViewModels\Index.cshtml" />
+    <Content Include="Views\CarTypes\Create.cshtml" />
+    <Content Include="Views\CarTypes\Delete.cshtml" />
+    <Content Include="Views\CarTypes\Details.cshtml" />
+    <Content Include="Views\CarTypes\Edit.cshtml" />
+    <Content Include="Views\CarTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1150,6 +1173,7 @@
     <Folder Include="Areas\AngularJs\Controllers\" />
     <Folder Include="Areas\AngularJs\Models\" />
     <Folder Include="Areas\AngularJs\Views\Shared\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1159,8 +1183,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603171221553_CarTypeUniqueCarCode.resx">
-      <DependentUpon>201603171221553_CarTypeUniqueCarCode.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603211120220_Initial.resx">
+      <DependentUpon>201603211120220_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -1182,6 +1206,8 @@
           <DevelopmentServerPort>50317</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://localhost:44300/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44300/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

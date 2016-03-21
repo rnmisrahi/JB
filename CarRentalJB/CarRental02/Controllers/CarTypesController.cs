@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
-using CarRental02.ViewModels;
+using System.Data.Entity.Infrastructure;
 
 namespace CarRental02.Controllers
 {
@@ -18,13 +18,66 @@ namespace CarRental02.Controllers
         // GET: CarTypes
         public ActionResult Index()
         {
-            var carTypes = db.CarTypes.Include(c => c.CarModel);
-            var carTypesX = db.CarTypes.Include(c => c.CarModel).OrderBy(c=>c.CarModelId);
-            return View(carTypesX.ToList());
+            return View(db.CarTypes.ToList());
         }
 
         // GET: CarTypes/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CarType carType = db.CarTypes.Include(c => c.Files).SingleOrDefault(c => c.CarTypeId == id);
+            //Instructor instructor = db.Instructors.Include(i => i.FilePaths).SingleOrDefault(i => i.ID == id);
+
+            if (carType == null)
+            {
+                return HttpNotFound();
+            }
+            return View(carType);
+        }
+
+        // GET: CarTypes/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: CarTypes/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "CarTypeId,CarCode,DailyPrice,DailyLatePrice")] CarType carType, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var avatar = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    carType.Files = new List<File> { avatar };
+                }
+                db.CarTypes.Add(carType);
+                db.SaveChanges();
+                TempData["Added"] = carType.CarCode + " Added";
+                return RedirectToAction("Index");
+            }
+
+            return View(carType);
+        }
+
+        // GET: CarTypes/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -38,63 +91,50 @@ namespace CarRental02.Controllers
             return View(carType);
         }
 
-        // GET: CarTypes/Create
-        public ActionResult Create()
-        {
-            CarTypeViewModel ctvm = ViewModelFactory.CreateCarTypeViewModel();
-            return View(ctvm);
-        }
-
-        // POST: CarTypes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CarTypeViewModel ctvm)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CarTypes.Add(ctvm.CarTypeData);
-                db.SaveChanges();
-                TempData["Added"] = ctvm.CarTypeData.Description + " Added";
-                return RedirectToAction("Index");
-            }
-            ctvm = ViewModelFactory.CreateCarTypeViewModel();
-            return View(ctvm);
-        }
-
-        // GET: CarTypes/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CarTypeViewModel ectvm = ViewModelFactory.CreateCarTypeViewModel(id);
-            if (ectvm == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ectvm);
-        }
-
         // POST: CarTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
-        public ActionResult Edit(CarTypeViewModel ctvm)
+        //public ActionResult Edit(CarType carType, HttpPostedFileBase upload)
+        public ActionResult Edit(int? id, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var carType = db.CarTypes.Find(id);
+            if (TryUpdateModel(carType, "",
+               new string[] { "CarCode", "DailyPrice", "DailyLatePrice" }))
             {
-                db.Entry(ctvm.CarTypeData).State = EntityState.Modified;
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    if (carType.Files.Any(f => f.FileType == FileType.Avatar))
+                    {
+                        db.Files.Remove(carType.Files.First(f => f.FileType == FileType.Avatar));
+                    }
+                    var avatar = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    carType.Files = new List<File> { avatar };
+
+                    db.Entry(carType).State = EntityState.Modified;
+                }
+                db.Entry(carType).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["Added"] = ctvm.CarTypeData.Description + " Edited";
+                TempData["Added"] = carType.CarCode + " Edited";
                 return RedirectToAction("Index");
             }
-            ctvm = ViewModelFactory.CreateCarTypeViewModel(ctvm.CarTypeData);
-            return View(ctvm);
+            return View(carType);
         }
 
         // GET: CarTypes/Delete/5
@@ -118,9 +158,10 @@ namespace CarRental02.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CarType carType = db.CarTypes.Find(id);
+            string carCode = carType.CarCode;
             db.CarTypes.Remove(carType);
             db.SaveChanges();
-            //TempData["Added"] = ctvm.CarTypeData.Description + " Edited";
+            TempData["Added"] = carCode + " Deleted";
             return RedirectToAction("Index");
         }
 

@@ -28,11 +28,11 @@
 
 @using (@Html.BeginForm("Index", "Reservations", FormMethod.Get))
 {
-    <p>
-        @*@Html.DropDownList("Cities.CarTypeId", Model.CarTypes, htmlAttributes: new { @class = "form-control" })*@
-        @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
-        <b>Find By</b> Code: @Html.TextBox("FilterCarCode", Model.FilterCarCode) |
-        City: @Html.TextBox("FilterCity", Model.FilterCity)
+    <p>        
+        <b>Find By</b> Code: 
+        @*@Html.TextBox("FilterCarCode", Model.FilterCarCode)*@
+         | City: @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+        
         <input type="submit" value="Search" />
     </p>
 }
@@ -83,9 +83,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Branch.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarType.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CarColor)

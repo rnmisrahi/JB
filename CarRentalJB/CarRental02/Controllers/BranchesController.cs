@@ -117,9 +117,10 @@ namespace CarRental02.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Branch branch = db.Branches.Find(id);
+            string branchName = branch.BranchName;
             db.Branches.Remove(branch);
             db.SaveChanges();
-            TempData["Added"] = branch.BranchName + " Deleted";
+            TempData["Added"] = branchName + " Deleted";
             return RedirectToAction("Index");
         }
 

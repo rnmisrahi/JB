@@ -39,6 +39,9 @@ namespace CarRental02.Controllers
             //    cars = cars.Where(s => s.Branch.City.CityName.Contains(FilterCity));
             ViewBag.FilterCity = FilterCity;
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
+            var distinctCarCodes = (from c in db.CarTypes
+                                    select new { CarCode = c.CarCode }).Distinct();
+            ViewBag.CarCodeId = new SelectList(distinctCarCodes, "CarCode", "CarCode");
             rvm.CarData = cars.ToList();
             return View(rvm);
         }

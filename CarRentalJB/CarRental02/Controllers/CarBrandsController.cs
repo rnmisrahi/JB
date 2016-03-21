@@ -112,9 +112,10 @@ namespace CarRental02.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CarBrand carBrand = db.CarBrands.Find(id);
+            string brandName = carBrand.BrandName;
             db.CarBrands.Remove(carBrand);
             db.SaveChanges();
-            TempData["Added"] = carBrand.BrandName + " Deleted";
+            TempData["Added"] = brandName + " Deleted";
             return RedirectToAction("Index");
         }
 

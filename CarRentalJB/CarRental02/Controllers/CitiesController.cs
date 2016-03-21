@@ -84,8 +84,9 @@ namespace CarRental02.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(city).State = EntityState.Modified;
+                string cityName = city.CityName;
                 db.SaveChanges();
-                TempData["Added"] = city.CityName + " Edited";
+                TempData["Added"] = cityName + " Deleted";
                 return RedirectToAction("Index");
             }
             return View(city);
@@ -112,9 +113,10 @@ namespace CarRental02.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             City city = db.Cities.Find(id);
+            string cityName = city.CityName;
             db.Cities.Remove(city);
             db.SaveChanges();
-            TempData["Added"] = city.CityName + " Edited";
+            TempData["Added"] = cityName + " Edited";
             return RedirectToAction("Index");
         }
 

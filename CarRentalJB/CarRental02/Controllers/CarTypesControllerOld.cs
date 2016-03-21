@@ -9,118 +9,118 @@ using System.Web.Mvc;
 using CarRental02.Models;
 using CarRental02.ViewModels;
 
-namespace CarRental02.Controllers   
+namespace CarRental02.Controllers
 {
-    public class CarModelsController : Controller
+    public class CarTypesControllerOld : Controller
     {
         private CarRentalContext db = new CarRentalContext();
 
-        // GET: CarModels
+        // GET: CarTypes
         public ActionResult Index()
         {
-            var carModels = db.CarModels.Include(c => c.CarBrand).OrderBy(c => c.CarBrandId);
-            return View(carModels.ToList());
+            var carTypes = db.CarTypes.Include(c => c.CarModel);
+            var carTypesX = db.CarTypes.Include(c => c.CarModel).OrderBy(c=>c.CarModelId);
+            return View(carTypesX.ToList());
         }
 
-        // GET: CarModels/Details/5
+        // GET: CarTypes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarModel carModel = db.CarModels.Find(id);
-            if (carModel == null)
+            CarType carType = db.CarTypes.Find(id);
+            if (carType == null)
             {
                 return HttpNotFound();
             }
-            return View(carModel);
+            return View(carType);
         }
 
-        // GET: CarModels/Create
+        // GET: CarTypes/Create
         public ActionResult Create()
         {
-            CarModelViewModel cmvm = ViewModelFactory.CreateCarModelViewModel();
-            return View(cmvm);
+            CarTypeViewModel ctvm = ViewModelFactory.CreateCarTypeViewModel();
+            return View(ctvm);
         }
 
-        // POST: CarModels/Create
+        // POST: CarTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CarModelViewModel cmvm)
+        public ActionResult Create(CarTypeViewModel ctvm)
         {
             if (ModelState.IsValid)
             {
-                db.CarModels.Add(cmvm.CarModelData);
+                db.CarTypes.Add(ctvm.CarTypeData);
                 db.SaveChanges();
-                TempData["Added"] = cmvm.CarModelData.Description + " Added";
+                TempData["Added"] = ctvm.CarTypeData.Description + " Added";
                 return RedirectToAction("Index");
             }
-            cmvm = ViewModelFactory.CreateCarModelViewModel(cmvm.CarModelData);
-            return View(cmvm);
+            ctvm = ViewModelFactory.CreateCarTypeViewModel();
+            return View(ctvm);
         }
 
-        // GET: CarModels/Edit/5
+        // GET: CarTypes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarModelViewModel cmvm = ViewModelFactory.CreateCarModelViewModel(id);
-            if (cmvm == null)
+            CarTypeViewModel ectvm = ViewModelFactory.CreateCarTypeViewModel(id);
+            if (ectvm == null)
             {
                 return HttpNotFound();
             }
-            return View(cmvm);
+            return View(ectvm);
         }
 
-        // POST: CarModels/Edit/5
+        // POST: CarTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CarModelViewModel cmvm)
+        //public ActionResult Edit([Bind(Include = "CarTypeId,CarCode,CarModelId,DailyPrice,DailyLatePrice,Gear")] CarType carType)
+        public ActionResult Edit(CarTypeViewModel ctvm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cmvm.CarModelData).State = EntityState.Modified;
+                db.Entry(ctvm.CarTypeData).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["Added"] = cmvm.CarModelData.Description + " Edited";
+                TempData["Added"] = ctvm.CarTypeData.Description + " Edited";
                 return RedirectToAction("Index");
             }
-            cmvm = ViewModelFactory.CreateCarModelViewModel(cmvm.CarModelData);
-            return View(cmvm);
+            ctvm = ViewModelFactory.CreateCarTypeViewModel(ctvm.CarTypeData);
+            return View(ctvm);
         }
 
-        // GET: CarModels/Delete/5
+        // GET: CarTypes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CarModel carModel = db.CarModels.Find(id);
-            if (carModel == null)
+            CarType carType = db.CarTypes.Find(id);
+            if (carType == null)
             {
                 return HttpNotFound();
             }
-            return View(carModel);
+            return View(carType);
         }
 
-        // POST: CarModels/Delete/5
+        // POST: CarTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CarModel carModel = db.CarModels.Find(id);
-            string description = carModel.Description;
-            db.CarModels.Remove(carModel);
+            CarType carType = db.CarTypes.Find(id);
+            db.CarTypes.Remove(carType);
             db.SaveChanges();
-            TempData["Added"] = description + " Deleted";
-            //TempData["Added"] = cmvm.CarModelData.Description + " Added";
+            //TempData["Added"] = ctvm.CarTypeData.Description + " Edited";
             return RedirectToAction("Index");
         }
 
