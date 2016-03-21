@@ -31,7 +31,7 @@ namespace CarRental02.Controllers
             BrandViewModel bmv;
             if (ModelState.IsValid)
             {
-                using (CarRentalContext db = new CarRentalContext())
+                using (ApplicationDbContext db = new ApplicationDbContext())
                 {
                     db.CarBrands.Add(brand);
                     db.SaveChanges();
@@ -66,7 +66,7 @@ namespace CarRental02.Controllers
             string displayMode = "";
             if (ModelState.IsValid)
             {
-                using(CarRentalContext db = new CarRentalContext())
+                using(ApplicationDbContext db = new ApplicationDbContext())
                 {
                     CarBrand existing = db.CarBrands.Find(brand.CarBrandId);
                     existing.BrandName = brand.BrandName;
@@ -84,7 +84,7 @@ namespace CarRental02.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            using (CarRentalContext db = new CarRentalContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 CarBrand existing = db.CarBrands.Find(id);
                 db.CarBrands.Remove(existing);

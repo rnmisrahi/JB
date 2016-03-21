@@ -21,7 +21,7 @@ namespace CarRental02.Models
 
         public static ValidationResult ValidateCity(string city)
         {
-            using (var _db = new CarRentalContext())
+            using (var _db = new ApplicationDbContext())
             {
                 return alreadyExists(_db.Cities.SingleOrDefault(x => x.CityName == city), "City", city);
             }
@@ -29,7 +29,7 @@ namespace CarRental02.Models
 
         public static ValidationResult ValidateCarCode(string carCode)
         {
-            using (var _db = new CarRentalContext())
+            using (var _db = new ApplicationDbContext())
             {
                 return alreadyExists(_db.CarTypes.SingleOrDefault(x => x.CarCode == carCode), "Car Code", carCode);
             }
@@ -37,7 +37,7 @@ namespace CarRental02.Models
 
         public static ValidationResult ValidateBrandName(string brandName)
         {
-            using (var _db = new CarRentalContext())
+            using (var _db = new ApplicationDbContext())
             {
                 return alreadyExists(_db.CarBrands.SingleOrDefault(x => x.BrandName == brandName), "Brand", brandName);
                 //if (_db.CarBrands.SingleOrDefault(x => x.BrandName == brandName) == null)
@@ -48,7 +48,7 @@ namespace CarRental02.Models
 
         public static ValidationResult ValidateModel(string modelName)
         {
-            using (var _db = new CarRentalContext())
+            using (var _db = new ApplicationDbContext())
             {
                 return alreadyExists(_db.CarModels.SingleOrDefault(x => x.ModelName == modelName), "Model", modelName);
                 //if (_db.CarModels.SingleOrDefault(x => x.ModelName == modelName) == null)

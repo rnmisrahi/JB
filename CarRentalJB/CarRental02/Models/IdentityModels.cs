@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace CarRental02.Models
 {
@@ -20,6 +21,19 @@ namespace CarRental02.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<CarBrand> CarBrands { get; set; }
+        public DbSet<CarModel> CarModels { get; set; }
+        public DbSet<CarType> CarTypes { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Member> Members { get; set; }
+        //public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<File> Files { get; set; }
+        public DbSet<CarRental02.Models.City> Cities { get; set; }
+
+        //public System.Data.Entity.DbSet<CarRental02.ViewModels.SearchCarViewModel> SearchCarViewModels { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -29,5 +43,19 @@ namespace CarRental02.Models
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
+            //  p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
+            //  p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);
+        }
+
+
     }
 }

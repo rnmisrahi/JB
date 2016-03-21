@@ -186,25 +186,23 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
-    <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603211120220_Initial.cs" />
-    <Compile Include="Migrations\201603211120220_Initial.Designer.cs">
-      <DependentUpon>201603211120220_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603211642371_initial.cs" />
+    <Compile Include="Migrations\201603211642371_initial.Designer.cs">
+      <DependentUpon>201603211642371_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CarFilter.cs" />
     <Compile Include="Models\City.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Controllers\CarModelsController.cs" />
-    <Compile Include="Models\CarRentalContext.cs" />
     <Compile Include="Models\CarRentalInitializer.cs" />
     <Compile Include="Models\CarType.cs" />
     <Compile Include="Models\CustomValidators.cs" />
@@ -223,7 +221,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\Reservation.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -265,26 +262,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\AngularJs\Views\web.config" />
-    <None Include="Properties\PublishProfiles\CarRental0220160301094434 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - FTP %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - FTP %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - FTP %285%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - Web Deploy %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - Web Deploy %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - Web Deploy %285%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CarRentalJB - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - FTP %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - FTP %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - FTP %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\CrJb - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - Web Deploy %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - Web Deploy %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB - Web Deploy %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\CrJb - Web Deploy.pubxml" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -298,13 +276,10 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <None Include="Properties\PublishProfiles\CRJB2 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB3 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\CRJB3 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\CrJb4 - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CrJb4 - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\CrJb4 - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\CrJb4 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJbApp - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJbApp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJbApp - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJbApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.1-vsdoc.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
@@ -1129,11 +1104,6 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Reservations\Create.cshtml" />
-    <Content Include="Views\Reservations\Delete.cshtml" />
-    <Content Include="Views\Reservations\Details.cshtml" />
-    <Content Include="Views\Reservations\Edit.cshtml" />
-    <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\BrandViewModel\Index.cshtml" />
     <Content Include="Views\BrandViewModel\ShowBrand.cshtml" />
     <Content Include="Views\BrandViewModel\EditBrand.cshtml" />
@@ -1183,8 +1153,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603211120220_Initial.resx">
-      <DependentUpon>201603211120220_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603211642371_initial.resx">
+      <DependentUpon>201603211642371_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

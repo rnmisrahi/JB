@@ -12,7 +12,7 @@ namespace CarRental02.Controllers
 {
     public class BranchesController : Controller
     {
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Branches
         public ActionResult Index()

@@ -22,7 +22,7 @@ namespace CarRental02.ViewModels
         #region CarModelViewModel
         public static CarModelViewModel CreateCarModelViewModel(CarModel carModel)
         {
-            CarRentalContext db = new CarRentalContext();
+            ApplicationDbContext db = new ApplicationDbContext();
             CarModelViewModel cmvm = new CarModelViewModel();
             cmvm.CarModelData = carModel;
             cmvm.Brands = new SelectList(db.CarBrands, "CarBrandId", "BrandName", cmvm.CarModelData.CarBrandId);
@@ -36,7 +36,7 @@ namespace CarRental02.ViewModels
 
         public static CarModelViewModel CreateCarModelViewModel(int? id)
         {
-            CarRentalContext db = new CarRentalContext();
+            ApplicationDbContext db = new ApplicationDbContext();
             CarModel carModel = db.CarModels.Find(id);
             if (carModel != null)
             {
@@ -54,7 +54,7 @@ namespace CarRental02.ViewModels
 
         public static CarTypeViewModel CreateCarTypeViewModel(CarType carType)
         {
-            CarRentalContext db = new CarRentalContext();
+            ApplicationDbContext db = new ApplicationDbContext();
             CarTypeViewModel ectvm = new CarTypeViewModel();
             ectvm.CarTypeData = carType;
             ectvm.CarEdited = new Car();//Just to prevent it being null
@@ -64,7 +64,7 @@ namespace CarRental02.ViewModels
 
         public static CarTypeViewModel CreateCarTypeViewModel(int? id)
         {
-            CarRentalContext db = new CarRentalContext();
+            ApplicationDbContext db = new ApplicationDbContext();
             CarType carType = db.CarTypes.Find(id);
             if (carType != null)
             {
@@ -77,7 +77,7 @@ namespace CarRental02.ViewModels
         #region CarViewModel
         public static CarViewModel CreateCarViewModel(Car car)
         {
-            CarRentalContext db = new CarRentalContext();
+            ApplicationDbContext db = new ApplicationDbContext();
             CarViewModel ecvm = new CarViewModel();
             ecvm.CarData = car;
             ecvm.Branches = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
@@ -87,7 +87,7 @@ namespace CarRental02.ViewModels
 
         public static CarViewModel CreateCarViewModel(int? id)
         {
-            CarRentalContext db = new CarRentalContext();
+            ApplicationDbContext db = new ApplicationDbContext();
             Car car = db.Cars.Find(id);
             if (car != null)
             {
@@ -139,7 +139,7 @@ namespace CarRental02.ViewModels
         {
             BrandViewModel model = new BrandViewModel();
             model.DisplayMode = displayMode;
-            using (CarRentalContext db = new CarRentalContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 model.Brands = db.CarBrands.ToList();
                 model.SelectedBrand = brand;
@@ -149,7 +149,7 @@ namespace CarRental02.ViewModels
 
         public static BrandViewModel CreateBrandViewModel(int id, string displayMode)
         {
-            using (CarRentalContext db = new CarRentalContext())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 CarBrand brand = db.CarBrands.Find(id);
                 return CreateBrandViewModel(brand, displayMode);

@@ -16,7 +16,7 @@ namespace CarRental02.Models
     public class CarType
     {
         public int CarTypeId { get; set; }
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         [Display(Name ="Car Code")]
         [Required]
@@ -52,7 +52,6 @@ namespace CarRental02.Models
         //public virtual CarModel CarModel { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
         public virtual ICollection<File> Files { get; set; }
-        public virtual ICollection<FilePath> FilePaths { get; set; }
 
     }
 }

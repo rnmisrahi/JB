@@ -13,7 +13,7 @@ namespace CarRental02.Controllers
 {
     public class CarModelsController : Controller
     {
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CarModels
         public ActionResult Index()

@@ -15,6 +15,6 @@ namespace CarRental02.ViewModels
 
         public SelectList Branches { get; set; }
         public SelectList CarTypes { get; set; }
-        public SelectList Reservation { get; set; }
+        //public SelectList Reservation { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace CarRental02.Controllers
 {
     public class MembersController : Controller
     {
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Members
         public ActionResult Index()

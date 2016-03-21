@@ -12,7 +12,7 @@ namespace CarRental02.Controllers
 {
     public class SearchController : Controller
     {
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Search
         public ActionResult Index()

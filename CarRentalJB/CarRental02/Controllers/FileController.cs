@@ -9,7 +9,7 @@ namespace CarRental02.Controllers
 {
     public class FileController : Controller
     {
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         //
         // GET: /File/
         public ActionResult Index(int id)

@@ -10,7 +10,7 @@ namespace CarRental02.Models.Validators
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            using (var _db = new CarRentalContext())
+            using (var _db = new ApplicationDbContext())
             {
                 var city = validationContext.ObjectInstance as City;
                 if (city == null) return new ValidationResult("City is empty");

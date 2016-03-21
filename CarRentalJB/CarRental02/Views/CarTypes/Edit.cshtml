@@ -41,20 +41,20 @@
             </div>
         </div>
 
-        @if (Model.Files.Any(f => f.FileType == CarRental02.Models.FileType.Avatar))
+        @if (Model.Files.Any(f => f.FileType == CarRental02.Models.FileType.CarImage))
         {
             <div class="form-group">
-                <span class="control-label col-md-2"><strong>Current Avatar</strong></span>
+                <span class="control-label col-md-2"><strong>Current CarImage</strong></span>
                 <div class="col-md-10">
-                    <img src="~/File?id=@Model.Files.First(f => f.FileType == CarRental02.Models.FileType.Avatar).FileId" alt="avatar" />
+                    <img src="~/File?id=@Model.Files.First(f => f.FileType == CarRental02.Models.FileType.CarImage).FileId" alt="carImage" />
                 </div>
             </div>
         }
 
         <div class="form-group">
-            @Html.Label("Avatar", new { @class = "control-label col-md-2" })
+            @Html.Label("CarImage", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" id="Avatar" name="upload" />
+                <input type="file" id="CarImage" name="upload" />
             </div>
         </div>
 

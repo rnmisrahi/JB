@@ -25,7 +25,7 @@ namespace CarRental02.Models
             get
             {
                 try {
-                    using (CarRentalContext db = new CarRentalContext())
+                    using (ApplicationDbContext db = new ApplicationDbContext())
                     {
                         var aModel = db.CarModels.Find(CarModelId);
                         return string.Format("{0} - {1}", aModel.CarBrand.BrandName, aModel.ModelName);

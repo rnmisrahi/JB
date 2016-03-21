@@ -10,7 +10,7 @@ namespace CarRental02.Models.Validators
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            using (var _db = new CarRentalContext())
+            using (var _db = new ApplicationDbContext())
             {
                 var carType = validationContext.ObjectInstance as CarType;
                 if (carType == null) return new ValidationResult("Car Code is empty");

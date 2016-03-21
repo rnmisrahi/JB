@@ -13,7 +13,7 @@ namespace CarRental02.Controllers
 {
     public class CarTypesController : Controller
     {
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CarTypes
         public ActionResult Index()
@@ -29,7 +29,6 @@ namespace CarRental02.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CarType carType = db.CarTypes.Include(c => c.Files).SingleOrDefault(c => c.CarTypeId == id);
-            //Instructor instructor = db.Instructors.Include(i => i.FilePaths).SingleOrDefault(i => i.ID == id);
 
             if (carType == null)
             {
@@ -55,17 +54,17 @@ namespace CarRental02.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    var avatar = new File
+                    var carImage = new File
                     {
                         FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileType = FileType.Avatar,
+                        FileType = FileType.CarImage,
                         ContentType = upload.ContentType
                     };
                     using (var reader = new System.IO.BinaryReader(upload.InputStream))
                     {
-                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        carImage.Content = reader.ReadBytes(upload.ContentLength);
                     }
-                    carType.Files = new List<File> { avatar };
+                    carType.Files = new List<File> { carImage };
                 }
                 db.CarTypes.Add(carType);
                 db.SaveChanges();
@@ -111,21 +110,21 @@ namespace CarRental02.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    if (carType.Files.Any(f => f.FileType == FileType.Avatar))
+                    if (carType.Files.Any(f => f.FileType == FileType.CarImage))
                     {
-                        db.Files.Remove(carType.Files.First(f => f.FileType == FileType.Avatar));
+                        db.Files.Remove(carType.Files.First(f => f.FileType == FileType.CarImage));
                     }
-                    var avatar = new File
+                    var carImage = new File
                     {
                         FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileType = FileType.Avatar,
+                        FileType = FileType.CarImage,
                         ContentType = upload.ContentType
                     };
                     using (var reader = new System.IO.BinaryReader(upload.InputStream))
                     {
-                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        carImage.Content = reader.ReadBytes(upload.ContentLength);
                     }
-                    carType.Files = new List<File> { avatar };
+                    carType.Files = new List<File> { carImage };
 
                     db.Entry(carType).State = EntityState.Modified;
                 }

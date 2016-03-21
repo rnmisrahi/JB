@@ -38,10 +38,10 @@
             @Model.Picture
         </dd>
 
-        @if (Model.Files.Any(f => f.FileType == CarRental02.Models.FileType.Avatar))
+        @if (Model.Files.Any(f => f.FileType == CarRental02.Models.FileType.CarImage))
         {
             <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == CarRental02.Models.FileType.Avatar).FileId" alt="avatar" />
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == CarRental02.Models.FileType.CarImage).FileId" alt="carImage" />
             </dd>
         }            
     </dl>

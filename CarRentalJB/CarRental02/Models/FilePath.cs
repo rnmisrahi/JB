@@ -7,7 +7,7 @@
         [StringLength(255)]
         public string FileName { get; set; }
         public FileType FileType { get; set; }
-        public int CarTypeID { get; set; }
+        public int CarTypeId { get; set; }
         public virtual CarType CarType { get; set; }
     }
 }

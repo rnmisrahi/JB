@@ -7,6 +7,6 @@ namespace CarRental02.Models
 {
     public enum FileType
     {
-        Avatar = 1, Photo
+        CarImage = 1, Photo
     }
 }

@@ -28,7 +28,7 @@ namespace CarRental02.Models
         public string Description {
             get
             {
-                var db = new CarRentalContext();
+                var db = new ApplicationDbContext();
                 var brand = db.CarBrands.Find(CarBrandId);
                 return string.Format("{0} - {1}", brand.BrandName, ModelName);
             }
