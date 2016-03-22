@@ -39,7 +39,7 @@ namespace CarRental02.Controllers
         // GET: Cars/Create
         public ActionResult Create()
         {
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName");
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "Description");
             ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode");
             ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description");
             return View();

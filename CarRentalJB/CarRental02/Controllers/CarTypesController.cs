@@ -106,7 +106,7 @@ namespace CarRental02.Controllers
                 }
                 var carType = db.CarTypes.Find(id);
             if (TryUpdateModel(carType, "",
-               new string[] { "CarCode", "DailyPrice", "DailyLatePrice" }))
+               new string[] { "CarCode", "DailyPrice", "DailyLatePrice", "Comments" }))
             {
                 if (upload != null && upload.ContentLength > 0)
                 {

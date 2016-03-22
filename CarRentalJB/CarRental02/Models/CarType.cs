@@ -37,6 +37,8 @@ namespace CarRental02.Models
         [DataType(DataType.Currency)]
         public double DailyLatePrice { get; set; }
         public string Picture { get; set; }
+
+        public string Comments { get; set; }
         //public Gear? Gear { get; set; }
         //[NotMapped]
         //[Display(Name = "Brand-Model")]

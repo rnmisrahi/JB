@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CarRental02.Models.CarType>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cars List";
 }
 
 <h2>Index</h2>
@@ -35,6 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DailyLatePrice)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
         <th></th>
     </tr>
 
@@ -48,6 +51,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DailyLatePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CarTypeId }) |
