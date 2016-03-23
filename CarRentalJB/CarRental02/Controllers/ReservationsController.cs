@@ -13,12 +13,28 @@ namespace CarRental02.Controllers
 {
     public class ReservationsController : Controller
     {
-        private CarRentalContext db = new CarRentalContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        private double rentalEstimate(double dailyPrice, DateTime startDate, DateTime endDate)
+        {
+            TimeSpan ts = endDate - startDate;
+            if (ts.Days <= 0)
+                return 0;
+            return ts.Days * dailyPrice;
+        }
 
         // GET: Reservations
-        public ActionResult Index(string FilterCarCode, string FilterCity, string CityId)
+        public ActionResult Index(string FilterCarCode, string FilterCity, string CityId, string StartDate, string EndDate)
         {
             ReservationViewModel rvm = new ReservationViewModel();
+            try {
+                rvm.StartDate = DateTime.Parse(StartDate);
+                rvm.EndDate = DateTime.Parse(EndDate);
+            }
+            catch (Exception)
+            {
+
+            }
             //rvm.CarData = db.Cars.ToList();
             //var reservations = db.Reservations.Include(r => r.Branch).Include(r => r.Car);
             var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType);
@@ -43,29 +59,48 @@ namespace CarRental02.Controllers
                                     select new { CarCode = c.CarCode }).Distinct();
             ViewBag.CarCodeId = new SelectList(distinctCarCodes, "CarCode", "CarCode");
             rvm.CarData = cars.ToList();
+            //rvm.Quote = rentalEstimate()
             return View(rvm);
         }
 
         // GET: Reservations/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string StartDate, string EndDate)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(reservation);
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            Car car = db.Cars.Find(id);
+            CarViewModel cvm = new CarViewModel();
+            cvm.CarData = car;
+            cvm.StartDate = DateTime.Parse(StartDate);
+            cvm.EndDate = DateTime.Parse(EndDate);
+
+            return View(cvm);
+
+            //Reservation reservation = db.Reservations.Find(id);
+            //if (reservation == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(reservation);
         }
 
         // GET: Reservations/Create
         public ActionResult Create()
         {
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName");
-            ViewBag.CarId = new SelectList(db.Cars, "CarId", "CarColor");
+            //ViewBag.CarId = new SelectList(db.Cars, "CarId", "Description");
+            ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
+            DateTime tomorrow = DateTime.Now.AddDays(1);
+            if (tomorrow.Hour < 8)
+            tomorrow = tomorrow.AddHours(8-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute).AddMinutes(-DateTime.Now.Second);
+
+            ViewBag.StartDate = DateTime.Now.AddDays(1);
+            ViewBag.EndDate = tomorrow.AddDays(1);
+
             return View();
         }
 

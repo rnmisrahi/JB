@@ -37,7 +37,7 @@ namespace CarRental02.Models
         public DateTime FromDate { get; set; }
         public double Discount { get; set; }
 
-        //public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
     }
 
     public enum Gender

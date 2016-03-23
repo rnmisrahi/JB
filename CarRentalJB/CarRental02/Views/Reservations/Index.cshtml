@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    ViewBag.StartDate = Model.StartDate;
+    ViewBag.EndDate = Model.EndDate;
 }
 
 <h2>Reservations</h2>
@@ -26,107 +28,76 @@
     }
 }
 
-@using (@Html.BeginForm("Index", "Reservations", FormMethod.Get))
+    @using (@Html.BeginForm("Index", "Reservations", FormMethod.Get))
+    {
+        <p>
+            <b>Find By</b> Code: @Html.TextBox("FilterCarCode", null, htmlAttributes: new { @class = "form-control" })
+            City: @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+            From Date: @Html.TextBox("StartDate", null, htmlAttributes: new { @class = "form-control" })
+            To Date: @Html.TextBox("EndDate", null, htmlAttributes: new { @class = "form-control" })
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+@using (@Html.BeginForm("Details", "Reservations", FormMethod.Get))
 {
-    <p>        
-        <b>Find By</b> Code: 
-        @*@Html.TextBox("FilterCarCode", Model.FilterCarCode)*@
-         | City: @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
-        
-        <input type="submit" value="Search" />
-    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarType.CarCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarModel.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarType.DailyPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarType.DailyLatePrice)
+            </th>
+            <th>
+            </th>
+        </tr>
+
+
+        @foreach (var item in Model.CarData)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarType.CarCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarModel.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarType.DailyPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarType.DailyLatePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+
+                    <input type="submit" value="Reserve" />
+
+                    @Html.ActionLink("Make a Reservation", "Details", new { id = item.CarId, StartDate=Model.StartDate, EndDate=Model.EndDate })
+
+                </td>
+
+            </tr>
+
+        }
+    </table>
 }
-
-
-<table class="table">
-    <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.CarData.Branch.BranchName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CarData.CarColor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MemberId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FromDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ToDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateReturned)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReservationStatus)
-        </th>*@
-        <th>
-        </th>
-    </tr>
-
-
-@foreach (var item in Model.CarData) {
-    <tr>
-        <td>
-            @Html.LabelFor(modelItem => item.Branch.BranchName)
-            @Html.DisplayFor(modelItem => item.Branch.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarColor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Plates)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Branch.City.CityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Branch.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarColor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kilometrage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarType.CarCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarType.DailyPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarType.DailyLatePrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-
-        @*<td>
-            @Html.DisplayFor(modelItem => item.MemberId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FromDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ToDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateReturned)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReservationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReservationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReservationId })
-        </td>*@
-    </tr>
-}
-
-</table>

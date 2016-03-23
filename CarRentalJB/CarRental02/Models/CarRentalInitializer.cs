@@ -58,11 +58,11 @@ namespace CarRental02.Models
                 new Car {CarTypeId=4,BranchId=0,CarColor="Black",Kilometrage=120000,Plates="999-2673", CarStatus=CarStatus.Available  },
             };
 
-            //var Reservations = new List<Reservation>
-            //{
-            //    new Reservation {BranchId=0,CarId=0,MemberId="123456789" },
-            //    new Reservation {BranchId=0,CarId=1,MemberId="111222333" },
-            //};
+            var Reservations = new List<Reservation>
+            {
+                new Reservation {BranchId=0,CarId=0,MemberId="123456789" },
+                new Reservation {BranchId=0,CarId=1,MemberId="111222333" },
+            };
 
         }
     }

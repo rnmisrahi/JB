@@ -178,7 +178,6 @@
     <Compile Include="Controllers\BrandViewModelController.cs" />
     <Compile Include="Controllers\CarBrandsController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
-    <Compile Include="Controllers\CarsControllerOld.cs" />
     <Compile Include="Controllers\CarTypesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
@@ -186,6 +185,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\PreReservationsController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -209,6 +210,7 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FilePath.cs" />
     <Compile Include="Models\FileType.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Validators\BrandNameValidator.cs" />
     <Compile Include="Models\Validators\CarCodeValidator.cs" />
     <Compile Include="Models\Validators\CarModelNameValidator.cs" />
@@ -221,7 +223,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="ViewModels\ReservationRequest.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
+    <Compile Include="ViewModels\SearchCarViewModel.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -240,8 +244,10 @@
     <None Include="Properties\PublishProfiles\CrJb - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\CrJb - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CrJbApp - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJbApp - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\CrJbApp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\CrJbApp - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CrJbApp - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\CrJbApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.1-vsdoc.js" />
@@ -303,11 +309,6 @@
     <Content Include="Views\CarBrands\Details.cshtml" />
     <Content Include="Views\CarBrands\Edit.cshtml" />
     <Content Include="Views\CarBrands\Index.cshtml" />
-    <Content Include="Views\CarTypesOld\Create.cshtml" />
-    <Content Include="Views\CarTypesOld\Delete.cshtml" />
-    <Content Include="Views\CarTypesOld\Details.cshtml" />
-    <Content Include="Views\CarTypesOld\Edit.cshtml" />
-    <Content Include="Views\CarTypesOld\Index.cshtml" />
     <Content Include="Views\Cars\Create.cshtml" />
     <Content Include="Views\Cars\Delete.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
@@ -342,16 +343,21 @@
     <Content Include="Views\Search\Details.cshtml" />
     <Content Include="Views\Search\Edit.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\SearchCarViewModels\Create.cshtml" />
-    <Content Include="Views\SearchCarViewModels\Delete.cshtml" />
-    <Content Include="Views\SearchCarViewModels\Details.cshtml" />
-    <Content Include="Views\SearchCarViewModels\Edit.cshtml" />
-    <Content Include="Views\SearchCarViewModels\Index.cshtml" />
     <Content Include="Views\CarTypes\Create.cshtml" />
     <Content Include="Views\CarTypes\Delete.cshtml" />
     <Content Include="Views\CarTypes\Details.cshtml" />
     <Content Include="Views\CarTypes\Edit.cshtml" />
     <Content Include="Views\CarTypes\Index.cshtml" />
+    <Content Include="Views\Reservations\Create.cshtml" />
+    <Content Include="Views\Reservations\Delete.cshtml" />
+    <Content Include="Views\Reservations\Details.cshtml" />
+    <Content Include="Views\Reservations\Edit.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\PreReservations\Create.cshtml" />
+    <Content Include="Views\PreReservations\Delete.cshtml" />
+    <Content Include="Views\PreReservations\Details.cshtml" />
+    <Content Include="Views\PreReservations\Edit.cshtml" />
+    <Content Include="Views\PreReservations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

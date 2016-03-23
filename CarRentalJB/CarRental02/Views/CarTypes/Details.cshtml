@@ -46,7 +46,7 @@
         @if (Model.Files.Any(f => f.FileType == CarRental02.Models.FileType.CarImage))
         {
             <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == CarRental02.Models.FileType.CarImage).FileId" alt="carImage" />
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == CarRental02.Models.FileType.CarImage).FileId" border-radius="30px" alt="carImage" />
             </dd>
         }            
     </dl>

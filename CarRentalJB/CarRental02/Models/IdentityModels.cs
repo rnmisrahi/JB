@@ -28,7 +28,7 @@ namespace CarRental02.Models
         public DbSet<CarType> CarTypes { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Member> Members { get; set; }
-        //public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<CarRental02.Models.City> Cities { get; set; }
 
@@ -49,11 +49,11 @@ namespace CarRental02.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
-            //  p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
-            //  p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);
+            modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
+              p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Reservation>().HasRequired(t => t.Car).WithMany(
+              p => p.Reservations).HasForeignKey(t => t.Car).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Reservation>().HasRequired(p => p.Car);
         }
 
 

@@ -19,6 +19,27 @@ namespace CarRental02.ViewModels
 
         }
 
+        #region ReservationRequest
+        public static ReservationRequest CreateReservationRequest()
+        {
+            ReservationRequest rq = new ReservationRequest();
+            rq.StartDate = DateTime.Today.AddDays(1);
+            rq.EndDate = DateTime.Today.AddDays(2);
+            return rq;
+        }
+        #endregion
+
+        #region ReservationViewModel
+        public static ReservationViewModel CreateReservationViewModel(Reservation reservation)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ReservationViewModel rvm = new ReservationViewModel();
+            rvm.Branch = reservation.Branch;
+            rvm.CarCode = null;
+            return rvm;
+        }
+        #endregion
+
         #region CarModelViewModel
         public static CarModelViewModel CreateCarModelViewModel(CarModel carModel)
         {
@@ -75,32 +96,32 @@ namespace CarRental02.ViewModels
         #endregion
 
         #region CarViewModel
-        public static CarViewModel CreateCarViewModel(Car car)
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            CarViewModel ecvm = new CarViewModel();
-            ecvm.CarData = car;
-            ecvm.Branches = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
-            ecvm.CarTypes = new SelectList(db.CarTypes, "CarTypeId", "Description", car.CarTypeId);
-            return ecvm;
-        }
+        //public static CarViewModel CreateCarViewModel(Car car)
+        //{
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    CarViewModel ecvm = new CarViewModel();
+        //    ecvm.CarData = car;
+        //    ecvm.Branches = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+        //    ecvm.CarTypes = new SelectList(db.CarTypes, "CarTypeId", "Description", car.CarTypeId);
+        //    return ecvm;
+        //}
 
-        public static CarViewModel CreateCarViewModel(int? id)
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            Car car = db.Cars.Find(id);
-            if (car != null)
-            {
-                //There is some code that is executed twice, but it's worth considering we abide by the DRY principle
-                return CreateCarViewModel(car);
-            }
-            return null; //todo return an error or make View return an error
-        }
+        //public static CarViewModel CreateCarViewModel(int? id)
+        //{
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    Car car = db.Cars.Find(id);
+        //    if (car != null)
+        //    {
+        //        //There is some code that is executed twice, but it's worth considering we abide by the DRY principle
+        //        return CreateCarViewModel(car);
+        //    }
+        //    return null; //todo return an error or make View return an error
+        //}
 
-        public static CarViewModel CreateCarViewModel()
-        {
-            return CreateCarViewModel(new Car());
-        }
+        //public static CarViewModel CreateCarViewModel()
+        //{
+        //    return CreateCarViewModel(new Car());
+        //}
         #endregion
 
         //#region SearchCarViewModel

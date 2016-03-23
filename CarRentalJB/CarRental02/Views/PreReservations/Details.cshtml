@@ -1,4 +1,4 @@
-﻿@model CarRental02.ViewModels.CarViewModel
+﻿@model CarRental02.Models.Reservation
 
 @{
     ViewBag.Title = "Details";
@@ -11,42 +11,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CarData.Branch.Description)
+            @Html.DisplayNameFor(model => model.Branch.BranchName)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.CarData.Branch.Description)
+            @Html.DisplayFor(model => model.Branch.BranchName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CarData.CarModel.Description)
+            @Html.DisplayNameFor(model => model.Car.CarColor)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.CarData.CarModel.Description)
+            @Html.DisplayFor(model => model.Car.CarColor)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CarData.CarType.DailyPrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CarData.CarType.DailyPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CarData.CarType.DailyLatePrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CarData.CarType.DailyLatePrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quote)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Quote);
-        </dd>
-
-
-        @*<dt>
             @Html.DisplayNameFor(model => model.MemberId)
         </dt>
 
@@ -84,11 +64,11 @@
 
         <dd>
             @Html.DisplayFor(model => model.ReservationStatus)
-        </dd>*@
+        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Accept Reservation", "Edit", new { id = Model.CarData.CarId }) |
-    @Html.ActionLink("Back to Reservations", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReservationId }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>
