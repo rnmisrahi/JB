@@ -26,10 +26,6 @@ namespace CarRental02.Models
         [CarCodeValidator]
         public string CarCode { get; set; }
 
-        //[Required]
-        //[Display(Name ="Model")]
-        //public int CarModelId { get; set; }
-
         [Display(Name ="$/Day")]
         [DataType(DataType.Currency)]
         public double DailyPrice { get; set; }
@@ -39,17 +35,6 @@ namespace CarRental02.Models
         public string Picture { get; set; }
 
         public string Comments { get; set; }
-        //public Gear? Gear { get; set; }
-        //[NotMapped]
-        //[Display(Name = "Brand-Model")]
-        //public string Description {
-        //    get
-        //    {
-        //        var aModel = db.CarModels.Find(CarModelId);
-        //        return string.Format("Code: {0} - Brand: {1} - Model:{2}", CarCode, aModel.CarBrand.BrandName, 
-        //            aModel.ModelName);
-        //    }
-        //}
 
         //public virtual CarModel CarModel { get; set; }
         public virtual ICollection<Car> Cars { get; set; }

@@ -53,6 +53,7 @@ namespace CarRental02.Models
         }
 
         public virtual ICollection<Reservation> Reservations { get; set; }
+        //public virtual ICollection<File> Files { get; set; }
     }
 
     public enum CarStatus

@@ -38,11 +38,6 @@
             @Html.DisplayFor(model => model.Comments)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Picture)
-            @Model.Picture
-        </dd>
-
         @if (Model.Files.Any(f => f.FileType == CarRental02.Models.FileType.CarImage))
         {
             <dd>

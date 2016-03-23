@@ -15,7 +15,7 @@ namespace CarRental02.ViewModels
         [MaxLength(1)]
         public string CarCode { get; set; }
         public double Quote { get; set; }
-        [NotMapped]
+        
         public virtual List<City> Cities { get; set; }
         public string FilterCarCode { get; set; }
         public string FilterCity { get; set; }

@@ -25,6 +25,21 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd>
+            @Model.StartDate.Value.ToString("dddd MMM/dd/yyyy")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Model.EndDate.Value.ToString("dddd MMM/dd/yyyy")
+
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CarData.CarType.DailyPrice)
         </dt>
         <dd>
@@ -39,56 +54,29 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.DaysRented)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DaysRented)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Quote)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Quote)
         </dd>
 
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.MemberId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MemberId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FromDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FromDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ToDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ToDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateReturned)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateReturned)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReservationStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReservationStatus)
-        </dd>*@
+        @if (Model.CarData.CarType.Files.Any(f => f.FileType == CarRental02.Models.FileType.CarImage))
+        {
+            <dd>
+                <img src="~/File?id=@Model.CarData.CarType.Files.First(f => f.FileType == CarRental02.Models.FileType.CarImage).FileId" border-radius="30px" alt="carImage" />
+            </dd>
+        }
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Accept Reservation", "Edit", new { CarId = Model.CarData.CarId, StartDate=Model.StartDate, EndDate=Model.EndDate, Quote=Model.Quote }) |
-    @Html.ActionLink("Back to Reservations", "Index", new { FilterCarCode=Model.CarData.CarType.CarCode, StartDate = Model.StartDate, EndDate = Model.EndDate } )
+    @Html.ActionLink("Back to Reservations", "Index", new { FilterCarCode=Model.CarData.CarType.CarCode, StartDate = Model.StartDate, EndDate = Model.EndDate } ) |
+    @Html.ActionLink("Accept Reservation", "Edit", new { CarId = Model.CarData.CarId, StartDate = Model.StartDate, EndDate = Model.EndDate, Quote = Model.Quote }) 
 </p>

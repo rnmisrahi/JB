@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
+using CarRental02.Controllers;
 
 namespace CarRental02.ViewModels
 {
@@ -21,26 +22,34 @@ namespace CarRental02.ViewModels
         {
             get
             {
-                return getQuote();
+                return Common.Quote(CarData, StartDate, EndDate);
             }
         }
 
+        [Display(Name ="Days Rented")]
+        public int DaysRented
+        {
+            get
+            {
+                return Common.DaysRented(StartDate, EndDate);
+            }
+        }
         public SelectList Branches { get; set; }
         public SelectList CarTypes { get; set; }
         public SelectList Reservation { get; set; }
 
-        private double getQuote()
-        {
-            double dailyPrice = CarData.CarType.DailyPrice;
-            if ((StartDate == null) || (EndDate == null))
-                return 0;//Todo raise an exception and deal with it
-            DateTime? d1 = StartDate.Value;
-            DateTime? d2 = EndDate.Value;
-            TimeSpan ts = EndDate.Value - StartDate.Value;
-            if (ts.Days <= 0)
-                return 0;
-            return ts.Days * dailyPrice;
+        //private double getQuote()
+        //{
+        //    double dailyPrice = CarData.CarType.DailyPrice;
+        //    if ((StartDate == null) || (EndDate == null))
+        //        return 0;//Todo raise an exception and deal with it
+        //    DateTime? d1 = StartDate.Value;
+        //    DateTime? d2 = EndDate.Value;
+        //    TimeSpan ts = EndDate.Value - StartDate.Value;
+        //    if (ts.Days <= 0)
+        //        return 0;
+        //    return ts.Days * dailyPrice;
+        //}
 
-        }
     }
 }

@@ -31,7 +31,7 @@ namespace CarRental02.Controllers
                 rvm.StartDate = DateTime.Parse(StartDate);
                 rvm.EndDate = DateTime.Parse(EndDate);
             }
-            catch (Exception)//Todo bring back the data after showing the quote. This is a bit of a patch more than defensive programming
+            catch (Exception)//Defensive programming
             {
                 rvm.StartDate = Common.Tomorrow();
                 rvm.EndDate = Common.DayAfterTomorrow();
@@ -52,15 +52,12 @@ namespace CarRental02.Controllers
                     cars = cars.Where(s => s.Branch.City.CityId==cityId);
                 }
             }
-            //if (!String.IsNullOrWhiteSpace(FilterCity))
-            //    cars = cars.Where(s => s.Branch.City.CityName.Contains(FilterCity));
             ViewBag.FilterCity = FilterCity;
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
             var distinctCarCodes = (from c in db.CarTypes
                                     select new { CarCode = c.CarCode }).Distinct();
             ViewBag.CarCodeId = new SelectList(distinctCarCodes, "CarCode", "CarCode");
             rvm.CarData = cars.ToList();
-            //rvm.Quote = rentalEstimate()
             return View(rvm);
         }
 
@@ -74,32 +71,21 @@ namespace CarRental02.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
             Car car = db.Cars.Find(id);
+            //CarType carType = db.CarTypes.Include(c => c.Files).SingleOrDefault(c => c.CarTypeId == id);
+            //Car car = db.Cars.Include(c => c.Files).SingleOrDefault(c => c.CarTypeId == id);
+
             CarViewModel cvm = new CarViewModel();
             cvm.CarData = car;
             cvm.StartDate = DateTime.Parse(StartDate);
             cvm.EndDate = DateTime.Parse(EndDate);
-
             return View(cvm);
-
-            //Reservation reservation = db.Reservations.Find(id);
-            //if (reservation == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(reservation);
         }
 
         // GET: Reservations/Create
         public ActionResult Create()
         {
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName");
-            //ViewBag.CarId = new SelectList(db.Cars, "CarId", "Description");
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
-            //DateTime tomorrow = DateTime.Now.AddDays(1);
-            //if (tomorrow.Hour < 8)
-            //tomorrow = tomorrow.AddHours(8-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute).AddMinutes(-DateTime.Now.Second);
-            //ViewBag.StartDate = DateTime.Now.AddDays(1);
-            //ViewBag.EndDate = tomorrow.AddDays(1);
 
             ViewBag.StartDate = Common.Tomorrow();
             ViewBag.EndDate = Common.DayAfterTomorrow();
@@ -136,6 +122,7 @@ namespace CarRental02.Controllers
             if (car == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+            
             Reservation reservation = new Reservation();
             reservation.CarId = CarId.Value;
             reservation.BranchId = car.BranchId;//This may be redundant because car has the branch field in it
