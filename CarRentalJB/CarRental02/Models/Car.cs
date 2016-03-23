@@ -42,7 +42,8 @@ namespace CarRental02.Models
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
                         var aModel = db.CarModels.Find(CarModelId);
-                        return string.Format("{0} - {1}", aModel.CarBrand.BrandName, aModel.ModelName);
+                        //return string.Format("{0} - {1} ({2})", aModel.CarBrand.BrandName, aModel.ModelName, aModel.Pl);
+                        return string.Format("{0} - {1} ({2})", aModel.CarBrand.BrandName, aModel.ModelName, Plates);
                     }
                 }
                 catch (Exception)

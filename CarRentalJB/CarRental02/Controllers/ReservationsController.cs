@@ -71,9 +71,6 @@ namespace CarRental02.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
             Car car = db.Cars.Find(id);
-            //CarType carType = db.CarTypes.Include(c => c.Files).SingleOrDefault(c => c.CarTypeId == id);
-            //Car car = db.Cars.Include(c => c.Files).SingleOrDefault(c => c.CarTypeId == id);
-
             CarViewModel cvm = new CarViewModel();
             cvm.CarData = car;
             cvm.StartDate = DateTime.Parse(StartDate);
