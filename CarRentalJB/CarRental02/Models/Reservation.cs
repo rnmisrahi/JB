@@ -16,13 +16,13 @@ namespace CarRental02.Models
         public int CarId { get; set; }
         [Display(Name = "From Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime FromDate { get; set; }
+        public Nullable<DateTime> FromDate { get; set; }
         [Display(Name = "To Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime ToDate { get; set; }
+        public Nullable<DateTime> ToDate { get; set; }
         [Display(Name = "Date Returned")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DateReturned { get; set; }
+        public Nullable<DateTime> DateReturned { get; set; }
         [Display(Name ="Status")]
         public ReservationStatus? ReservationStatus { get; set; }
 

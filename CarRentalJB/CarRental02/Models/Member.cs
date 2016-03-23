@@ -28,13 +28,13 @@ namespace CarRental02.Models
         public string Email { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DOB { get; set; }
+        public Nullable<DateTime> DOB { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Picture { get; set; }
         [Display(Name = "Member Since")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime FromDate { get; set; }
+        public Nullable<DateTime> FromDate { get; set; }
         public double Discount { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; }

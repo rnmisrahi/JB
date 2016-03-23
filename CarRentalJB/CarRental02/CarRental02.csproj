@@ -180,6 +180,7 @@
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\CarTypesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\Common.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

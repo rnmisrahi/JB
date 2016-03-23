@@ -42,7 +42,7 @@
             @Html.DisplayNameFor(model => model.Quote)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Quote);
+            @Html.DisplayFor(model => model.Quote)
         </dd>
 
 
@@ -89,6 +89,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Accept Reservation", "Edit", new { id = Model.CarData.CarId }) |
-    @Html.ActionLink("Back to Reservations", "Index")
+    @Html.ActionLink("Accept Reservation", "Edit", new { CarId = Model.CarData.CarId, StartDate=Model.StartDate, EndDate=Model.EndDate, Quote=Model.Quote }) |
+    @Html.ActionLink("Back to Reservations", "Index", new { FilterCarCode=Model.CarData.CarType.CarCode, StartDate = Model.StartDate, EndDate = Model.EndDate } )
 </p>

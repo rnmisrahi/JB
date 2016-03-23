@@ -31,9 +31,10 @@ namespace CarRental02.Controllers
                 rvm.StartDate = DateTime.Parse(StartDate);
                 rvm.EndDate = DateTime.Parse(EndDate);
             }
-            catch (Exception)
+            catch (Exception)//Todo bring back the data after showing the quote. This is a bit of a patch more than defensive programming
             {
-
+                rvm.StartDate = Common.Tomorrow();
+                rvm.EndDate = Common.DayAfterTomorrow();
             }
             //rvm.CarData = db.Cars.ToList();
             //var reservations = db.Reservations.Include(r => r.Branch).Include(r => r.Car);
@@ -94,13 +95,14 @@ namespace CarRental02.Controllers
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName");
             //ViewBag.CarId = new SelectList(db.Cars, "CarId", "Description");
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
-            DateTime tomorrow = DateTime.Now.AddDays(1);
-            if (tomorrow.Hour < 8)
-            tomorrow = tomorrow.AddHours(8-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute).AddMinutes(-DateTime.Now.Second);
+            //DateTime tomorrow = DateTime.Now.AddDays(1);
+            //if (tomorrow.Hour < 8)
+            //tomorrow = tomorrow.AddHours(8-DateTime.Now.Hour).AddMinutes(-DateTime.Now.Minute).AddMinutes(-DateTime.Now.Second);
+            //ViewBag.StartDate = DateTime.Now.AddDays(1);
+            //ViewBag.EndDate = tomorrow.AddDays(1);
 
-            ViewBag.StartDate = DateTime.Now.AddDays(1);
-            ViewBag.EndDate = tomorrow.AddDays(1);
-
+            ViewBag.StartDate = Common.Tomorrow();
+            ViewBag.EndDate = Common.DayAfterTomorrow();
             return View();
         }
 
@@ -126,17 +128,23 @@ namespace CarRental02.Controllers
         }
 
         // GET: Reservations/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? CarId, DateTime StartDate, DateTime EndDate, double Quote)
         {
-            if (id == null)
-            {
+            if (CarId == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
+            Car car = db.Cars.Find(CarId);
+            if (car == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            Reservation reservation = new Reservation();
+            reservation.CarId = CarId.Value;
+            reservation.BranchId = car.BranchId;//This may be redundant because car has the branch field in it
+            reservation.FromDate = StartDate;
+            reservation.ToDate = EndDate;
+            reservation.ReservationStatus = ReservationStatus.Reserved;
+            db.Reservations.Add(reservation);
+            db.SaveChanges();
+
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
             ViewBag.CarId = new SelectList(db.Cars, "CarId", "CarColor", reservation.CarId);
             return View(reservation);

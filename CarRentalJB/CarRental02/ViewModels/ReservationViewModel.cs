@@ -19,7 +19,9 @@ namespace CarRental02.ViewModels
         public virtual List<City> Cities { get; set; }
         public string FilterCarCode { get; set; }
         public string FilterCity { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<DateTime> StartDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<DateTime> EndDate { get; set; }
     }
 }

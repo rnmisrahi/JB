@@ -28,16 +28,16 @@
     }
 }
 
-    @using (@Html.BeginForm("Index", "Reservations", FormMethod.Get))
-    {
-        <p>
-            <b>Find By</b> Code: @Html.TextBox("FilterCarCode", null, htmlAttributes: new { @class = "form-control" })
-            City: @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
-            From Date: @Html.TextBox("StartDate", null, htmlAttributes: new { @class = "form-control" })
-            To Date: @Html.TextBox("EndDate", null, htmlAttributes: new { @class = "form-control" })
-            <input type="submit" value="Search" />
-        </p>
-    }
+@using (@Html.BeginForm("Index", "Reservations", FormMethod.Get))
+{
+    <p>
+        <b>Find By</b> Code: @Html.TextBox("FilterCarCode", null, htmlAttributes: new { @class = "form-control" })
+        City: @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+        From Date: @Html.TextBox("StartDate", null, htmlAttributes: new { @class = "form-control" })
+        To Date: @Html.TextBox("EndDate", null, htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="Search" />
+    </p>
+}
 
 @using (@Html.BeginForm("Details", "Reservations", FormMethod.Get))
 {
@@ -89,11 +89,7 @@
                     @Html.DisplayFor(modelItem => item.Comments)
                 </td>
                 <td>
-
-                    <input type="submit" value="Reserve" />
-
-                    @Html.ActionLink("Make a Reservation", "Details", new { id = item.CarId, StartDate=Model.StartDate, EndDate=Model.EndDate })
-
+                    @Html.ActionLink("Make a Reservation", "Details", new { id = item.CarId, StartDate = Model.StartDate, EndDate = Model.EndDate })
                 </td>
 
             </tr>

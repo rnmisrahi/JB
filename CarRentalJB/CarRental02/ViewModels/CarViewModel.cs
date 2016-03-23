@@ -13,9 +13,10 @@ namespace CarRental02.ViewModels
     public class CarViewModel
     {
         public Car CarData { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public Nullable<DateTime> StartDate { get; set; }
+        public Nullable<DateTime> EndDate { get; set; }
         [Display(Name="Total")]
+        [DataType(DataType.Currency)]
         public double Quote
         {
             get
@@ -31,7 +32,11 @@ namespace CarRental02.ViewModels
         private double getQuote()
         {
             double dailyPrice = CarData.CarType.DailyPrice;
-            TimeSpan ts = EndDate - StartDate;
+            if ((StartDate == null) || (EndDate == null))
+                return 0;//Todo raise an exception and deal with it
+            DateTime? d1 = StartDate.Value;
+            DateTime? d2 = EndDate.Value;
+            TimeSpan ts = EndDate.Value - StartDate.Value;
             if (ts.Days <= 0)
                 return 0;
             return ts.Days * dailyPrice;
