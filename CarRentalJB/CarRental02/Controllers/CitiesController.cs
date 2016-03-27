@@ -90,7 +90,7 @@ namespace CarRental02.Controllers
                 db.Entry(city).State = EntityState.Modified;
                 string cityName = city.CityName;
                 db.SaveChanges();
-                TempData["Added"] = cityName + " Deleted";
+                TempData["Added"] = cityName + " Edited";
                 return RedirectToAction("Index");
             }
             return View(city);
@@ -122,7 +122,7 @@ namespace CarRental02.Controllers
             string cityName = city.CityName;
             db.Cities.Remove(city);
             db.SaveChanges();
-            TempData["Added"] = cityName + " Edited";
+            TempData["Added"] = cityName + " Deleted";
             return RedirectToAction("Index");
         }
 

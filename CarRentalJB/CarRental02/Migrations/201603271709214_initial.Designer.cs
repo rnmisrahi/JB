@@ -13,12 +13,12 @@ namespace CarRental02.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603211642371_initial"; }
+            get { return "201603271709214_initial"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target
