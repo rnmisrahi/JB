@@ -10,13 +10,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#divfade").fadeOut(8000);
-    }
-    )
-</script>
 @{
     if (TempData["Added"] != null)
     {
@@ -67,3 +60,6 @@
 }
 
 </table>
+@section Scripts {
+    @Scripts.Render("~/Scripts/JBScript.js")
+}

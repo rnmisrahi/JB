@@ -1,0 +1,83 @@
+﻿@model CarRental02.Models.Reservation
+
+@{
+    ViewBag.Title = "Deliver Car";
+}
+
+<h2>Deliver Car</h2>
+
+<h3>Are you sure you want to <em>deliver</em> this car?</h3>
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Member)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Member)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch.BranchName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Branch.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Car.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.CarColor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Car.CarColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Kilometrage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Car.Kilometrage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReservationStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReservationStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Pick up" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

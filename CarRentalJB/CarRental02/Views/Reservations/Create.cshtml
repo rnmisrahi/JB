@@ -3,8 +3,17 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script type='text/javascript'>
+    $(function(){
+      $('.My-date-picker').datepicker();
+    })
+</script>
 <h2>Make a Reservation</h2>
+<input class='My-date-picker' value='01/03/1953' />
+
 
 
 @using (@Html.BeginForm("Index", "Reservations", FormMethod.Get))

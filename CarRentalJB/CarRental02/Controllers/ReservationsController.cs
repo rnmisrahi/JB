@@ -16,14 +16,6 @@ namespace CarRental02.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        private double rentalEstimate(double dailyPrice, DateTime startDate, DateTime endDate)
-        {
-            TimeSpan ts = endDate - startDate;
-            if (ts.Days <= 0)
-                return 0;
-            return ts.Days * dailyPrice;
-        }
-
         // GET: Reservations
         [AllowAnonymous]
         public ActionResult Index(string FilterCarCode, string FilterCity, string CityId, string StartDate, string EndDate)
@@ -40,7 +32,8 @@ namespace CarRental02.Controllers
             }
             //rvm.CarData = db.Cars.ToList();
             //var reservations = db.Reservations.Include(r => r.Branch).Include(r => r.Car);
-            var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType);
+            var cars = db.Cars.Include(c => c.Branch).Include(c => c.CarType).Include(c => c.Reservations);
+            cars = cars.Where(c => c.CarStatus == CarStatus.Available);//Todo: Check reservation dates
             if (!String.IsNullOrWhiteSpace(FilterCarCode))
             {
                 cars = cars.Where(s => s.CarType.CarCode == FilterCarCode);
@@ -64,7 +57,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Reservations/Details/5
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Details(int? id, string StartDate, string EndDate)
         {
             if (id == null)
@@ -98,14 +91,16 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        //MayNot be needed
         public ActionResult Create([Bind(Include = "ReservationId,BranchId,MemberId,CarId,FromDate,ToDate,DateReturned,ReservationStatus")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
-                //TempData["Added"] = reservation.Car.CarType.Description + " at " + reservation.Car.CarType.Description + " Added";
-                return RedirectToAction("Index");
+                TempData["Added"] = "Reservation for " + reservation.Car.Description + " at " + reservation.Branch.Description + " Added";
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
@@ -115,6 +110,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Reservations/Edit/5
+        [Authorize]
         public ActionResult Edit(int? CarId, DateTime StartDate, DateTime EndDate, double Quote)
         {
             if (CarId == null)
@@ -135,9 +131,10 @@ namespace CarRental02.Controllers
             db.Reservations.Add(reservation);
             db.SaveChanges();
 
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
-            ViewBag.CarId = new SelectList(db.Cars, "CarId", "CarColor", reservation.CarId);
-            return View(reservation);
+            //ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
+            //ViewBag.CarId = new SelectList(db.Cars, "CarId", "CarColor", reservation.CarId);
+            TempData["Added"] = "Reservation for " + reservation.Car.Description + " Added";
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Reservations/Edit/5
@@ -145,6 +142,8 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
+        //Todo: May not be needed
         public ActionResult Edit([Bind(Include = "ReservationId,BranchId,MemberId,CarId,FromDate,ToDate,DateReturned,ReservationStatus")] Reservation reservation)
         {
             if (ModelState.IsValid)
@@ -160,6 +159,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Reservations/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -177,7 +177,8 @@ namespace CarRental02.Controllers
         // POST: Reservations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [Authorize]
+        public ActionResult DeleteConfirmed(int id) //Todo: May not be needed
         {
             Reservation reservation = db.Reservations.Find(id);
             db.Reservations.Remove(reservation);

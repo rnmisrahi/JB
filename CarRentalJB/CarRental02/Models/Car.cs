@@ -61,7 +61,7 @@ namespace CarRental02.Models
     {
         Available,
         Rented,
-        InRepair,
+        UnderRepair,
         Other
     }
 

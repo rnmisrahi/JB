@@ -182,12 +182,14 @@
     <Compile Include="Controllers\CarTypesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\Common.cs" />
+    <Compile Include="Controllers\DeliverCarsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\PreReservationsController.cs" />
+    <Compile Include="Controllers\ReceiveCarsController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -253,6 +255,7 @@
     <None Include="Properties\PublishProfiles\CrJbApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.1-vsdoc.js" />
+    <Content Include="Scripts\JBScript.js" />
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
@@ -365,6 +368,12 @@
     <Content Include="Views\AdminReservations\Details.cshtml" />
     <Content Include="Views\AdminReservations\Edit.cshtml" />
     <Content Include="Views\AdminReservations\Index.cshtml" />
+    <Content Include="Views\DeliverCars\DeliverIt.cshtml" />
+    <Content Include="Views\DeliverCars\Details.cshtml" />
+    <Content Include="Views\DeliverCars\Index.cshtml" />
+    <Content Include="Views\ReceiveCars\Details.cshtml" />
+    <Content Include="Views\ReceiveCars\Index.cshtml" />
+    <Content Include="Views\ReceiveCars\ReceiveIt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

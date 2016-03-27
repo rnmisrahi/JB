@@ -63,7 +63,7 @@ namespace CarRental02.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "Description", car.BranchId);
             ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
             ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", car.CarModelId);
             return View(car);
@@ -82,7 +82,7 @@ namespace CarRental02.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "Description", car.BranchId);
             ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
             ViewBag.CarModelId = new SelectList(db.CarModels, "CarModelId", "Description", car.CarModelId);
             return View(car);
@@ -103,7 +103,7 @@ namespace CarRental02.Controllers
                 TempData["Added"] = car.Description + " Edited";
                 return RedirectToAction("Index");
             }
-            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", car.BranchId);
+            ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "Description", car.BranchId);
             ViewBag.CarTypeId = new SelectList(db.CarTypes, "CarTypeId", "CarCode", car.CarTypeId);
             return View(car);
         }

@@ -52,7 +52,7 @@ namespace CarRental02.Models
                 new Car {CarTypeId=0,BranchId=0,CarColor="White",Kilometrage=45000,Plates="234-2673", CarStatus=CarStatus.Available  },
                 new Car {CarTypeId=0,BranchId=0,CarColor="Blue",Kilometrage=30000,Plates="376-2273", CarStatus=CarStatus.Available  },
                 new Car {CarTypeId=1,BranchId=1,CarColor="Red",Kilometrage=21000,Plates="678-2673", CarStatus=CarStatus.Available  },
-                new Car {CarTypeId=2,BranchId=1,CarColor="White",Kilometrage=95000,Plates="785-2673", CarStatus=CarStatus.InRepair  },
+                new Car {CarTypeId=2,BranchId=1,CarColor="White",Kilometrage=95000,Plates="785-2673", CarStatus=CarStatus.UnderRepair  },
                 new Car {CarTypeId=3,BranchId=2,CarColor="Grey",Kilometrage=12000,Plates="378-2673", CarStatus=CarStatus.Rented  },
                 new Car {CarTypeId=3,BranchId=2,CarColor="Blue",Kilometrage=74300,Plates="763-2673", CarStatus=CarStatus.Available  },
                 new Car {CarTypeId=4,BranchId=0,CarColor="Black",Kilometrage=120000,Plates="999-2673", CarStatus=CarStatus.Available  },

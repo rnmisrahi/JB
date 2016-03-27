@@ -18,26 +18,38 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("JB Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Make a Reservation", "Create", "Reservations", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Reservations", "Create", "Reservations", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<l1>@Html.ActionLink("Make Reservations", "Create", "Reservations")</l1>*@
-                    <l2>@Html.ActionLink("Admin Reservations", "Index", "AdminReservations")</l2> |
-                    <l1>@Html.ActionLink("Cities", "Index", "Cities")</l1> |
-                    <l1>@Html.ActionLink("Branches", "Index", "Branches")</l1> |
+                    <l1 class="dropdown" ">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pickup & Returns | <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pick Up", "Index", "DeliverCars")</li>
+                            <li>@Html.ActionLink("Returns", "Index", "ReceiveCars")</li>
+                            <li>@Html.ActionLink("Admin Reservations", "Index", "AdminReservations")</li>
+                        </ul>
+                    </l1>
+                    
                     @*<l1>@Html.ActionLink("Members", "Index", "Members")</l1> |*@
                     @*<l1>@Html.ActionLink("About", "About", "Home")</l1>
-                    <l1>@Html.ActionLink("Contact", "Contact", "Home")</l1>*@
+            <l1>@Html.ActionLink("Contact", "Contact", "Home")</l1>*@
                     <l1 class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Cars<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Cars | <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Car Brands", "Index", "CarBrands")</li>
                             <li>@Html.ActionLink("Car Models", "Index", "CarModels")</li>
                             <li>@Html.ActionLink("Car Types", "Index", "CarTypes")</li>
                             <li>@Html.ActionLink("Cars", "Index", "Cars")</li>
+                        </ul>
+                    </l1>
+                    <l1 class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Branches |<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cities", "Index", "Cities")</li>
+                            <li>@Html.ActionLink("Branches", "Index", "Branches")</li>
                         </ul>
                     </l1>
                 </ul>
@@ -55,6 +67,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/JBScript.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>
