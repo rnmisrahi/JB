@@ -10,6 +10,7 @@ using CarRental02.Models;
 
 namespace CarRental02.Controllers
 {
+    [Authorize(Roles = "Admin, Employee")]
     public class CarsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -37,6 +38,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Cars/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "Description");
@@ -50,6 +52,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Car car)
         {
             if (ModelState.IsValid)
@@ -67,6 +70,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Cars/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +93,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "CarId,CarTypeId,BranchId,CarModelId,Gear,CarColor,Kilometrage,Picture,Plates,CarStatus,Comments")] Car car)
         {
             if (ModelState.IsValid)
@@ -104,6 +109,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Cars/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -121,6 +127,7 @@ namespace CarRental02.Controllers
         // POST: Cars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Car car = db.Cars.Find(id);

@@ -13,6 +13,7 @@ namespace CarRental02.ViewModels
     {
         public List<Car> CarData { get; set; }
         [MaxLength(1)]
+        public string Member { get; set; }
         public string CarCode { get; set; }
         public double Quote { get; set; }
         

@@ -7,7 +7,7 @@ using CarRental02.Models;
 using CarRental02.ViewModels;
 
 namespace CarRental02.Controllers
-{
+{    
     public class BrandViewModelController : Controller
     {
 

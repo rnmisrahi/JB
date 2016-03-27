@@ -7,10 +7,13 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Branch.BranchName)
         </th>
@@ -38,6 +41,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Member)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Branch.BranchName)
         </td>
         <td>
@@ -59,7 +65,7 @@
             @Html.DisplayFor(modelItem => item.ReservationStatus)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReservationId }) |
+            @*//Todo: Get this to work.@Html.ActionLink("Edit", "Edit", new { id=item.ReservationId }) |*@
             @Html.ActionLink("Details", "Details", new { id=item.ReservationId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ReservationId })
         </td>

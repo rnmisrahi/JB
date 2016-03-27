@@ -38,6 +38,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: CarModels/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             CarModelViewModel cmvm = ViewModelFactory.CreateCarModelViewModel();
@@ -49,6 +50,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(CarModelViewModel cmvm)
         {
             if (ModelState.IsValid)
@@ -63,6 +65,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: CarModels/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +85,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(CarModelViewModel cmvm)
         {
             if (ModelState.IsValid)
@@ -96,6 +100,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: CarModels/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,6 +118,7 @@ namespace CarRental02.Controllers
         // POST: CarModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             CarModel carModel = db.CarModels.Find(id);

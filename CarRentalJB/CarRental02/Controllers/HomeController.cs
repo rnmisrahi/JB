@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CarRental02.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()

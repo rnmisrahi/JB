@@ -12,7 +12,6 @@ using CarRental02.Models;
 
 namespace CarRental02.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

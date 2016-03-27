@@ -37,6 +37,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Branches/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(db.Cities, "CityId", "CityName");
@@ -48,6 +49,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "BranchId,CityId,BranchName,Location,Phone")] Branch branch)
         {
             if (ModelState.IsValid)
@@ -63,6 +65,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Branches/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +86,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "BranchId,CityId,BranchName,Location,Phone")] Branch branch)
         {
             if (ModelState.IsValid)
@@ -97,6 +101,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Branches/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +119,7 @@ namespace CarRental02.Controllers
         // POST: Branches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Branch branch = db.Branches.Find(id);

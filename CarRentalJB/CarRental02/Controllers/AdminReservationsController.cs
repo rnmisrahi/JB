@@ -10,6 +10,7 @@ using CarRental02.Models;
 
 namespace CarRental02.Controllers
 {
+    [Authorize(Roles = "Employee, Admin")]
     public class AdminReservationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -48,6 +49,7 @@ namespace CarRental02.Controllers
         // POST: AdminReservations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Todo This needs to be done correctly or forbid it
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReservationId,BranchId,MemberId,CarId,FromDate,ToDate,DateReturned,ReservationStatus")] Reservation reservation)
@@ -61,6 +63,7 @@ namespace CarRental02.Controllers
 
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
             ViewBag.CarId = new SelectList(db.Cars, "CarId", "Description", reservation.CarId);
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Member", reservation.MemberId);
             return View(reservation);
         }
 
@@ -80,6 +83,8 @@ namespace CarRental02.Controllers
             //Select the cars only from the same branch
             var cars = db.Cars.Where(c => c.BranchId == id);
             ViewBag.CarId = new SelectList(cars, "CarId", "Description", reservation.CarId);
+            var x = db.Users;
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", reservation.MemberId);
             return View(reservation);
         }
 
@@ -88,16 +93,18 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReservationId,BranchId,MemberId,CarId,FromDate,ToDate,DateReturned,ReservationStatus")] Reservation reservation)
+        public ActionResult Edit(Reservation reservation)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(reservation).State = EntityState.Modified;
+                reservation.MemberId = ViewBag.UserId;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName", reservation.BranchId);
             ViewBag.CarId = new SelectList(db.Cars, "CarId", "Description", reservation.CarId);
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Member", reservation.MemberId);
             return View(reservation);
         }
 

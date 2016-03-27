@@ -6,6 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using CarRental02.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Linq;
+using System.Data.Entity.Migrations;
 
 namespace CarRental02
 {
@@ -54,15 +57,53 @@ namespace CarRental02
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "560570867453306",
+               appSecret: "ceebb06b8476ed100adbb07c10b785dd");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            addUsersAndRoles();
         }
+
+        private void addUsersAndRoles()
+        {
+            CarRental02.Models.ApplicationDbContext context = new ApplicationDbContext();
+
+            AddRole(context, "Admin");
+            AddRole(context, "Employee");
+
+            AddUser(context, "JBAdmin@gmail.com", "Admin");
+            AddUser(context, "JBEmployee1@gmail.com", "Employee");
+            AddUser(context, "JBEmployee2@gmail.com", "Employee");
+            AddUser(context, "JBEmployee3@gmail.com", "Employee");
+
+        }
+
+        private static void AddUser(ApplicationDbContext context, string userName, string role)
+        {
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            if (!context.Users.Any(u => u.UserName == userName))
+            {
+                var user = new ApplicationUser { UserName = userName, Email = userName };
+                IdentityResult result = userManager.Create(user, "Passw0rd!");
+                userManager.AddToRole(user.Id, role);
+                context.SaveChanges();
+            }
+        }
+
+        private static void AddRole(ApplicationDbContext context, String role)
+        {
+            if (!context.Roles.Any(r => r.Name == role)){
+                context.Roles.AddOrUpdate(r => r.Name, new IdentityRole { Name = role });
+                context.SaveChanges();
+            }
+        }
+
     }
 }

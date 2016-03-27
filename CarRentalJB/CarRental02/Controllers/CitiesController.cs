@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using CarRental02.Models;
 
 namespace CarRental02.Controllers
-{
+{    
     public class CitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -36,6 +36,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Cities/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +47,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "CityId,CityName,Country")] City city)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Cities/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace CarRental02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "CityId,CityName,Country")] City city)
         {
             if (ModelState.IsValid)
@@ -93,6 +97,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Cities/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +115,7 @@ namespace CarRental02.Controllers
         // POST: Cities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             City city = db.Cities.Find(id);

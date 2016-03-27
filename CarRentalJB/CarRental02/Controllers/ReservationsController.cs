@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CarRental02.Models;
 using CarRental02.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace CarRental02.Controllers
 {
@@ -24,6 +25,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Reservations
+        [AllowAnonymous]
         public ActionResult Index(string FilterCarCode, string FilterCity, string CityId, string StartDate, string EndDate)
         {
             ReservationViewModel rvm = new ReservationViewModel();
@@ -62,6 +64,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Reservations/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id, string StartDate, string EndDate)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace CarRental02.Controllers
         }
 
         // GET: Reservations/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             ViewBag.BranchId = new SelectList(db.Branches, "BranchId", "BranchName");
@@ -121,6 +125,8 @@ namespace CarRental02.Controllers
 
             
             Reservation reservation = new Reservation();
+            reservation.Member = User.Identity.Name;
+            reservation.MemberId = User.Identity.GetUserId();
             reservation.CarId = CarId.Value;
             reservation.BranchId = car.BranchId;//This may be redundant because car has the branch field in it
             reservation.FromDate = StartDate;
