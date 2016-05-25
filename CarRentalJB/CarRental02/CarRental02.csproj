@@ -195,10 +195,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603271709214_initial.cs" />
-    <Compile Include="Migrations\201603271709214_initial.Designer.cs">
-      <DependentUpon>201603271709214_initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CarFilter.cs" />
     <Compile Include="Models\City.cs" />
@@ -245,6 +241,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\AngularJs\Views\web.config" />
+    <None Include="Properties\PublishProfiles\CarRentalApp - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CarRentalApp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\CarRentalApp - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\CarRentalApp - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CrJb - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\CrJb - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CrJbApp - FTP %282%29.pubxml" />
@@ -395,11 +395,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603271709214_initial.resx">
-      <DependentUpon>201603271709214_initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -58,8 +58,8 @@ namespace CarRental02
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "560570867453306",
-               appSecret: "ceebb06b8476ed100adbb07c10b785dd");
+               appId: "601893606630174",
+               appSecret: "c76c87d78a9d0b00d20448b2f3658179");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

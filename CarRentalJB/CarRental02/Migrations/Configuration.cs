@@ -13,6 +13,7 @@ namespace CarRental02.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(CarRental02.Models.ApplicationDbContext context)
